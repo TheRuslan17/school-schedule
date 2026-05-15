@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="theme-color" content="#4CAF50">
+    <title>Школьное расписание</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            padding: 16px;
+            padding-bottom: 80px;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .select-class {
+            width: 100%;
+            padding: 14px;
+            font-size: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            background: white;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        .btn-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        
+        button {
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.1s, opacity 0.2s;
+        }
+        
+        button:active {
+            transform: scale(0.98);
+        }
+        
+        .btn-primary {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: #2196F3;
+            color: white;
+        }
+        
+        .btn-danger {
+            background: #f44336;
+            color: white;
+        }
+        
+        .btn-warning {
+            background: #FF9800;
+            color: white;
+        }
+        
+        .schedule-item {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .lesson-number {
+            font-size: 12px;
+            color: #4CAF50;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .lesson-subject {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .lesson-teacher {
+            font-size: 13px;
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 5px;
+        }
+        
+        .status {
+            padding: 12px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        
+        .status.loading {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .status.success {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        
+        .status.error {
+            background: #ffebee;
+            color: #c62828;
+        }
+        
+        .status.info {
+            background: #fff3e0;
+            color: #e65100;
+        }
+        
+        .tab-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            display: flex;
+            padding: 8px 16px;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            background: none;
+            color: #666;
+            font-size: 14px;
+            border-radius: 0;
+        }
+        
+        .tab.active {
+            color: #4CAF50;
+            border-bottom: 3px solid #4CAF50;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .teacher-item {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 10px;
+        }
+        
+        .teacher-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .teacher-info {
+            font-size: 13px;
+            color: #666;
+        }
+        
+        .ring-item {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .ring-lesson {
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        
+        .ring-time {
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #1a1a2e;
+            }
+            .card {
+                background: #16213e;
+            }
+            .schedule-item, .teacher-item, .ring-item {
+                background: #0f3460;
+            }
+            .lesson-subject, .teacher-name {
+                color: white;
+            }
+            .lesson-teacher, .teacher-info {
+                color: #aaa;
+            }
+            .tab-bar {
+                background: #16213e;
+                border-top-color: #0f3460;
+            }
+            .select-class {
+                background: #0f3460;
+                color: white;
+                border-color: #1a4a7a;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏫 Школьный помощник</h1>
+            <p>Актуальное расписание всегда под рукой</p>
+        </div>
+        
+        <div class="card">
+            <select id="classSelect" class="select-class">
+                <option value="9А">9А класс</option>
+                <option value="9Б">9Б класс</option>
+                <option value="10А">10А класс</option>
+                <option value="10Б">10Б класс</option>
+                <option value="11А">11А класс</option>
+            </select>
+            
+            <div class="btn-grid">
+                <button id="todayBtn" class="btn-primary">📅 Сегодня</button>
+                <button id="anyDayBtn" class="btn-secondary">📆 Другой день</button>
+            </div>
+            
+            <button id="updateBtn" class="btn-danger">🔄 Обновить расписание</button>
+        </div>
+        
+        <div id="scheduleCard" class="card">
+            <div id="scheduleContent">
+                <div class="status loading">📡 Нажмите «Обновить» для загрузки расписания</div>
+            </div>
+        </div>
+        
+        <div class="card hidden" id="teachersCard">
+            <h3 style="margin-bottom: 15px;">👨‍🏫 Преподаватели</h3>
+            <div id="teachersContent"></div>
+        </div>
+        
+        <div class="card hidden" id="ringsCard">
+            <h3 style="margin-bottom: 15px;">🔔 Расписание звонков</h3>
+            <div id="ringsContent"></div>
+        </div>
+    </div>
+    
+    <div class="tab-bar">
+        <button class="tab active" data-tab="schedule">📅 Расписание</button>
+        <button class="tab" data-tab="teachers">👨‍🏫 Учителя</button>
+        <button class="tab" data-tab="rings">🔔 Звонки</button>
+    </div>
+    
+    <script>
+        // ⚠️ ВАЖНО: ЗАМЕНИТЕ ЭТУ ССЫЛКУ НА ВАШУ ПОСЛЕ ТОГО, КАК ЗАГРУЗИТЕ ФАЙЛ НА GITHUB
+        const SCHEDULE_URL = "https://raw.githubusercontent.com/YOUR_USERNAME/school_schedule/main/schedule.json";
+        
+        let scheduleData = null;
+        let currentDay = null;
+        
+        const daysRu = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
+        
+        // Загрузка расписания
+        async function loadSchedule() {
+            showStatus('loading', '⏳ Загрузка расписания...');
+            
+            try {
+                const response = await fetch(SCHEDULE_URL);
+                if (!response.ok) throw new Error(`Ошибка HTTP ${response.status}`);
+                const data = await response.json();
+                scheduleData = data;
+                showStatus('success', '✅ Расписание успешно обновлено!');
+                
+                // Показываем расписание на сегодня
+                const today = new Date();
+                const dayIndex = today.getDay();
+                let todayName;
+                if (dayIndex === 0 || dayIndex === 6) {
+                    todayName = 'Понедельник';
+                    showStatus('info', '📌 Сегодня выходной, показываю расписание на понедельник');
+                } else {
+                    todayName = daysRu[dayIndex - 1];
+                }
+                showScheduleForDay(todayName);
+            } catch (error) {
+                showStatus('error', `❌ Ошибка: ${error.message}\n\nПроверьте интернет и ссылку на GitHub`);
+                scheduleData = null;
+            }
+        }
+        
+        function showStatus(type, message) {
+            const container = document.getElementById('scheduleContent');
+            if (type === 'loading') {
+                container.innerHTML = `<div class="status loading">${message}</div>`;
+            } else if (type === 'success') {
+                const statusDiv = document.createElement('div');
+                statusDiv.className = 'status success';
+                statusDiv.textContent = message;
+                container.insertBefore(statusDiv, container.firstChild);
+                setTimeout(() => statusDiv.remove(), 3000);
+            } else if (type === 'info') {
+                const container2 = document.getElementById('scheduleContent');
+                const infoDiv = document.createElement('div');
+                infoDiv.className = 'status info';
+                infoDiv.textContent = message;
+                container2.insertBefore(infoDiv, container2.firstChild);
+                setTimeout(() => infoDiv.remove(), 3000);
+            } else {
+                container.innerHTML = `<div class="status error">${message}</div>`;
+            }
+        }
+        
+        function showScheduleForDay(day) {
+            currentDay = day;
+            const container = document.getElementById('scheduleContent');
+            const selectedClass = document.getElementById('classSelect').value;
+            
+            if (!scheduleData) {
+                container.innerHTML = `<div class="status error">❌ Нет данных. Нажмите «Обновить расписание»</div>`;
+                return;
+            }
+            
+            if (!scheduleData.schedule || !scheduleData.schedule[selectedClass]) {
+                container.innerHTML = `<div class="status error">❌ Нет расписания для класса ${selectedClass}</div>`;
+                return;
+            }
+            
+            const lessons = scheduleData.schedule[selectedClass][day];
+            if (!lessons || lessons.length === 0) {
+                container.innerHTML = `<div class="status info">📭 Нет уроков на ${day}</div>`;
+                return;
+            }
+            
+            let html = `<h3 style="margin-bottom: 15px;">📚 ${selectedClass} · ${day}</h3>`;
+            lessons.forEach(lesson => {
+                html += `
+                    <div class="schedule-item">
+                        <div class="lesson-number">📖 ${lesson.number} урок</div>
+                        <div class="lesson-subject">${lesson.subject}</div>
+                        <div class="lesson-teacher">👨‍🏫 ${lesson.teacher}</div>
+                        <div class="lesson-teacher">🚪 Кабинет ${lesson.room}</div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+        
+        function showToday() {
+            if (!scheduleData) {
+                showStatus('error', 'Сначала обновите расписание');
+                return;
+            }
+            const today = new Date();
+            const dayIndex = today.getDay();
+            let todayName;
+            if (dayIndex === 0 || dayIndex === 6) {
+                todayName = 'Понедельник';
+                showStatus('info', '📌 Сегодня выходной, показываю расписание на понедельник');
+            } else {
+                todayName = daysRu[dayIndex - 1];
+            }
+            showScheduleForDay(todayName);
+        }
+        
+        function showAnyDay() {
+            if (!scheduleData) {
+                alert('Сначала обновите расписание');
+                return;
+            }
+            const day = prompt('Введите день недели:\nПонедельник, Вторник, Среда, Четверг, Пятница, Суббота');
+            if (day && daysRu.includes(day)) {
+                showScheduleForDay(day);
+            } else if (day) {
+                alert('Введите корректный день недели');
+            }
+        }
+        
+        function showTeachers() {
+            const container = document.getElementById('teachersContent');
+            if (!scheduleData || !scheduleData.teachers) {
+                container.innerHTML = '<div class="status error">Нет данных об учителях</div>';
+                return;
+            }
+            
+            let html = '';
+            for (const [name, info] of Object.entries(scheduleData.teachers)) {
+                html += `
+                    <div class="teacher-item">
+                        <div class="teacher-name">${name}</div>
+                        <div class="teacher-info">📖 Преподает: ${info.subject}</div>
+                        <div class="teacher-info">🚪 Кабинет: ${info.room}</div>
+                    </div>
+                `;
+            }
+            container.innerHTML = html || '<div class="status info">Нет данных</div>';
+        }
+        
+        function showRings() {
+            const container = document.getElementById('ringsContent');
+            if (!scheduleData || !scheduleData.rings) {
+                container.innerHTML = '<div class="status error">Нет расписания звонков</div>';
+                return;
+            }
+            
+            let html = '';
+            for (const [num, times] of Object.entries(scheduleData.rings)) {
+                html += `
+                    <div class="ring-item">
+                        <span class="ring-lesson">${num} урок</span>
+                        <span class="ring-time">${times.start} - ${times.end}</span>
+                    </div>
+                `;
+            }
+            container.innerHTML = html;
+        }
+        
+        // Переключение вкладок
+        function switchTab(tab) {
+            document.querySelectorAll('.tab').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`.tab[data-tab="${tab}"]`).classList.add('active');
+            
+            document.getElementById('scheduleCard').classList.add('hidden');
+            document.getElementById('teachersCard').classList.add('hidden');
+            document.getElementById('ringsCard').classList.add('hidden');
+            
+            if (tab === 'schedule') {
+                document.getElementById('scheduleCard').classList.remove('hidden');
+                if (currentDay && scheduleData) showScheduleForDay(currentDay);
+            } else if (tab === 'teachers') {
+                document.getElementById('teachersCard').classList.remove('hidden');
+                showTeachers();
+            } else if (tab === 'rings') {
+                document.getElementById('ringsCard').classList.remove('hidden');
+                showRings();
+            }
+        }
+        
+        // Обработчики
+        document.getElementById('updateBtn').addEventListener('click', loadSchedule);
+        document.getElementById('todayBtn').addEventListener('click', showToday);
+        document.getElementById('anyDayBtn').addEventListener('click', showAnyDay);
+        document.getElementById('classSelect').addEventListener('change', () => {
+            if (currentDay && scheduleData) showScheduleForDay(currentDay);
+        });
+        
+        document.querySelectorAll('.tab').forEach(btn => {
+            btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+        });
+        
+        // Автозагрузка при открытии
+        loadSchedule();
+    </script>
+</body>
+</html>
