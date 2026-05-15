@@ -26,7 +26,7 @@
         }
         
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: white;
             padding: 20px;
             border-radius: 20px;
@@ -35,13 +35,19 @@
         }
         
         .header h1 {
-            font-size: 22px;
+            font-size: 20px;
             margin-bottom: 5px;
         }
         
         .header p {
-            font-size: 13px;
+            font-size: 12px;
             opacity: 0.9;
+        }
+        
+        .header .founded {
+            font-size: 11px;
+            margin-top: 8px;
+            opacity: 0.8;
         }
         
         .card {
@@ -99,8 +105,8 @@
             color: white;
         }
         
-        .btn-warning {
-            background: #FF9800;
+        .btn-info {
+            background: #607d8b;
             color: white;
         }
         
@@ -183,11 +189,12 @@
             color: #666;
             font-size: 14px;
             border-radius: 0;
+            border-bottom: 3px solid transparent;
         }
         
         .tab.active {
             color: #4CAF50;
-            border-bottom: 3px solid #4CAF50;
+            border-bottom-color: #4CAF50;
         }
         
         .hidden {
@@ -206,6 +213,12 @@
             font-weight: 600;
             color: #333;
             margin-bottom: 5px;
+        }
+        
+        .teacher-position {
+            font-size: 12px;
+            color: #4CAF50;
+            margin-bottom: 3px;
         }
         
         .teacher-info {
@@ -233,6 +246,35 @@
             font-weight: 600;
         }
         
+        .school-info {
+            background: #f0f4ff;
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 10px;
+            font-size: 13px;
+            color: #333;
+            line-height: 1.5;
+        }
+        
+        .director-card {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 10px;
+        }
+        
+        .director-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .director-contact {
+            font-size: 12px;
+            color: #555;
+            margin-top: 5px;
+        }
+        
         @media (prefers-color-scheme: dark) {
             body {
                 background: #1a1a2e;
@@ -258,6 +300,10 @@
                 color: white;
                 border-color: #1a4a7a;
             }
+            .school-info {
+                background: #0f3460;
+                color: #ddd;
+            }
         }
     </style>
 </head>
@@ -266,6 +312,7 @@
         <div class="header">
             <h1>🏫 МБОУ СОШ № 2</h1>
             <p>им. О.И. Скрипочки · г. Невинномысск</p>
+            <div class="founded">Основана в 1907 году</div>
         </div>
         
         <div class="card">
@@ -282,7 +329,10 @@
                 <button id="anyDayBtn" class="btn-secondary">📆 Другой день</button>
             </div>
             
-            <button id="updateBtn" class="btn-danger">🔄 Обновить расписание</button>
+            <div class="btn-grid">
+                <button id="updateBtn" class="btn-danger">🔄 Обновить расписание</button>
+                <button id="aboutBtn" class="btn-info">ℹ️ О школе</button>
+            </div>
         </div>
         
         <div id="scheduleCard" class="card">
@@ -292,7 +342,7 @@
         </div>
         
         <div class="card hidden" id="teachersCard">
-            <h3 style="margin-bottom: 15px;">👨‍🏫 Преподаватели</h3>
+            <h3 style="margin-bottom: 15px;">👨‍🏫 Педагогический состав</h3>
             <div id="teachersContent"></div>
         </div>
         
@@ -300,12 +350,18 @@
             <h3 style="margin-bottom: 15px;">🔔 Расписание звонков</h3>
             <div id="ringsContent"></div>
         </div>
+        
+        <div class="card hidden" id="aboutCard">
+            <h3 style="margin-bottom: 15px;">📖 История школы</h3>
+            <div id="aboutContent"></div>
+        </div>
     </div>
     
     <div class="tab-bar">
         <button class="tab active" data-tab="schedule">📅 Расписание</button>
         <button class="tab" data-tab="teachers">👨‍🏫 Учителя</button>
         <button class="tab" data-tab="rings">🔔 Звонки</button>
+        <button class="tab" data-tab="about">🏛️ История</button>
     </div>
     
     <script>
@@ -316,6 +372,63 @@
         let currentDay = null;
         
         const daysRu = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
+        
+        // Реальные учителя школы №2
+        const realTeachers = {
+            "Маланин Максим Александрович": {"position": "Директор школы", "subject": "Руководство", "contact": "school2nev1@mail.ru"},
+            "Говорущенко Виктория Викторовна": {"position": "Заместитель директора по ВР", "subject": "Физическая культура"},
+            "Полякова Любовь Васильевна": {"position": "Учитель", "subject": "Физика, Математика"},
+            "Шубина Елена Сергеевна": {"position": "Заместитель директора по методической работе", "subject": "Иностранные языки"},
+            "Еремеева Наталья Александровна": {"position": "Социальный педагог", "subject": "Обществознание, История"},
+            "Савельева Светлана Александровна": {"position": "Учитель", "subject": "Математика, Информатика"},
+            "Кривобокова Анна Александровна": {"position": "Учитель", "subject": "Музыка, ИЗО, Биология"},
+            "Рекунова Анна Евгеньевна": {"position": "Учитель", "subject": "Математика"},
+            "Мусаева Светлана Салаутдиновна": {"position": "Заместитель директора по УВР", "subject": "Труд"},
+            "Морозова Юлия Анатольевна": {"position": "Учитель", "subject": "История"},
+            "Алмазова Ника Лаврентьевна": {"position": "Учитель", "subject": "Иностранные языки"},
+            "Интс Юлия Лембитовна": {"position": "Заместитель директора по УВР", "subject": "Начальные классы"},
+            "Панченко Наталья Петровна": {"position": "Учитель", "subject": "Русский язык, Литература"},
+            "Репкина Анна Вячеславовна": {"position": "Учитель", "subject": "Начальные классы"},
+            "Краснова Марина Ивановна": {"position": "Учитель", "subject": "Начальные классы"},
+            "Красовская Наталья Ильинична": {"position": "Учитель", "subject": "Начальные классы"},
+            "Кабардов Мардас Мухадинович": {"position": "Учитель", "subject": "Начальные классы"},
+            "Иванова Светлана Ивановна": {"position": "Учитель", "subject": "Начальные классы"},
+            "Смирнова Анна Олеговна": {"position": "Учитель", "subject": "Начальные классы"},
+            "Маданова Ольга Владимировна": {"position": "Учитель", "subject": "Начальные классы"}
+        };
+        
+        // Расписание звонков (стандартное для школ России)
+        const ringsData = {
+            "1": {"start": "08:30", "end": "09:15"},
+            "2": {"start": "09:25", "end": "10:10"},
+            "3": {"start": "10:20", "end": "11:05"},
+            "4": {"start": "11:15", "end": "12:00"},
+            "5": {"start": "12:10", "end": "12:55"},
+            "6": {"start": "13:05", "end": "13:50"},
+            "7": {"start": "14:00", "end": "14:45"}
+        };
+        
+        // История школы
+        const schoolHistory = `
+            <div class="school-info">
+                <strong>🏛️ Основание:</strong> Школа основана в 1907 году купцом Иваном Васильевичем Лапиным с трехлетним обучением для иногородних детей. Обучение было платным.
+            </div>
+            <div class="school-info">
+                <strong>📚 История:</strong> В 20-е годы — начальная школа, затем семилетняя. В 30-е годы — Фабричное заводское училище. В 1937-1938 гг. создана средняя школа №2.
+            </div>
+            <div class="school-info">
+                <strong>🏗️ Здание:</strong> В 1936 году построено новое здание по ул. Шевченко, 2. В годы войны школа была военным госпиталем. При отступлении немцы сожгли школу, восстановлена в 1950 году.
+            </div>
+            <div class="director-card">
+                <div class="director-name">👨‍💼 Директор: Маланин Максим Александрович</div>
+                <div class="director-contact">📞 Телефон: +7 (86554) 2-14-07</div>
+                <div class="director-contact">📧 Email: school2nev1@mail.ru</div>
+                <div class="director-contact">🕐 Приём: четверг 14:00-16:00</div>
+            </div>
+            <div class="school-info">
+                <strong>⭐ Имя школы:</strong> Носит имя летчика-космонавта, Героя Российской Федерации Олега Ивановича Скрипочки.
+            </div>
+        `;
         
         // Загрузка расписания
         async function loadSchedule() {
@@ -328,7 +441,6 @@
                 scheduleData = data;
                 showStatus('success', '✅ Расписание успешно обновлено!');
                 
-                // Показываем расписание на сегодня
                 const today = new Date();
                 const dayIndex = today.getDay();
                 let todayName;
@@ -434,33 +546,24 @@
         
         function showTeachers() {
             const container = document.getElementById('teachersContent');
-            if (!scheduleData || !scheduleData.teachers) {
-                container.innerHTML = '<div class="status error">Нет данных об учителях</div>';
-                return;
-            }
-            
             let html = '';
-            for (const [name, info] of Object.entries(scheduleData.teachers)) {
+            for (const [name, info] of Object.entries(realTeachers)) {
                 html += `
                     <div class="teacher-item">
                         <div class="teacher-name">${name}</div>
+                        <div class="teacher-position">${info.position || 'Учитель'}</div>
                         <div class="teacher-info">📖 Преподает: ${info.subject}</div>
-                        <div class="teacher-info">🚪 Кабинет: ${info.room}</div>
+                        ${info.contact ? `<div class="teacher-info">📧 ${info.contact}</div>` : ''}
                     </div>
                 `;
             }
-            container.innerHTML = html || '<div class="status info">Нет данных</div>';
+            container.innerHTML = html;
         }
         
         function showRings() {
             const container = document.getElementById('ringsContent');
-            if (!scheduleData || !scheduleData.rings) {
-                container.innerHTML = '<div class="status error">Нет расписания звонков</div>';
-                return;
-            }
-            
             let html = '';
-            for (const [num, times] of Object.entries(scheduleData.rings)) {
+            for (const [num, times] of Object.entries(ringsData)) {
                 html += `
                     <div class="ring-item">
                         <span class="ring-lesson">${num} урок</span>
@@ -469,6 +572,11 @@
                 `;
             }
             container.innerHTML = html;
+        }
+        
+        function showAbout() {
+            const container = document.getElementById('aboutContent');
+            container.innerHTML = schoolHistory;
         }
         
         // Переключение вкладок
@@ -481,6 +589,7 @@
             document.getElementById('scheduleCard').classList.add('hidden');
             document.getElementById('teachersCard').classList.add('hidden');
             document.getElementById('ringsCard').classList.add('hidden');
+            document.getElementById('aboutCard').classList.add('hidden');
             
             if (tab === 'schedule') {
                 document.getElementById('scheduleCard').classList.remove('hidden');
@@ -491,6 +600,9 @@
             } else if (tab === 'rings') {
                 document.getElementById('ringsCard').classList.remove('hidden');
                 showRings();
+            } else if (tab === 'about') {
+                document.getElementById('aboutCard').classList.remove('hidden');
+                showAbout();
             }
         }
         
@@ -498,6 +610,7 @@
         document.getElementById('updateBtn').addEventListener('click', loadSchedule);
         document.getElementById('todayBtn').addEventListener('click', showToday);
         document.getElementById('anyDayBtn').addEventListener('click', showAnyDay);
+        document.getElementById('aboutBtn').addEventListener('click', () => switchTab('about'));
         document.getElementById('classSelect').addEventListener('change', () => {
             if (currentDay && scheduleData) showScheduleForDay(currentDay);
         });
