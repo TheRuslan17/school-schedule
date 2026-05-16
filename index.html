@@ -126,11 +126,6 @@
             color: white;
         }
         
-        .btn-warning {
-            background: #FF9800;
-            color: white;
-        }
-        
         .schedule-item {
             background: #f8f9fa;
             border-radius: 12px;
@@ -227,11 +222,6 @@
             color: #e65100;
         }
         
-        .status.warning {
-            background: #ffebee;
-            color: #c62828;
-        }
-        
         .tab-bar {
             position: fixed;
             bottom: 0;
@@ -265,10 +255,11 @@
         }
         
         .teacher-item {
-            background: #f8f9fa;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             border-radius: 12px;
             padding: 12px;
             margin-bottom: 10px;
+            border-left: 4px solid #4CAF50;
         }
         
         .teacher-name {
@@ -290,7 +281,7 @@
         }
         
         .ring-item {
-            background: #f8f9fa;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             border-radius: 12px;
             padding: 12px;
             margin-bottom: 10px;
@@ -309,21 +300,23 @@
             font-weight: 600;
         }
         
-        .school-info {
-            background: #f0f4ff;
+        .history-block {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e8edf5 100%);
             border-radius: 12px;
-            padding: 12px;
-            margin-bottom: 10px;
-            font-size: 13px;
-            color: #333;
-            line-height: 1.5;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .history-block strong {
+            color: #1e3c72;
         }
         
         .director-card {
             background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
             border-radius: 12px;
             padding: 15px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
         
         .director-name {
@@ -341,8 +334,8 @@
         .hero-name {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border-radius: 12px;
-            padding: 12px;
-            margin-bottom: 10px;
+            padding: 15px;
+            margin-bottom: 12px;
             text-align: center;
             color: white;
         }
@@ -393,7 +386,7 @@
             .card {
                 background: #16213e;
             }
-            .schedule-item, .teacher-item, .ring-item {
+            .schedule-item, .teacher-item, .ring-item, .history-block {
                 background: #0f3460;
             }
             .schedule-item.replacement {
@@ -417,7 +410,7 @@
                 color: white;
                 border-color: #1a4a7a;
             }
-            .school-info {
+            .history-block {
                 background: #0f3460;
                 color: #ddd;
             }
@@ -479,7 +472,7 @@
             
             <div class="date-input-group" style="margin-top: 15px;">
                 <input type="date" id="datePicker" placeholder="Выберите дату">
-                <button id="dateBtn" class="btn-secondary" style="margin: 0;">📅</button>
+                <button id="dateBtn" class="btn-secondary" style="margin: 0;">📅 Показать</button>
             </div>
             
             <div class="btn-grid">
@@ -515,18 +508,12 @@
             <h3 style="margin-bottom: 15px;">📖 История школы</h3>
             <div id="aboutContent"></div>
         </div>
-        
-        <div class="card hidden" id="replacementsCard">
-            <h3 style="margin-bottom: 15px;">🔄 Замены уроков</h3>
-            <div id="replacementsContent"></div>
-        </div>
     </div>
     
     <div class="tab-bar">
         <button class="tab active" data-tab="schedule">📅 Расписание</button>
         <button class="tab" data-tab="teachers">👨‍🏫 Учителя</button>
         <button class="tab" data-tab="rings">🔔 Звонки</button>
-        <button class="tab" data-tab="replacements">🔄 Замены</button>
         <button class="tab" data-tab="about">🏛️ История</button>
     </div>
     
@@ -538,7 +525,6 @@
         let replacementsData = null;
         let currentDay = null;
         let currentDate = null;
-        let lastUpdateVersion = null;
         let notificationPermission = false;
         
         const daysRu = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
@@ -604,20 +590,32 @@
             }
         }
         
-        // Проверка обновлений расписания
+        // Проверка обновлений расписания и замен
         async function checkForUpdates() {
             try {
                 const response = await fetch(SCHEDULE_URL + '?t=' + Date.now());
-                if (!response.ok) throw new Error('Ошибка');
-                const data = await response.json();
-                const newVersion = data.version || data.schedule ? Object.keys(data.schedule).length + '_' + Date.now() : 'unknown';
-                
-                const savedVersion = localStorage.getItem('scheduleVersion');
-                if (savedVersion && savedVersion !== newVersion) {
-                    sendNotification('📅 Обновление расписания', 'Расписание уроков было обновлено! Нажмите "Обновить" чтобы увидеть изменения.');
-                    document.getElementById('notifyBadge').style.display = 'inline-block';
+                if (response.ok) {
+                    const data = await response.json();
+                    const newVersion = data.version || Object.keys(data.schedule).length + '_' + Date.now();
+                    const savedVersion = localStorage.getItem('scheduleVersion');
+                    if (savedVersion && savedVersion !== newVersion) {
+                        sendNotification('📅 Обновление расписания', 'Расписание уроков было обновлено! Нажмите "Обновить" чтобы увидеть изменения.');
+                        document.getElementById('notifyBadge').style.display = 'inline-block';
+                    }
+                    localStorage.setItem('scheduleVersion', newVersion);
                 }
-                localStorage.setItem('scheduleVersion', newVersion);
+                
+                const replacementsResp = await fetch(REPLACEMENTS_URL + '?t=' + Date.now());
+                if (replacementsResp.ok) {
+                    const newReplacements = await replacementsResp.json();
+                    const savedReplacementsVersion = localStorage.getItem('replacementsVersion');
+                    const newReplacementsVersion = newReplacements.version || Object.keys(newReplacements.replacements || {}).length + '_' + Date.now();
+                    if (savedReplacementsVersion && savedReplacementsVersion !== newReplacementsVersion && Object.keys(newReplacements.replacements || {}).length > 0) {
+                        sendNotification('🔄 Изменение замен', 'В расписании есть замены уроков! Они отмечены красным цветом.');
+                        document.getElementById('notifyBadge').style.display = 'inline-block';
+                    }
+                    localStorage.setItem('replacementsVersion', newReplacementsVersion);
+                }
             } catch (e) {
                 console.log('Ошибка проверки обновлений');
             }
@@ -630,7 +628,6 @@
                 if (response.ok) {
                     replacementsData = await response.json();
                     localStorage.setItem('replacementsData', JSON.stringify(replacementsData));
-                    checkForReplacementUpdates();
                 } else {
                     const saved = localStorage.getItem('replacementsData');
                     if (saved) replacementsData = JSON.parse(saved);
@@ -641,23 +638,12 @@
             }
         }
         
-        // Проверка обновлений замен
-        function checkForReplacementUpdates() {
-            const savedVersion = localStorage.getItem('replacementsVersion');
-            const newVersion = replacementsData ? (replacementsData.version || Object.keys(replacementsData).length + '_' + Date.now()) : null;
-            if (savedVersion && savedVersion !== newVersion && newVersion) {
-                sendNotification('🔄 Изменение замен', 'В расписании есть замены уроков! Проверьте вкладку "Замены"');
-                document.getElementById('notifyBadge').style.display = 'inline-block';
-            }
-            if (newVersion) localStorage.setItem('replacementsVersion', newVersion);
-        }
-        
         // Получение замены для конкретного урока
         function getReplacement(className, date, lessonNumber) {
             if (!replacementsData || !replacementsData.replacements) return null;
             const key = `${className}_${date}_${lessonNumber}`;
             const replacement = replacementsData.replacements[key];
-            if (replacement) {
+            if (replacement && replacement.cancelled !== undefined) {
                 return replacement;
             }
             return null;
@@ -707,13 +693,9 @@
                 scheduleData = data;
                 showStatus('success', '✅ Расписание успешно обновлено!');
                 
-                // Загружаем замены
                 await loadReplacements();
-                
-                // Проверяем обновления
                 await checkForUpdates();
                 
-                // Показываем расписание на сегодня
                 const today = new Date();
                 showScheduleForDate(today);
                 updateExamCounter();
@@ -759,51 +741,45 @@
             currentDate = date;
             const dayName = getDayNameFromDate(date);
             const dateStr = date.toISOString().split('T')[0];
+            const displayDate = formatDate(date);
             
             if (!dayName) {
-                document.getElementById('scheduleContent').innerHTML = `<div class="status info">📌 ${formatDate(date)} — выходной день</div>`;
+                document.getElementById('scheduleContent').innerHTML = `<div class="status info">📌 ${displayDate} — выходной день</div>`;
                 return;
             }
             
-            showScheduleForDay(dayName, dateStr);
-        }
-        
-        function showScheduleForDay(day, dateStr = null) {
-            currentDay = day;
-            const container = document.getElementById('scheduleContent');
             const selectedClass = document.getElementById('classSelect').value;
             
             if (!scheduleData) {
-                container.innerHTML = `<div class="status error">❌ Нет данных. Нажмите «Обновить расписание»</div>`;
+                document.getElementById('scheduleContent').innerHTML = `<div class="status error">❌ Нет данных. Нажмите «Обновить расписание»</div>`;
                 return;
             }
             
             if (!scheduleData.schedule || !scheduleData.schedule[selectedClass]) {
-                container.innerHTML = `<div class="status error">❌ Нет расписания для класса ${selectedClass}</div>`;
+                document.getElementById('scheduleContent').innerHTML = `<div class="status error">❌ Нет расписания для класса ${selectedClass}</div>`;
                 return;
             }
             
-            const lessons = scheduleData.schedule[selectedClass][day];
+            const lessons = scheduleData.schedule[selectedClass][dayName];
             if (!lessons || lessons.length === 0) {
-                container.innerHTML = `<div class="status info">📭 Нет уроков на ${day}</div>`;
+                document.getElementById('scheduleContent').innerHTML = `<div class="status info">📭 Нет уроков на ${displayDate}</div>`;
                 return;
             }
             
-            const displayDate = dateStr ? formatDate(new Date(dateStr)) : day;
-            let html = `<h3 style="margin-bottom: 15px;">📚 ${selectedClass} · ${displayDate}</h3>`;
+            let html = `<h3 style="margin-bottom: 15px;">📚 ${selectedClass} · ${displayDate} (${dayName})</h3>`;
             
             lessons.forEach(lesson => {
-                const replacement = dateStr ? getReplacement(selectedClass, dateStr, lesson.number) : null;
+                const replacement = getReplacement(selectedClass, dateStr, lesson.number);
                 let extraClass = '';
-                let replacementHtml = '';
+                let badgeHtml = '';
                 
                 if (replacement) {
                     if (replacement.cancelled) {
                         extraClass = 'cancelled';
-                        replacementHtml = `<span class="cancelled-badge">ОТМЕНЁН</span>`;
+                        badgeHtml = `<span class="cancelled-badge">ОТМЕНЁН</span>`;
                     } else {
                         extraClass = 'replacement';
-                        replacementHtml = `<span class="replacement-badge">ЗАМЕНА</span>`;
+                        badgeHtml = `<span class="replacement-badge">ЗАМЕНА</span>`;
                     }
                 }
                 
@@ -813,14 +789,14 @@
                 
                 html += `
                     <div class="schedule-item ${extraClass}">
-                        <div class="lesson-number">📖 ${lesson.number} урок ${replacementHtml}</div>
+                        <div class="lesson-number">📖 ${lesson.number} урок ${badgeHtml}</div>
                         <div class="lesson-subject">${displaySubject}</div>
                         <div class="lesson-teacher">👨‍🏫 ${displayTeacher}</div>
                         <div class="lesson-teacher">🚪 Кабинет ${displayRoom}</div>
                     </div>
                 `;
             });
-            container.innerHTML = html;
+            document.getElementById('scheduleContent').innerHTML = html;
         }
         
         function showToday() {
@@ -849,7 +825,34 @@
             }
             const day = prompt('Введите день недели:\nПонедельник, Вторник, Среда, Четверг, Пятница, Суббота');
             if (day && daysRu.includes(day)) {
-                showScheduleForDay(day);
+                currentDate = null;
+                currentDay = day;
+                const container = document.getElementById('scheduleContent');
+                const selectedClass = document.getElementById('classSelect').value;
+                
+                if (!scheduleData.schedule || !scheduleData.schedule[selectedClass]) {
+                    container.innerHTML = `<div class="status error">❌ Нет расписания для класса ${selectedClass}</div>`;
+                    return;
+                }
+                
+                const lessons = scheduleData.schedule[selectedClass][day];
+                if (!lessons || lessons.length === 0) {
+                    container.innerHTML = `<div class="status info">📭 Нет уроков на ${day}</div>`;
+                    return;
+                }
+                
+                let html = `<h3 style="margin-bottom: 15px;">📚 ${selectedClass} · ${day}</h3>`;
+                lessons.forEach(lesson => {
+                    html += `
+                        <div class="schedule-item">
+                            <div class="lesson-number">📖 ${lesson.number} урок</div>
+                            <div class="lesson-subject">${lesson.subject}</div>
+                            <div class="lesson-teacher">👨‍🏫 ${lesson.teacher}</div>
+                            <div class="lesson-teacher">🚪 Кабинет ${lesson.room}</div>
+                        </div>
+                    `;
+                });
+                container.innerHTML = html;
             } else if (day) {
                 alert('Введите корректный день недели');
             }
@@ -885,46 +888,29 @@
             container.innerHTML = html;
         }
         
-        function showReplacements() {
-            const container = document.getElementById('replacementsContent');
-            if (!replacementsData || !replacementsData.replacements || Object.keys(replacementsData.replacements).length === 0) {
-                container.innerHTML = '<div class="status info">📭 Нет замен на ближайшее время</div>';
-                return;
-            }
-            
-            let html = '<div class="status info">🔄 Замены уроков выделены красным в расписании</div>';
-            
-            for (const [key, replacement] of Object.entries(replacementsData.replacements)) {
-                const [className, date, lessonNum] = key.split('_');
-                const displayDate = new Date(date);
-                const formattedDate = `${displayDate.getDate()} ${months[displayDate.getMonth()]} ${displayDate.getFullYear()}`;
-                
-                if (replacement.cancelled) {
-                    html += `
-                        <div class="schedule-item cancelled" style="margin-top: 10px;">
-                            <div class="lesson-number">📖 ${lessonNum} урок</div>
-                            <div class="lesson-subject">${className} · ${formattedDate}</div>
-                            <div class="lesson-teacher">❌ Урок ОТМЕНЁН</div>
-                        </div>
-                    `;
-                } else {
-                    html += `
-                        <div class="schedule-item replacement" style="margin-top: 10px;">
-                            <div class="lesson-number">📖 ${lessonNum} урок</div>
-                            <div class="lesson-subject">${className} · ${formattedDate}</div>
-                            <div class="lesson-teacher">🔄 Вместо: ${replacement.oldSubject || '—'}</div>
-                            <div class="lesson-teacher">✅ Будет: ${replacement.newSubject}</div>
-                            <div class="lesson-teacher">👨‍🏫 Учитель: ${replacement.newTeacher}</div>
-                        </div>
-                    `;
-                }
-            }
-            container.innerHTML = html;
-        }
-        
         function showAbout() {
             const container = document.getElementById('aboutContent');
-            container.innerHTML = schoolHistory;
+            container.innerHTML = `
+                <div class="history-block">
+                    <strong>🏛️ Основание:</strong> Школа основана в 1907 году купцом Иваном Васильевичем Лапиным с трёхлетним обучением для иногородних детей. Обучение было платным.
+                </div>
+                <div class="history-block">
+                    <strong>📚 История:</strong> В 20-е годы — начальная школа, затем семилетняя. В 30-е годы — Фабричное заводское училище. В 1937–1938 гг. создана средняя школа №2.
+                </div>
+                <div class="history-block">
+                    <strong>🏗️ Здание:</strong> В 1936 году построено новое здание по ул. Шевченко, 2. В годы войны школа была военным госпиталем. При отступлении немцы сожгли школу, восстановлена в 1950 году.
+                </div>
+                <div class="hero-name">
+                    <h4>⭐ Имя школы</h4>
+                    <p>Носит имя лётчика-космонавта, Героя Российской Федерации<br>Олега Ивановича Скрипочки</p>
+                </div>
+                <div class="director-card">
+                    <div class="director-name">👨‍💼 Директор: Маланин Максим Александрович</div>
+                    <div class="director-contact">📞 Телефон: +7 (86554) 2-14-07</div>
+                    <div class="director-contact">📧 Email: school2nev1@mail.ru</div>
+                    <div class="director-contact">🕐 Приём: четверг 14:00-16:00</div>
+                </div>
+            `;
         }
         
         function switchTab(tab) {
@@ -937,48 +923,23 @@
             document.getElementById('teachersCard').classList.add('hidden');
             document.getElementById('ringsCard').classList.add('hidden');
             document.getElementById('aboutCard').classList.add('hidden');
-            document.getElementById('replacementsCard').classList.add('hidden');
             
             if (tab === 'schedule') {
                 document.getElementById('scheduleCard').classList.remove('hidden');
                 if (currentDate && scheduleData) showScheduleForDate(currentDate);
-                else if (currentDay && scheduleData) showScheduleForDay(currentDay);
+                else if (currentDay && scheduleData) showAnyDay();
+                else if (scheduleData) showToday();
             } else if (tab === 'teachers') {
                 document.getElementById('teachersCard').classList.remove('hidden');
                 showTeachers();
             } else if (tab === 'rings') {
                 document.getElementById('ringsCard').classList.remove('hidden');
                 showRings();
-            } else if (tab === 'replacements') {
-                document.getElementById('replacementsCard').classList.remove('hidden');
-                showReplacements();
             } else if (tab === 'about') {
                 document.getElementById('aboutCard').classList.remove('hidden');
                 showAbout();
             }
         }
-        
-        const schoolHistory = `
-            <div class="school-info">
-                <strong>🏛️ Основание:</strong> Школа основана в 1907 году купцом Иваном Васильевичем Лапиным с трёхлетним обучением для иногородних детей. Обучение было платным.
-            </div>
-            <div class="school-info">
-                <strong>📚 История:</strong> В 20-е годы — начальная школа, затем семилетняя. В 30-е годы — Фабричное заводское училище. В 1937–1938 гг. создана средняя школа №2.
-            </div>
-            <div class="school-info">
-                <strong>🏗️ Здание:</strong> В 1936 году построено новое здание по ул. Шевченко, 2. В годы войны школа была военным госпиталем. При отступлении немцы сожгли школу, восстановлена в 1950 году.
-            </div>
-            <div class="hero-name">
-                <h4>⭐ Имя школы</h4>
-                <p>Носит имя лётчика-космонавта, Героя Российской Федерации<br>Олега Ивановича Скрипочки</p>
-            </div>
-            <div class="director-card">
-                <div class="director-name">👨‍💼 Директор: Маланин Максим Александрович</div>
-                <div class="director-contact">📞 Телефон: +7 (86554) 2-14-07</div>
-                <div class="director-contact">📧 Email: school2nev1@mail.ru</div>
-                <div class="director-contact">🕐 Приём: четверг 14:00-16:00</div>
-            </div>
-        `;
         
         // Обработчики
         document.getElementById('updateBtn').addEventListener('click', loadSchedule);
@@ -988,7 +949,7 @@
         document.getElementById('aboutBtn').addEventListener('click', () => switchTab('about'));
         document.getElementById('classSelect').addEventListener('change', () => {
             if (currentDate && scheduleData) showScheduleForDate(currentDate);
-            else if (currentDay && scheduleData) showScheduleForDay(currentDay);
+            else if (currentDay && scheduleData) showAnyDay();
         });
         document.getElementById('notifyBell').addEventListener('click', () => {
             document.getElementById('notifyBadge').style.display = 'none';
@@ -999,20 +960,22 @@
         });
         
         // Установка сегодняшней даты в datePicker
-        const today = new Date();
-        const yyyy = today.getFullYear();
-        const mm = String(today.getMonth() + 1).padStart(2, '0');
-        const dd = String(today.getDate()).padStart(2, '0');
+        const todayDate = new Date();
+        const yyyy = todayDate.getFullYear();
+        const mm = String(todayDate.getMonth() + 1).padStart(2, '0');
+        const dd = String(todayDate.getDate()).padStart(2, '0');
         document.getElementById('datePicker').value = `${yyyy}-${mm}-${dd}`;
         
         // Инициализация
         initNotifications();
         loadSchedule();
         
-        // Проверка обновлений каждые 5 минут
         setInterval(() => {
             checkForUpdates();
             loadReplacements();
+            if (currentDate && document.getElementById('scheduleCard').classList.contains('hidden') === false) {
+                showScheduleForDate(currentDate);
+            }
         }, 300000);
     </script>
 </body>
