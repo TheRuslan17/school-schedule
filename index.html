@@ -240,7 +240,7 @@
             padding: 10px;
             background: none;
             color: #666;
-            font-size: 14px;
+            font-size: 13px;
             border-radius: 0;
             border-bottom: 3px solid transparent;
         }
@@ -351,6 +351,79 @@
             font-weight: bold;
         }
         
+        .news-item {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .news-date {
+            font-size: 11px;
+            color: #4CAF50;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .news-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .news-text {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.4;
+        }
+        
+        .event-item {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-left: 4px solid #FF9800;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .event-date {
+            background: #FF9800;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 12px;
+            text-align: center;
+            min-width: 60px;
+        }
+        
+        .event-day {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .event-month {
+            font-size: 10px;
+        }
+        
+        .event-info {
+            flex: 1;
+        }
+        
+        .event-name {
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .event-type {
+            font-size: 11px;
+            color: #FF9800;
+            margin-top: 3px;
+        }
+        
         .notification-bell {
             position: relative;
             display: inline-block;
@@ -386,8 +459,11 @@
             .card {
                 background: #16213e;
             }
-            .schedule-item, .teacher-item, .ring-item, .history-block {
+            .schedule-item, .teacher-item, .ring-item, .history-block, .news-item {
                 background: #0f3460;
+            }
+            .event-item {
+                background: #4a3a1a;
             }
             .schedule-item.replacement {
                 background: #4a1a1a;
@@ -395,10 +471,10 @@
             .schedule-item.cancelled {
                 background: #2a2a2a;
             }
-            .lesson-subject, .teacher-name {
+            .lesson-subject, .teacher-name, .news-title, .event-name {
                 color: white;
             }
-            .lesson-teacher, .teacher-info {
+            .lesson-teacher, .teacher-info, .news-text {
                 color: #aaa;
             }
             .tab-bar {
@@ -504,6 +580,13 @@
             <div id="ringsContent"></div>
         </div>
         
+        <div class="card hidden" id="newsCard">
+            <h3 style="margin-bottom: 15px;">📢 Новости и объявления</h3>
+            <div id="newsContent"></div>
+            <h3 style="margin: 20px 0 15px 0;">📅 Календарь событий</h3>
+            <div id="eventsContent"></div>
+        </div>
+        
         <div class="card hidden" id="aboutCard">
             <h3 style="margin-bottom: 15px;">📖 История школы</h3>
             <div id="aboutContent"></div>
@@ -514,15 +597,18 @@
         <button class="tab active" data-tab="schedule">📅 Расписание</button>
         <button class="tab" data-tab="teachers">👨‍🏫 Учителя</button>
         <button class="tab" data-tab="rings">🔔 Звонки</button>
+        <button class="tab" data-tab="news">📢 Новости</button>
         <button class="tab" data-tab="about">🏛️ История</button>
     </div>
     
     <script>
         const SCHEDULE_URL = "https://raw.githubusercontent.com/TheRuslan17/school-schedule/main/schedule.json";
         const REPLACEMENTS_URL = "https://raw.githubusercontent.com/TheRuslan17/school-schedule/main/replacements.json";
+        const NEWS_URL = "https://raw.githubusercontent.com/TheRuslan17/school-schedule/main/news.json";
         
         let scheduleData = null;
         let replacementsData = null;
+        let newsData = null;
         let currentDay = null;
         let currentDate = null;
         let notificationPermission = false;
@@ -572,25 +658,19 @@
             { name: "ЕГЭ по математике", date: "2026-05-31" }
         ];
         
-        // Проверка и запрос уведомлений
         async function initNotifications() {
             if ('Notification' in window) {
                 const permission = await Notification.requestPermission();
                 notificationPermission = permission === 'granted';
-                if (notificationPermission) {
-                    console.log('Уведомления разрешены');
-                }
             }
         }
         
-        // Отправка уведомления
         function sendNotification(title, body, tag = 'update') {
             if (notificationPermission && document.hidden) {
                 new Notification(title, { body, icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🏫</text></svg>', tag: tag });
             }
         }
         
-        // Проверка обновлений расписания и замен
         async function checkForUpdates() {
             try {
                 const response = await fetch(SCHEDULE_URL + '?t=' + Date.now());
@@ -599,29 +679,28 @@
                     const newVersion = data.version || Object.keys(data.schedule).length + '_' + Date.now();
                     const savedVersion = localStorage.getItem('scheduleVersion');
                     if (savedVersion && savedVersion !== newVersion) {
-                        sendNotification('📅 Обновление расписания', 'Расписание уроков было обновлено! Нажмите "Обновить" чтобы увидеть изменения.');
+                        sendNotification('📅 Обновление расписания', 'Расписание уроков было обновлено!');
                         document.getElementById('notifyBadge').style.display = 'inline-block';
                     }
                     localStorage.setItem('scheduleVersion', newVersion);
                 }
                 
-                const replacementsResp = await fetch(REPLACEMENTS_URL + '?t=' + Date.now());
-                if (replacementsResp.ok) {
-                    const newReplacements = await replacementsResp.json();
-                    const savedReplacementsVersion = localStorage.getItem('replacementsVersion');
-                    const newReplacementsVersion = newReplacements.version || Object.keys(newReplacements.replacements || {}).length + '_' + Date.now();
-                    if (savedReplacementsVersion && savedReplacementsVersion !== newReplacementsVersion && Object.keys(newReplacements.replacements || {}).length > 0) {
-                        sendNotification('🔄 Изменение замен', 'В расписании есть замены уроков! Они отмечены красным цветом.');
+                const newsResp = await fetch(NEWS_URL + '?t=' + Date.now());
+                if (newsResp.ok) {
+                    const newNews = await newsResp.json();
+                    const savedNewsVersion = localStorage.getItem('newsVersion');
+                    const newNewsVersion = newNews.version || newNews.news.length + '_' + Date.now();
+                    if (savedNewsVersion && savedNewsVersion !== newNewsVersion) {
+                        sendNotification('📢 Новые объявления', 'Появились новые новости и объявления!');
                         document.getElementById('notifyBadge').style.display = 'inline-block';
                     }
-                    localStorage.setItem('replacementsVersion', newReplacementsVersion);
+                    localStorage.setItem('newsVersion', newNewsVersion);
                 }
             } catch (e) {
                 console.log('Ошибка проверки обновлений');
             }
         }
         
-        // Загрузка замен
         async function loadReplacements() {
             try {
                 const response = await fetch(REPLACEMENTS_URL + '?t=' + Date.now());
@@ -638,18 +717,28 @@
             }
         }
         
-        // Получение замены для конкретного урока
+        async function loadNews() {
+            try {
+                const response = await fetch(NEWS_URL + '?t=' + Date.now());
+                if (response.ok) {
+                    newsData = await response.json();
+                    localStorage.setItem('newsData', JSON.stringify(newsData));
+                } else {
+                    const saved = localStorage.getItem('newsData');
+                    if (saved) newsData = JSON.parse(saved);
+                }
+            } catch (e) {
+                const saved = localStorage.getItem('newsData');
+                if (saved) newsData = JSON.parse(saved);
+            }
+        }
+        
         function getReplacement(className, date, lessonNumber) {
             if (!replacementsData || !replacementsData.replacements) return null;
             const key = `${className}_${date}_${lessonNumber}`;
-            const replacement = replacementsData.replacements[key];
-            if (replacement && replacement.cancelled !== undefined) {
-                return replacement;
-            }
-            return null;
+            return replacementsData.replacements[key] || null;
         }
         
-        // Обновление счётчика экзаменов
         function updateExamCounter() {
             const today = new Date();
             today.setHours(0, 0, 0, 0);
@@ -694,6 +783,7 @@
                 showStatus('success', '✅ Расписание успешно обновлено!');
                 
                 await loadReplacements();
+                await loadNews();
                 await checkForUpdates();
                 
                 const today = new Date();
@@ -888,6 +978,78 @@
             container.innerHTML = html;
         }
         
+        function showNews() {
+            const newsContainer = document.getElementById('newsContent');
+            const eventsContainer = document.getElementById('eventsContent');
+            
+            if (!newsData) {
+                newsContainer.innerHTML = '<div class="status info">📭 Новостей пока нет</div>';
+                eventsContainer.innerHTML = '<div class="status info">📭 Событий пока нет</div>';
+                return;
+            }
+            
+            // Новости
+            if (newsData.news && newsData.news.length > 0) {
+                let newsHtml = '';
+                for (const item of newsData.news) {
+                    newsHtml += `
+                        <div class="news-item">
+                            <div class="news-date">📅 ${item.date}</div>
+                            <div class="news-title">${item.title}</div>
+                            <div class="news-text">${item.text}</div>
+                        </div>
+                    `;
+                }
+                newsContainer.innerHTML = newsHtml;
+            } else {
+                newsContainer.innerHTML = '<div class="status info">📭 Новостей пока нет</div>';
+            }
+            
+            // События
+            if (newsData.events && newsData.events.length > 0) {
+                let eventsHtml = '';
+                for (const event of newsData.events) {
+                    const eventDate = new Date(event.date);
+                    const day = eventDate.getDate();
+                    const month = months[eventDate.getMonth()];
+                    const typeEmoji = {
+                        'exam': '📝',
+                        'holiday': '🎉',
+                        'meeting': '👥',
+                        'contest': '🏆',
+                        'control': '📋'
+                    }[event.type] || '📌';
+                    
+                    eventsHtml += `
+                        <div class="event-item">
+                            <div class="event-date">
+                                <div class="event-day">${day}</div>
+                                <div class="event-month">${month}</div>
+                            </div>
+                            <div class="event-info">
+                                <div class="event-name">${typeEmoji} ${event.name}</div>
+                                <div class="event-type">${getEventTypeName(event.type)}</div>
+                            </div>
+                        </div>
+                    `;
+                }
+                eventsContainer.innerHTML = eventsHtml;
+            } else {
+                eventsContainer.innerHTML = '<div class="status info">📭 Событий пока нет</div>';
+            }
+        }
+        
+        function getEventTypeName(type) {
+            const types = {
+                'exam': 'Экзамен / Контрольная',
+                'holiday': 'Праздник / Каникулы',
+                'meeting': 'Собрание',
+                'contest': 'Олимпиада / Конкурс',
+                'control': 'Контрольная работа'
+            };
+            return types[type] || 'Событие';
+        }
+        
         function showAbout() {
             const container = document.getElementById('aboutContent');
             container.innerHTML = `
@@ -922,6 +1084,7 @@
             document.getElementById('scheduleCard').classList.add('hidden');
             document.getElementById('teachersCard').classList.add('hidden');
             document.getElementById('ringsCard').classList.add('hidden');
+            document.getElementById('newsCard').classList.add('hidden');
             document.getElementById('aboutCard').classList.add('hidden');
             
             if (tab === 'schedule') {
@@ -935,6 +1098,9 @@
             } else if (tab === 'rings') {
                 document.getElementById('ringsCard').classList.remove('hidden');
                 showRings();
+            } else if (tab === 'news') {
+                document.getElementById('newsCard').classList.remove('hidden');
+                showNews();
             } else if (tab === 'about') {
                 document.getElementById('aboutCard').classList.remove('hidden');
                 showAbout();
@@ -973,6 +1139,7 @@
         setInterval(() => {
             checkForUpdates();
             loadReplacements();
+            loadNews();
             if (currentDate && document.getElementById('scheduleCard').classList.contains('hidden') === false) {
                 showScheduleForDate(currentDate);
             }
