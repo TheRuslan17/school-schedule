@@ -1,39 +1,871 @@
 {
   "schedule": {
-    "9А": {
+    "5А": {
       "Понедельник": [
         {"number": 1, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
-        {"number": 2, "subject": "Математика", "teacher": "Савельева С.А.", "room": "201"},
-        {"number": 3, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 2, "subject": "Математика", "teacher": "Рекунова А.Е.", "room": "203"},
+        {"number": 3, "subject": "Окружающий мир", "teacher": "Репкина А.В.", "room": "105"},
+        {"number": 4, "subject": "Английский язык", "teacher": "Алмазова Н.Л.", "room": "113"},
+        {"number": 5, "subject": "ИЗО", "teacher": "Кривобокова А.А.", "room": "301"}
+      ],
+      "Вторник": [
+        {"number": 1, "subject": "Математика", "teacher": "Рекунова А.Е.", "room": "203"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 4, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"},
+        {"number": 5, "subject": "Музыка", "teacher": "Кривобокова А.А.", "room": "301"}
+      ],
+      "Среда": [
+        {"number": 1, "subject": "Английский язык", "teacher": "Алмазова Н.Л.", "room": "113"},
+        {"number": 2, "subject": "Математика", "teacher": "Рекунова А.Е.", "room": "203"},
+        {"number": 3, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
         {"number": 4, "subject": "История", "teacher": "Морозова Ю.А.", "room": "205"},
-        {"number": 5, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 5, "subject": "Труд", "teacher": "Мусаева С.С.", "room": "104"}
+      ],
+      "Четверг": [
+        {"number": 1, "subject": "Математика", "teacher": "Рекунова А.Е.", "room": "203"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"},
+        {"number": 4, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 5, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"}
+      ],
+      "Пятница": [
+        {"number": 1, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 2, "subject": "Математика", "teacher": "Рекунова А.Е.", "room": "203"},
+        {"number": 3, "subject": "Английский язык", "teacher": "Алмазова Н.Л.", "room": "113"},
+        {"number": 4, "subject": "Обществознание", "teacher": "Еремеева Н.А.", "room": "205"},
+        {"number": 5, "subject": "Труд", "teacher": "Мусаева С.С.", "room": "104"}
+      ]
+    },
+    "5Б": {
+      "Понедельник": [
+        {"number": 1, "subject": "Математика", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 4, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"},
+        {"number": 5, "subject": "Окружающий мир", "teacher": "Краснова М.И.", "room": "106"}
+      ],
+      "Вторник": [
+        {"number": 1, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 2, "subject": "Математика", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 3, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 4, "subject": "История", "teacher": "Морозова Ю.А.", "room": "205"},
+        {"number": 5, "subject": "Музыка", "teacher": "Кривобокова А.А.", "room": "301"}
+      ],
+      "Среда": [
+        {"number": 1, "subject": "Математика", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 2, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 3, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 4, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 5, "subject": "Труд", "teacher": "Мусаева С.С.", "room": "104"}
+      ],
+      "Четверг": [
+        {"number": 1, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 2, "subject": "Математика", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 3, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"},
+        {"number": 4, "subject": "ИЗО", "teacher": "Кривобокова А.А.", "room": "301"},
+        {"number": 5, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"}
+      ],
+      "Пятница": [
+        {"number": 1, "subject": "Математика", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 4, "subject": "Обществознание", "teacher": "Еремеева Н.А.", "room": "205"},
+        {"number": 5, "subject": "Труд", "teacher": "Мусаева С.С.", "room": "104"}
+      ]
+    },
+    "5В": {
+      "Понедельник": [
+        {"number": 1, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 2, "subject": "Математика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 3, "subject": "Английский язык", "teacher": "Алмазова Н.Л.", "room": "113"},
+        {"number": 4, "subject": "Окружающий мир", "teacher": "Красовская Н.И.", "room": "107"},
+        {"number": 5, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
+      ],
+      "Вторник": [
+        {"number": 1, "subject": "Математика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 4, "subject": "Музыка", "teacher": "Кривобокова А.А.", "room": "301"},
+        {"number": 5, "subject": "История", "teacher": "Морозова Ю.А.", "room": "205"}
+      ],
+      "Среда": [
+        {"number": 1, "subject": "Английский язык", "teacher": "Алмазова Н.Л.", "room": "113"},
+        {"number": 2, "subject": "Математика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 3, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 4, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 5, "subject": "Труд", "teacher": "Мусаева С.С.", "room": "104"}
+      ],
+      "Четверг": [
+        {"number": 1, "subject": "Математика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"},
+        {"number": 4, "subject": "ИЗО", "teacher": "Кривобокова А.А.", "room": "301"},
+        {"number": 5, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"}
+      ],
+      "Пятница": [
+        {"number": 1, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 2, "subject": "Математика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 3, "subject": "Английский язык", "teacher": "Алмазова Н.Л.", "room": "113"},
+        {"number": 4, "subject": "Обществознание", "teacher": "Еремеева Н.А.", "room": "205"},
+        {"number": 5, "subject": "Труд", "teacher": "Мусаева С.С.", "room": "104"}
+      ]
+    },
+    "6А": {
+      "Понедельник": [
+        {"number": 1, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 2, "subject": "Математика", "teacher": "Рекунова А.Е.", "room": "203"},
+        {"number": 3, "subject": "История", "teacher": "Морозова Ю.А.", "room": "205"},
+        {"number": 4, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 5, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"},
         {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
       ],
       "Вторник": [
-        {"number": 1, "subject": "Алгебра", "teacher": "Рекунова А.Е.", "room": "201"},
-        {"number": 2, "subject": "Информатика", "teacher": "Савельева С.А.", "room": "202"},
-        {"number": 3, "subject": "Обществознание", "teacher": "Еремеева Н.А.", "room": "205"},
+        {"number": 1, "subject": "Математика", "teacher": "Рекунова А.Е.", "room": "203"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "География", "teacher": "Кривобокова А.А.", "room": "307"},
         {"number": 4, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
-        {"number": 5, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"}
+        {"number": 5, "subject": "ИЗО", "teacher": "Кривобокова А.А.", "room": "301"},
+        {"number": 6, "subject": "Труд", "teacher": "Мусаева С.С.", "room": "104"}
+      ],
+      "Среда": [
+        {"number": 1, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 2, "subject": "Математика", "teacher": "Рекунова А.Е.", "room": "203"},
+        {"number": 3, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 4, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"},
+        {"number": 5, "subject": "Музыка", "teacher": "Кривобокова А.А.", "room": "301"},
+        {"number": 6, "subject": "Обществознание", "teacher": "Еремеева Н.А.", "room": "205"}
+      ],
+      "Четверг": [
+        {"number": 1, "subject": "Математика", "teacher": "Рекунова А.Е.", "room": "203"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "История", "teacher": "Морозова Ю.А.", "room": "205"},
+        {"number": 4, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 5, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 6, "subject": "Труд", "teacher": "Мусаева С.С.", "room": "104"}
+      ],
+      "Пятница": [
+        {"number": 1, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 2, "subject": "Математика", "teacher": "Рекунова А.Е.", "room": "203"},
+        {"number": 3, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 4, "subject": "География", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 5, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"},
+        {"number": 6, "subject": "ОБЗР", "teacher": "Еремеева Н.А.", "room": "205"}
+      ]
+    },
+    "6Б": {
+      "Понедельник": [
+        {"number": 1, "subject": "Математика", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Английский язык", "teacher": "Алмазова Н.Л.", "room": "113"},
+        {"number": 4, "subject": "История", "teacher": "Морозова Ю.А.", "room": "205"},
+        {"number": 5, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"},
+        {"number": 6, "subject": "Музыка", "teacher": "Кривобокова А.А.", "room": "301"}
+      ],
+      "Вторник": [
+        {"number": 1, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 2, "subject": "Математика", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 3, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 4, "subject": "География", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 5, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 6, "subject": "Труд", "teacher": "Мусаева С.С.", "room": "104"}
+      ],
+      "Среда": [
+        {"number": 1, "subject": "Английский язык", "teacher": "Алмазова Н.Л.", "room": "113"},
+        {"number": 2, "subject": "Математика", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 3, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 4, "subject": "Обществознание", "teacher": "Еремеева Н.А.", "room": "205"},
+        {"number": 5, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"},
+        {"number": 6, "subject": "ИЗО", "teacher": "Кривобокова А.А.", "room": "301"}
+      ],
+      "Четверг": [
+        {"number": 1, "subject": "Математика", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "История", "teacher": "Морозова Ю.А.", "room": "205"},
+        {"number": 4, "subject": "Английский язык", "teacher": "Алмазова Н.Л.", "room": "113"},
+        {"number": 5, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 6, "subject": "Труд", "teacher": "Мусаева С.С.", "room": "104"}
+      ],
+      "Пятница": [
+        {"number": 1, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 2, "subject": "Математика", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 3, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 4, "subject": "География", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 5, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"},
+        {"number": 6, "subject": "ОБЗР", "teacher": "Еремеева Н.А.", "room": "205"}
+      ]
+    },
+    "6В": {
+      "Понедельник": [
+        {"number": 1, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 2, "subject": "Математика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 3, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 4, "subject": "История", "teacher": "Морозова Ю.А.", "room": "205"},
+        {"number": 5, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"},
+        {"number": 6, "subject": "Музыка", "teacher": "Кривобокова А.А.", "room": "301"}
+      ],
+      "Вторник": [
+        {"number": 1, "subject": "Математика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 4, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 5, "subject": "География", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 6, "subject": "Труд", "teacher": "Мусаева С.С.", "room": "104"}
+      ],
+      "Среда": [
+        {"number": 1, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 2, "subject": "Математика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 3, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 4, "subject": "Обществознание", "teacher": "Еремеева Н.А.", "room": "205"},
+        {"number": 5, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"},
+        {"number": 6, "subject": "ИЗО", "teacher": "Кривобокова А.А.", "room": "301"}
+      ],
+      "Четверг": [
+        {"number": 1, "subject": "Математика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "История", "teacher": "Морозова Ю.А.", "room": "205"},
+        {"number": 4, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 5, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 6, "subject": "Труд", "teacher": "Мусаева С.С.", "room": "104"}
+      ],
+      "Пятница": [
+        {"number": 1, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 2, "subject": "Математика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 3, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 4, "subject": "География", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 5, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"},
+        {"number": 6, "subject": "ОБЗР", "teacher": "Еремеева Н.А.", "room": "205"}
+      ]
+    },
+    "7А": {
+      "Понедельник": [
+        {"number": 1, "subject": "Алгебра", "teacher": "Рекунова А.Е.", "room": "203"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 4, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 5, "subject": "История", "teacher": "Морозова Ю.А.", "room": "205"},
+        {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
+      ],
+      "Вторник": [
+        {"number": 1, "subject": "Геометрия", "teacher": "Рекунова А.Е.", "room": "203"},
+        {"number": 2, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 4, "subject": "География", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 5, "subject": "Обществознание", "teacher": "Еремеева Н.А.", "room": "205"},
+        {"number": 6, "subject": "Труд", "teacher": "Мусаева С.С.", "room": "104"}
+      ],
+      "Среда": [
+        {"number": 1, "subject": "Алгебра", "teacher": "Рекунова А.Е.", "room": "203"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 4, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 5, "subject": "Информатика", "teacher": "Савельева С.А.", "room": "202"},
+        {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
+      ],
+      "Четверг": [
+        {"number": 1, "subject": "Геометрия", "teacher": "Рекунова А.Е.", "room": "203"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Химия", "teacher": "Полякова Л.В.", "room": "306"},
+        {"number": 4, "subject": "История", "teacher": "Морозова Ю.А.", "room": "205"},
+        {"number": 5, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 6, "subject": "Труд", "teacher": "Мусаева С.С.", "room": "104"}
+      ],
+      "Пятница": [
+        {"number": 1, "subject": "Алгебра", "teacher": "Рекунова А.Е.", "room": "203"},
+        {"number": 2, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 3, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 4, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 5, "subject": "ОБЗР", "teacher": "Еремеева Н.А.", "room": "205"},
+        {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
+      ]
+    },
+    "7Б": {
+      "Понедельник": [
+        {"number": 1, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 2, "subject": "Алгебра", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 3, "subject": "Английский язык", "teacher": "Алмазова Н.Л.", "room": "113"},
+        {"number": 4, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 5, "subject": "История", "teacher": "Морозова Ю.А.", "room": "205"},
+        {"number": 6, "subject": "Труд", "teacher": "Мусаева С.С.", "room": "104"}
+      ],
+      "Вторник": [
+        {"number": 1, "subject": "Алгебра", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 2, "subject": "Геометрия", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 3, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 4, "subject": "География", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 5, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"},
+        {"number": 6, "subject": "Информатика", "teacher": "Савельева С.А.", "room": "202"}
+      ],
+      "Среда": [
+        {"number": 1, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 2, "subject": "Алгебра", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 3, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 4, "subject": "Английский язык", "teacher": "Алмазова Н.Л.", "room": "113"},
+        {"number": 5, "subject": "Обществознание", "teacher": "Еремеева Н.А.", "room": "205"},
+        {"number": 6, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"}
+      ],
+      "Четверг": [
+        {"number": 1, "subject": "Геометрия", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Химия", "teacher": "Полякова Л.В.", "room": "306"},
+        {"number": 4, "subject": "История", "teacher": "Морозова Ю.А.", "room": "205"},
+        {"number": 5, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"},
+        {"number": 6, "subject": "Труд", "teacher": "Мусаева С.С.", "room": "104"}
+      ],
+      "Пятница": [
+        {"number": 1, "subject": "Алгебра", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 2, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Английский язык", "teacher": "Алмазова Н.Л.", "room": "113"},
+        {"number": 4, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 5, "subject": "ОБЗР", "teacher": "Еремеева Н.А.", "room": "205"},
+        {"number": 6, "subject": "География", "teacher": "Кривобокова А.А.", "room": "307"}
+      ]
+    },
+    "7В": {
+      "Понедельник": [
+        {"number": 1, "subject": "Алгебра", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 4, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 5, "subject": "История", "teacher": "Морозова Ю.А.", "room": "205"},
+        {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
+      ],
+      "Вторник": [
+        {"number": 1, "subject": "Геометрия", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 2, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 4, "subject": "География", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 5, "subject": "Обществознание", "teacher": "Еремеева Н.А.", "room": "205"},
+        {"number": 6, "subject": "Труд", "teacher": "Мусаева С.С.", "room": "104"}
+      ],
+      "Среда": [
+        {"number": 1, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 2, "subject": "Алгебра", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 3, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 4, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 5, "subject": "Информатика", "teacher": "Савельева С.А.", "room": "202"},
+        {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
+      ],
+      "Четверг": [
+        {"number": 1, "subject": "Геометрия", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Химия", "teacher": "Полякова Л.В.", "room": "306"},
+        {"number": 4, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 5, "subject": "История", "teacher": "Морозова Ю.А.", "room": "205"},
+        {"number": 6, "subject": "Труд", "teacher": "Мусаева С.С.", "room": "104"}
+      ],
+      "Пятница": [
+        {"number": 1, "subject": "Алгебра", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 2, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 3, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 4, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 5, "subject": "ОБЗР", "teacher": "Еремеева Н.А.", "room": "205"},
+        {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
+      ]
+    },
+    "8А": {
+      "Понедельник": [
+        {"number": 1, "subject": "Алгебра", "teacher": "Рекунова А.Е.", "room": "203"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 4, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 5, "subject": "Химия", "teacher": "Полякова Л.В.", "room": "306"},
+        {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
+      ],
+      "Вторник": [
+        {"number": 1, "subject": "Геометрия", "teacher": "Рекунова А.Е.", "room": "203"},
+        {"number": 2, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "История", "teacher": "Морозова Ю.А.", "room": "205"},
+        {"number": 4, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 5, "subject": "География", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 6, "subject": "Труд", "teacher": "Мусаева С.С.", "room": "104"}
+      ],
+      "Среда": [
+        {"number": 1, "subject": "Алгебра", "teacher": "Рекунова А.Е.", "room": "203"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 4, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 5, "subject": "Информатика", "teacher": "Савельева С.А.", "room": "202"},
+        {"number": 6, "subject": "Обществознание", "teacher": "Еремеева Н.А.", "room": "205"}
+      ],
+      "Четверг": [
+        {"number": 1, "subject": "Геометрия", "teacher": "Рекунова А.Е.", "room": "203"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Химия", "teacher": "Полякова Л.В.", "room": "306"},
+        {"number": 4, "subject": "История", "teacher": "Морозова Ю.А.", "room": "205"},
+        {"number": 5, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
+      ],
+      "Пятница": [
+        {"number": 1, "subject": "Алгебра", "teacher": "Рекунова А.Е.", "room": "203"},
+        {"number": 2, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 3, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 4, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 5, "subject": "ОБЗР", "teacher": "Еремеева Н.А.", "room": "205"},
+        {"number": 6, "subject": "Труд", "teacher": "Мусаева С.С.", "room": "104"}
+      ]
+    },
+    "8Б": {
+      "Понедельник": [
+        {"number": 1, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 2, "subject": "Алгебра", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 3, "subject": "Английский язык", "teacher": "Алмазова Н.Л.", "room": "113"},
+        {"number": 4, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 5, "subject": "История", "teacher": "Морозова Ю.А.", "room": "205"},
+        {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
+      ],
+      "Вторник": [
+        {"number": 1, "subject": "Алгебра", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 2, "subject": "Геометрия", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 3, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 4, "subject": "Химия", "teacher": "Полякова Л.В.", "room": "306"},
+        {"number": 5, "subject": "Обществознание", "teacher": "Еремеева Н.А.", "room": "205"},
+        {"number": 6, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"}
+      ],
+      "Среда": [
+        {"number": 1, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 2, "subject": "Алгебра", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 3, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 4, "subject": "Английский язык", "teacher": "Алмазова Н.Л.", "room": "113"},
+        {"number": 5, "subject": "Информатика", "teacher": "Савельева С.А.", "room": "202"},
+        {"number": 6, "subject": "География", "teacher": "Кривобокова А.А.", "room": "307"}
+      ],
+      "Четверг": [
+        {"number": 1, "subject": "Геометрия", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "История", "teacher": "Морозова Ю.А.", "room": "205"},
+        {"number": 4, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 5, "subject": "Труд", "teacher": "Мусаева С.С.", "room": "104"},
+        {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
+      ],
+      "Пятница": [
+        {"number": 1, "subject": "Алгебра", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 2, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Английский язык", "teacher": "Алмазова Н.Л.", "room": "113"},
+        {"number": 4, "subject": "Химия", "teacher": "Полякова Л.В.", "room": "306"},
+        {"number": 5, "subject": "ОБЗР", "teacher": "Еремеева Н.А.", "room": "205"},
+        {"number": 6, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"}
+      ]
+    },
+    "8В": {
+      "Понедельник": [
+        {"number": 1, "subject": "Алгебра", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 4, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 5, "subject": "История", "teacher": "Морозова Ю.А.", "room": "205"},
+        {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
+      ],
+      "Вторник": [
+        {"number": 1, "subject": "Геометрия", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 2, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 4, "subject": "География", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 5, "subject": "Обществознание", "teacher": "Еремеева Н.А.", "room": "205"},
+        {"number": 6, "subject": "Труд", "teacher": "Мусаева С.С.", "room": "104"}
+      ],
+      "Среда": [
+        {"number": 1, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 2, "subject": "Алгебра", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 3, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 4, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 5, "subject": "Информатика", "teacher": "Савельева С.А.", "room": "202"},
+        {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
+      ],
+      "Четверг": [
+        {"number": 1, "subject": "Геометрия", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Химия", "teacher": "Полякова Л.В.", "room": "306"},
+        {"number": 4, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 5, "subject": "История", "teacher": "Морозова Ю.А.", "room": "205"},
+        {"number": 6, "subject": "Труд", "teacher": "Мусаева С.С.", "room": "104"}
+      ],
+      "Пятница": [
+        {"number": 1, "subject": "Алгебра", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 2, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 3, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 4, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 5, "subject": "ОБЗР", "teacher": "Еремеева Н.А.", "room": "205"},
+        {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
+      ]
+    },
+    "9А": {
+      "Понедельник": [
+        {"number": 1, "subject": "Алгебра", "teacher": "Рекунова А.Е.", "room": "203"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 4, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 5, "subject": "Химия", "teacher": "Полякова Л.В.", "room": "306"},
+        {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
+      ],
+      "Вторник": [
+        {"number": 1, "subject": "Геометрия", "teacher": "Рекунова А.Е.", "room": "203"},
+        {"number": 2, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "История", "teacher": "Морозова Ю.А.", "room": "205"},
+        {"number": 4, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 5, "subject": "География", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 6, "subject": "ОБЗР", "teacher": "Еремеева Н.А.", "room": "205"}
+      ],
+      "Среда": [
+        {"number": 1, "subject": "Алгебра", "teacher": "Рекунова А.Е.", "room": "203"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 4, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 5, "subject": "Информатика", "teacher": "Савельева С.А.", "room": "202"},
+        {"number": 6, "subject": "Обществознание", "teacher": "Еремеева Н.А.", "room": "205"}
+      ],
+      "Четверг": [
+        {"number": 1, "subject": "Геометрия", "teacher": "Рекунова А.Е.", "room": "203"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Химия", "teacher": "Полякова Л.В.", "room": "306"},
+        {"number": 4, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 5, "subject": "История", "teacher": "Морозова Ю.А.", "room": "205"},
+        {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
+      ],
+      "Пятница": [
+        {"number": 1, "subject": "Алгебра", "teacher": "Рекунова А.Е.", "room": "203"},
+        {"number": 2, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 3, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 4, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 5, "subject": "Труд", "teacher": "Мусаева С.С.", "room": "104"},
+        {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
       ]
     },
     "9Б": {
       "Понедельник": [
-        {"number": 1, "subject": "Математика", "teacher": "Рекунова А.Е.", "room": "203"},
+        {"number": 1, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 2, "subject": "Алгебра", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 3, "subject": "Английский язык", "teacher": "Алмазова Н.Л.", "room": "113"},
+        {"number": 4, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 5, "subject": "История", "teacher": "Морозова Ю.А.", "room": "205"},
+        {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
+      ],
+      "Вторник": [
+        {"number": 1, "subject": "Алгебра", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 2, "subject": "Геометрия", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 3, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 4, "subject": "Химия", "teacher": "Полякова Л.В.", "room": "306"},
+        {"number": 5, "subject": "Обществознание", "teacher": "Еремеева Н.А.", "room": "205"},
+        {"number": 6, "subject": "ОБЗР", "teacher": "Еремеева Н.А.", "room": "205"}
+      ],
+      "Среда": [
+        {"number": 1, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 2, "subject": "Алгебра", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 3, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 4, "subject": "Английский язык", "teacher": "Алмазова Н.Л.", "room": "113"},
+        {"number": 5, "subject": "Информатика", "teacher": "Савельева С.А.", "room": "202"},
+        {"number": 6, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"}
+      ],
+      "Четверг": [
+        {"number": 1, "subject": "Геометрия", "teacher": "Савельева С.А.", "room": "201"},
         {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
-        {"number": 3, "subject": "Химия", "teacher": "Полякова Л.В.", "room": "306"},
+        {"number": 3, "subject": "История", "teacher": "Морозова Ю.А.", "room": "205"},
+        {"number": 4, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 5, "subject": "География", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
+      ],
+      "Пятница": [
+        {"number": 1, "subject": "Алгебра", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 2, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Английский язык", "teacher": "Алмазова Н.Л.", "room": "113"},
+        {"number": 4, "subject": "Химия", "teacher": "Полякова Л.В.", "room": "306"},
+        {"number": 5, "subject": "Труд", "teacher": "Мусаева С.С.", "room": "104"},
+        {"number": 6, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"}
+      ]
+    },
+    "9В": {
+      "Понедельник": [
+        {"number": 1, "subject": "Алгебра", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 4, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 5, "subject": "История", "teacher": "Морозова Ю.А.", "room": "205"},
+        {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
+      ],
+      "Вторник": [
+        {"number": 1, "subject": "Геометрия", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 2, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 4, "subject": "Химия", "teacher": "Полякова Л.В.", "room": "306"},
+        {"number": 5, "subject": "Обществознание", "teacher": "Еремеева Н.А.", "room": "205"},
+        {"number": 6, "subject": "ОБЗР", "teacher": "Еремеева Н.А.", "room": "205"}
+      ],
+      "Среда": [
+        {"number": 1, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 2, "subject": "Алгебра", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 3, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 4, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 5, "subject": "Информатика", "teacher": "Савельева С.А.", "room": "202"},
+        {"number": 6, "subject": "География", "teacher": "Кривобокова А.А.", "room": "307"}
+      ],
+      "Четверг": [
+        {"number": 1, "subject": "Геометрия", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
         {"number": 4, "subject": "История", "teacher": "Морозова Ю.А.", "room": "205"},
-        {"number": 5, "subject": "Английский язык", "teacher": "Алмазова Н.Л.", "room": "113"}
+        {"number": 5, "subject": "Труд", "teacher": "Мусаева С.С.", "room": "104"},
+        {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
+      ],
+      "Пятница": [
+        {"number": 1, "subject": "Алгебра", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 2, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 3, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 4, "subject": "Химия", "teacher": "Полякова Л.В.", "room": "306"},
+        {"number": 5, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
+      ]
+    },
+    "10А": {
+      "Понедельник": [
+        {"number": 1, "subject": "Алгебра", "teacher": "Рекунова А.Е.", "room": "203"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 4, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 5, "subject": "История", "teacher": "Морозова Ю.А.", "room": "205"},
+        {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
+      ],
+      "Вторник": [
+        {"number": 1, "subject": "Геометрия", "teacher": "Рекунова А.Е.", "room": "203"},
+        {"number": 2, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Обществознание", "teacher": "Еремеева Н.А.", "room": "205"},
+        {"number": 4, "subject": "Химия", "teacher": "Полякова Л.В.", "room": "306"},
+        {"number": 5, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 6, "subject": "ОБЗР", "teacher": "Еремеева Н.А.", "room": "205"}
+      ],
+      "Среда": [
+        {"number": 1, "subject": "Алгебра", "teacher": "Рекунова А.Е.", "room": "203"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 4, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 5, "subject": "Информатика", "teacher": "Савельева С.А.", "room": "202"},
+        {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
+      ],
+      "Четверг": [
+        {"number": 1, "subject": "Геометрия", "teacher": "Рекунова А.Е.", "room": "203"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "История", "teacher": "Морозова Ю.А.", "room": "205"},
+        {"number": 4, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 5, "subject": "География", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 6, "subject": "Труд", "teacher": "Мусаева С.С.", "room": "104"}
+      ],
+      "Пятница": [
+        {"number": 1, "subject": "Алгебра", "teacher": "Рекунова А.Е.", "room": "203"},
+        {"number": 2, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 3, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 4, "subject": "Химия", "teacher": "Полякова Л.В.", "room": "306"},
+        {"number": 5, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
+      ]
+    },
+    "10Б": {
+      "Понедельник": [
+        {"number": 1, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 2, "subject": "Алгебра", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 3, "subject": "Английский язык", "teacher": "Алмазова Н.Л.", "room": "113"},
+        {"number": 4, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 5, "subject": "Обществознание", "teacher": "Еремеева Н.А.", "room": "205"},
+        {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
+      ],
+      "Вторник": [
+        {"number": 1, "subject": "Алгебра", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 2, "subject": "Геометрия", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 3, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 4, "subject": "История", "teacher": "Морозова Ю.А.", "room": "205"},
+        {"number": 5, "subject": "Химия", "teacher": "Полякова Л.В.", "room": "306"},
+        {"number": 6, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"}
+      ],
+      "Среда": [
+        {"number": 1, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 2, "subject": "Алгебра", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 3, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 4, "subject": "Английский язык", "teacher": "Алмазова Н.Л.", "room": "113"},
+        {"number": 5, "subject": "Информатика", "teacher": "Савельева С.А.", "room": "202"},
+        {"number": 6, "subject": "ОБЗР", "teacher": "Еремеева Н.А.", "room": "205"}
+      ],
+      "Четверг": [
+        {"number": 1, "subject": "Геометрия", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 4, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 5, "subject": "География", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
+      ],
+      "Пятница": [
+        {"number": 1, "subject": "Алгебра", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 2, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Английский язык", "teacher": "Алмазова Н.Л.", "room": "113"},
+        {"number": 4, "subject": "Химия", "teacher": "Полякова Л.В.", "room": "306"},
+        {"number": 5, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 6, "subject": "Труд", "teacher": "Мусаева С.С.", "room": "104"}
+      ]
+    },
+    "10В": {
+      "Понедельник": [
+        {"number": 1, "subject": "Алгебра", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 4, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 5, "subject": "История", "teacher": "Морозова Ю.А.", "room": "205"},
+        {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
+      ],
+      "Вторник": [
+        {"number": 1, "subject": "Геометрия", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 2, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Обществознание", "teacher": "Еремеева Н.А.", "room": "205"},
+        {"number": 4, "subject": "Химия", "teacher": "Полякова Л.В.", "room": "306"},
+        {"number": 5, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 6, "subject": "ОБЗР", "teacher": "Еремеева Н.А.", "room": "205"}
+      ],
+      "Среда": [
+        {"number": 1, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 2, "subject": "Алгебра", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 3, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 4, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 5, "subject": "Информатика", "teacher": "Савельева С.А.", "room": "202"},
+        {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
+      ],
+      "Четверг": [
+        {"number": 1, "subject": "Геометрия", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "История", "teacher": "Морозова Ю.А.", "room": "205"},
+        {"number": 4, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 5, "subject": "География", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 6, "subject": "Труд", "teacher": "Мусаева С.С.", "room": "104"}
+      ],
+      "Пятница": [
+        {"number": 1, "subject": "Алгебра", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 2, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 3, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 4, "subject": "Химия", "teacher": "Полякова Л.В.", "room": "306"},
+        {"number": 5, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
+      ]
+    },
+    "11А": {
+      "Понедельник": [
+        {"number": 1, "subject": "Алгебра", "teacher": "Рекунова А.Е.", "room": "203"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 4, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 5, "subject": "История", "teacher": "Морозова Ю.А.", "room": "205"},
+        {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
+      ],
+      "Вторник": [
+        {"number": 1, "subject": "Геометрия", "teacher": "Рекунова А.Е.", "room": "203"},
+        {"number": 2, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Обществознание", "teacher": "Еремеева Н.А.", "room": "205"},
+        {"number": 4, "subject": "Химия", "teacher": "Полякова Л.В.", "room": "306"},
+        {"number": 5, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 6, "subject": "ОБЗР", "teacher": "Еремеева Н.А.", "room": "205"}
+      ],
+      "Среда": [
+        {"number": 1, "subject": "Алгебра", "teacher": "Рекунова А.Е.", "room": "203"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 4, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 5, "subject": "Информатика", "teacher": "Савельева С.А.", "room": "202"},
+        {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
+      ],
+      "Четверг": [
+        {"number": 1, "subject": "Геометрия", "teacher": "Рекунова А.Е.", "room": "203"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "История", "teacher": "Морозова Ю.А.", "room": "205"},
+        {"number": 4, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 5, "subject": "География", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 6, "subject": "Труд", "teacher": "Мусаева С.С.", "room": "104"}
+      ],
+      "Пятница": [
+        {"number": 1, "subject": "Алгебра", "teacher": "Рекунова А.Е.", "room": "203"},
+        {"number": 2, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 3, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 4, "subject": "Химия", "teacher": "Полякова Л.В.", "room": "306"},
+        {"number": 5, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
+      ]
+    },
+    "11Б": {
+      "Понедельник": [
+        {"number": 1, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 2, "subject": "Алгебра", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 3, "subject": "Английский язык", "teacher": "Алмазова Н.Л.", "room": "113"},
+        {"number": 4, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 5, "subject": "Обществознание", "teacher": "Еремеева Н.А.", "room": "205"},
+        {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
+      ],
+      "Вторник": [
+        {"number": 1, "subject": "Алгебра", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 2, "subject": "Геометрия", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 3, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 4, "subject": "История", "teacher": "Морозова Ю.А.", "room": "205"},
+        {"number": 5, "subject": "Химия", "teacher": "Полякова Л.В.", "room": "306"},
+        {"number": 6, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"}
+      ],
+      "Среда": [
+        {"number": 1, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 2, "subject": "Алгебра", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 3, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 4, "subject": "Английский язык", "teacher": "Алмазова Н.Л.", "room": "113"},
+        {"number": 5, "subject": "Информатика", "teacher": "Савельева С.А.", "room": "202"},
+        {"number": 6, "subject": "ОБЗР", "teacher": "Еремеева Н.А.", "room": "205"}
+      ],
+      "Четверг": [
+        {"number": 1, "subject": "Геометрия", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 4, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 5, "subject": "География", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
+      ],
+      "Пятница": [
+        {"number": 1, "subject": "Алгебра", "teacher": "Савельева С.А.", "room": "201"},
+        {"number": 2, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Английский язык", "teacher": "Алмазова Н.Л.", "room": "113"},
+        {"number": 4, "subject": "Химия", "teacher": "Полякова Л.В.", "room": "306"},
+        {"number": 5, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 6, "subject": "Труд", "teacher": "Мусаева С.С.", "room": "104"}
+      ]
+    },
+    "11В": {
+      "Понедельник": [
+        {"number": 1, "subject": "Алгебра", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 4, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 5, "subject": "История", "teacher": "Морозова Ю.А.", "room": "205"},
+        {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
+      ],
+      "Вторник": [
+        {"number": 1, "subject": "Геометрия", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 2, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "Обществознание", "teacher": "Еремеева Н.А.", "room": "205"},
+        {"number": 4, "subject": "Химия", "teacher": "Полякова Л.В.", "room": "306"},
+        {"number": 5, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 6, "subject": "ОБЗР", "teacher": "Еремеева Н.А.", "room": "205"}
+      ],
+      "Среда": [
+        {"number": 1, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 2, "subject": "Алгебра", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 3, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 4, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 5, "subject": "Информатика", "teacher": "Савельева С.А.", "room": "202"},
+        {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
+      ],
+      "Четверг": [
+        {"number": 1, "subject": "Геометрия", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 2, "subject": "Русский язык", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 3, "subject": "История", "teacher": "Морозова Ю.А.", "room": "205"},
+        {"number": 4, "subject": "Литература", "teacher": "Панченко Н.П.", "room": "210"},
+        {"number": 5, "subject": "География", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 6, "subject": "Труд", "teacher": "Мусаева С.С.", "room": "104"}
+      ],
+      "Пятница": [
+        {"number": 1, "subject": "Алгебра", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 2, "subject": "Физика", "teacher": "Полякова Л.В.", "room": "308"},
+        {"number": 3, "subject": "Английский язык", "teacher": "Шубина Е.С.", "room": "112"},
+        {"number": 4, "subject": "Химия", "teacher": "Полякова Л.В.", "room": "306"},
+        {"number": 5, "subject": "Биология", "teacher": "Кривобокова А.А.", "room": "307"},
+        {"number": 6, "subject": "Физкультура", "teacher": "Говорущенко В.В.", "room": "Спортзал"}
       ]
     }
-  },
-  "rings": {
-    "1": {"start": "08:30", "end": "09:15"},
-    "2": {"start": "09:25", "end": "10:10"},
-    "3": {"start": "10:20", "end": "11:05"},
-    "4": {"start": "11:15", "end": "12:00"},
-    "5": {"start": "12:10", "end": "12:55"},
-    "6": {"start": "13:05", "end": "13:50"},
-    "7": {"start": "14:00", "end": "14:45"}
   }
 }

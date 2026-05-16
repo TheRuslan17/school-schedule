@@ -317,11 +317,41 @@
         
         <div class="card">
             <select id="classSelect" class="select-class">
-                <option value="9А">9А класс</option>
-                <option value="9Б">9Б класс</option>
-                <option value="10А">10А класс</option>
-                <option value="10Б">10Б класс</option>
-                <option value="11А">11А класс</option>
+                <optgroup label="5 классы">
+                    <option value="5А">5А класс</option>
+                    <option value="5Б">5Б класс</option>
+                    <option value="5В">5В класс</option>
+                </optgroup>
+                <optgroup label="6 классы">
+                    <option value="6А">6А класс</option>
+                    <option value="6Б">6Б класс</option>
+                    <option value="6В">6В класс</option>
+                </optgroup>
+                <optgroup label="7 классы">
+                    <option value="7А">7А класс</option>
+                    <option value="7Б">7Б класс</option>
+                    <option value="7В">7В класс</option>
+                </optgroup>
+                <optgroup label="8 классы">
+                    <option value="8А">8А класс</option>
+                    <option value="8Б">8Б класс</option>
+                    <option value="8В">8В класс</option>
+                </optgroup>
+                <optgroup label="9 классы">
+                    <option value="9А">9А класс</option>
+                    <option value="9Б">9Б класс</option>
+                    <option value="9В">9В класс</option>
+                </optgroup>
+                <optgroup label="10 классы">
+                    <option value="10А">10А класс</option>
+                    <option value="10Б">10Б класс</option>
+                    <option value="10В">10В класс</option>
+                </optgroup>
+                <optgroup label="11 классы">
+                    <option value="11А">11А класс</option>
+                    <option value="11Б">11Б класс</option>
+                    <option value="11В">11В класс</option>
+                </optgroup>
             </select>
             
             <div class="btn-grid">
@@ -365,7 +395,6 @@
     </div>
     
     <script>
-        // ССЫЛКА НА ФАЙЛ РАСПИСАНИЯ
         const SCHEDULE_URL = "https://raw.githubusercontent.com/TheRuslan17/school-schedule/main/schedule.json";
         
         let scheduleData = null;
@@ -373,7 +402,6 @@
         
         const daysRu = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
         
-        // Реальные учителя школы №2
         const realTeachers = {
             "Маланин Максим Александрович": {"position": "Директор школы", "subject": "Руководство", "contact": "school2nev1@mail.ru"},
             "Говорущенко Виктория Викторовна": {"position": "Заместитель директора по ВР", "subject": "Физическая культура"},
@@ -397,7 +425,6 @@
             "Маданова Ольга Владимировна": {"position": "Учитель", "subject": "Начальные классы"}
         };
         
-        // Расписание звонков (стандартное для школ России)
         const ringsData = {
             "1": {"start": "08:30", "end": "09:15"},
             "2": {"start": "09:25", "end": "10:10"},
@@ -408,7 +435,6 @@
             "7": {"start": "14:00", "end": "14:45"}
         };
         
-        // История школы
         const schoolHistory = `
             <div class="school-info">
                 <strong>🏛️ Основание:</strong> Школа основана в 1907 году купцом Иваном Васильевичем Лапиным с трехлетним обучением для иногородних детей. Обучение было платным.
@@ -430,7 +456,6 @@
             </div>
         `;
         
-        // Загрузка расписания
         async function loadSchedule() {
             showStatus('loading', '⏳ Загрузка расписания...');
             
@@ -579,7 +604,6 @@
             container.innerHTML = schoolHistory;
         }
         
-        // Переключение вкладок
         function switchTab(tab) {
             document.querySelectorAll('.tab').forEach(btn => {
                 btn.classList.remove('active');
@@ -606,7 +630,6 @@
             }
         }
         
-        // Обработчики
         document.getElementById('updateBtn').addEventListener('click', loadSchedule);
         document.getElementById('todayBtn').addEventListener('click', showToday);
         document.getElementById('anyDayBtn').addEventListener('click', showAnyDay);
@@ -619,7 +642,6 @@
             btn.addEventListener('click', () => switchTab(btn.dataset.tab));
         });
         
-        // Автозагрузка при открытии
         loadSchedule();
     </script>
 </body>
