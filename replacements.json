@@ -1,0 +1,22 @@
+{
+  "version": "1",
+  "replacements": {
+    "9А_2026-05-18_3": {
+      "oldSubject": "Физика",
+      "newSubject": "Математика",
+      "newTeacher": "Рекунова А.Е.",
+      "newRoom": "203",
+      "cancelled": false
+    },
+    "9А_2026-05-19_4": {
+      "cancelled": true
+    },
+    "9Б_2026-05-20_2": {
+      "oldSubject": "Английский язык",
+      "newSubject": "История",
+      "newTeacher": "Морозова Ю.А.",
+      "newRoom": "205",
+      "cancelled": false
+    }
+  }
+}
