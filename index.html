@@ -16,9 +16,10 @@
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f5f5f5;
+            background: #1a1a2e;
             padding: 16px;
             padding-bottom: 80px;
+            color: white;
         }
         
         /* Анимации */
@@ -38,7 +39,7 @@
         
         /* Скелетон загрузки */
         .skeleton-card {
-            background: #e0e0e0;
+            background: #2a2a3e;
             border-radius: 12px;
             padding: 12px;
             margin-bottom: 10px;
@@ -47,7 +48,7 @@
         
         .skeleton-line {
             height: 16px;
-            background: #ccc;
+            background: #3a3a4e;
             border-radius: 8px;
             margin-bottom: 8px;
         }
@@ -58,15 +59,6 @@
         
         .skeleton-line.medium {
             width: 80%;
-        }
-        
-        @media (prefers-color-scheme: dark) {
-            .skeleton-card {
-                background: #2a2a3e;
-            }
-            .skeleton-line {
-                background: #3a3a4e;
-            }
         }
         
         /* Боковое меню */
@@ -139,7 +131,6 @@
             border-left: 4px solid #4CAF50;
         }
         
-        /* Индикатор замен в меню */
         .replacement-indicator {
             position: absolute;
             right: 20px;
@@ -187,7 +178,7 @@
             left: 16px;
             width: 45px;
             height: 45px;
-            background: white;
+            background: #16213e;
             border-radius: 12px;
             display: flex;
             flex-direction: column;
@@ -203,7 +194,7 @@
         .menu-btn span {
             width: 24px;
             height: 2.5px;
-            background: #1e3c72;
+            background: white;
             border-radius: 2px;
             transition: 0.2s;
         }
@@ -226,16 +217,14 @@
             margin-top: 60px;
         }
         
-        /* Pull-to-refresh индикатор */
         .ptr-element {
             text-align: center;
             padding: 10px;
-            color: #666;
+            color: #aaa;
             font-size: 12px;
             transition: all 0.2s;
         }
         
-        /* Навигация по дням */
         .date-navigation {
             display: flex;
             align-items: center;
@@ -247,30 +236,31 @@
         .nav-arrow {
             width: 45px;
             height: 45px;
-            background: white;
-            border: 2px solid #e0e0e0;
+            background: #16213e;
+            border: 2px solid #0f3460;
             border-radius: 12px;
             font-size: 20px;
             cursor: pointer;
             transition: all 0.2s;
+            color: white;
         }
         
         .nav-arrow:active {
             transform: scale(0.95);
-            background: #f0f0f0;
+            background: #0f3460;
         }
         
         .current-date-display {
             flex: 1;
             text-align: center;
             padding: 10px;
-            background: white;
+            background: #16213e;
             border-radius: 12px;
             font-weight: bold;
-            border: 2px solid #e0e0e0;
+            border: 2px solid #0f3460;
+            color: white;
         }
         
-        /* Быстрые кнопки */
         .quick-buttons {
             display: flex;
             gap: 8px;
@@ -280,22 +270,21 @@
         .quick-btn {
             flex: 1;
             padding: 10px;
-            background: #e3f2fd;
+            background: #0f3460;
             border: none;
             border-radius: 10px;
             font-size: 13px;
             font-weight: 500;
-            color: #1976d2;
+            color: #90caf9;
             cursor: pointer;
             transition: all 0.2s;
         }
         
         .quick-btn:active {
             transform: scale(0.97);
-            background: #bbdef5;
+            background: #1a4a7a;
         }
         
-        /* Недельное расписание */
         .week-schedule {
             display: flex;
             overflow-x: auto;
@@ -306,18 +295,19 @@
         
         .week-day-card {
             min-width: 100px;
-            background: white;
+            background: #16213e;
             border-radius: 12px;
             padding: 10px;
             text-align: center;
             cursor: pointer;
             transition: all 0.2s;
-            border: 2px solid #e0e0e0;
+            border: 2px solid #0f3460;
+            color: white;
         }
         
         .week-day-card.active {
             border-color: #4CAF50;
-            background: #e8f5e9;
+            background: #1a4a2a;
         }
         
         .week-day-name {
@@ -327,7 +317,7 @@
         
         .week-day-date {
             font-size: 11px;
-            color: #666;
+            color: #aaa;
             margin-top: 3px;
         }
         
@@ -339,7 +329,7 @@
         
         .week-day-card.replacement-day {
             border-color: #f44336;
-            background: #ffebee;
+            background: #4a1a1a;
         }
         
         .header {
@@ -368,22 +358,29 @@
         }
         
         .card {
-            background: white;
+            background: #16213e;
             border-radius: 16px;
             padding: 20px;
             margin-bottom: 16px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            color: white;
         }
         
         .select-class {
             width: 100%;
             padding: 14px;
             font-size: 16px;
-            border: 2px solid #e0e0e0;
+            border: 2px solid #0f3460;
             border-radius: 12px;
-            background: white;
+            background: #0f3460;
             margin-bottom: 15px;
             font-weight: 500;
+            color: white;
+        }
+        
+        .select-class option {
+            background: #0f3460;
+            color: white;
         }
         
         .btn-grid {
@@ -401,6 +398,7 @@
             border-radius: 12px;
             cursor: pointer;
             transition: transform 0.1s, opacity 0.2s;
+            color: white;
         }
         
         button:active {
@@ -423,22 +421,23 @@
         }
         
         .schedule-item {
-            background: #f8f9fa;
+            background: #0f3460;
             border-radius: 12px;
             padding: 12px;
             margin-bottom: 10px;
             border-left: 4px solid #4CAF50;
             transition: all 0.2s;
+            color: white;
         }
         
         .schedule-item.replacement {
             border-left-color: #f44336;
-            background: #ffebee;
+            background: #4a1a1a;
         }
         
         .schedule-item.cancelled {
             border-left-color: #9e9e9e;
-            background: #eeeeee;
+            background: #2a2a2a;
             opacity: 0.7;
             text-decoration: line-through;
         }
@@ -457,13 +456,13 @@
         .lesson-subject {
             font-size: 16px;
             font-weight: 600;
-            color: #333;
+            color: white;
             margin-bottom: 5px;
         }
         
         .lesson-teacher {
             font-size: 13px;
-            color: #666;
+            color: #aaa;
             margin-top: 5px;
         }
         
@@ -493,29 +492,29 @@
             text-align: center;
             margin: 10px 0;
             font-size: 14px;
+            color: white;
         }
         
         .status.loading {
-            background: #e3f2fd;
-            color: #1976d2;
+            background: #0f3460;
+            color: #90caf9;
         }
         
         .status.success {
-            background: #e8f5e9;
-            color: #2e7d32;
+            background: #1a4a2a;
+            color: #a5d6a7;
         }
         
         .status.error {
-            background: #ffebee;
-            color: #c62828;
+            background: #4a1a1a;
+            color: #ef9a9a;
         }
         
         .status.info {
-            background: #fff3e0;
-            color: #e65100;
+            background: #4a3a1a;
+            color: #ffcc80;
         }
         
-        /* Уведомления */
         .notification-group {
             position: fixed;
             top: 70px;
@@ -527,14 +526,15 @@
         }
         
         .notification {
-            background: white;
+            background: #16213e;
             border-radius: 12px;
             padding: 12px 16px;
             margin-bottom: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
             border-left: 4px solid #4CAF50;
             animation: slideIn 0.3s ease;
             cursor: pointer;
+            color: white;
         }
         
         @keyframes slideIn {
@@ -550,21 +550,22 @@
         
         .notification-text {
             font-size: 12px;
-            color: #666;
+            color: #aaa;
         }
         
-        .teacher-item, .ring-item, .history-block, .news-item {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        .teacher-item, .ring-item, .history-block, .news-item, .club-item {
+            background: #0f3460;
             border-radius: 12px;
             padding: 12px;
             margin-bottom: 10px;
             border-left: 4px solid #4CAF50;
+            color: white;
         }
         
         .teacher-name {
             font-size: 16px;
             font-weight: 600;
-            color: #333;
+            color: white;
             margin-bottom: 5px;
         }
         
@@ -576,7 +577,7 @@
         
         .teacher-info {
             font-size: 13px;
-            color: #666;
+            color: #aaa;
         }
         
         .ring-item {
@@ -593,28 +594,30 @@
         .ring-time {
             font-size: 16px;
             font-weight: 600;
+            color: white;
         }
         
         .history-block strong {
-            color: #1e3c72;
+            color: #4CAF50;
         }
         
         .director-card {
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            background: linear-gradient(135deg, #4a3a1a 0%, #3a2a0a 100%);
             border-radius: 12px;
             padding: 15px;
             margin-bottom: 12px;
+            color: white;
         }
         
         .director-name {
             font-size: 16px;
             font-weight: bold;
-            color: #333;
+            color: white;
         }
         
         .director-contact {
             font-size: 12px;
-            color: #555;
+            color: #ddd;
             margin-top: 5px;
         }
         
@@ -648,18 +651,18 @@
         .news-title {
             font-size: 16px;
             font-weight: bold;
-            color: #333;
+            color: white;
             margin-bottom: 8px;
         }
         
         .news-text {
             font-size: 13px;
-            color: #666;
+            color: #aaa;
             line-height: 1.4;
         }
         
         .event-item {
-            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            background: #4a3a1a;
             border-radius: 12px;
             padding: 12px;
             margin-bottom: 10px;
@@ -667,6 +670,7 @@
             display: flex;
             align-items: center;
             gap: 12px;
+            color: white;
         }
         
         .event-date {
@@ -694,7 +698,7 @@
         .event-name {
             font-size: 14px;
             font-weight: bold;
-            color: #333;
+            color: white;
         }
         
         .event-type {
@@ -703,13 +707,59 @@
             margin-top: 3px;
         }
         
+        /* Стили для кружков */
+        .club-item {
+            border-left-color: #FF9800;
+        }
+        
+        .club-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 8px;
+        }
+        
+        .club-detail {
+            font-size: 13px;
+            color: #aaa;
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .club-badge {
+            background: #FF9800;
+            color: white;
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 20px;
+        }
+        
+        .club-day {
+            background: #2196F3;
+            color: white;
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 20px;
+        }
+        
+        .club-cabinet {
+            background: #4CAF50;
+            color: white;
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 20px;
+        }
+        
         .notification-bell {
             position: fixed;
             top: 16px;
             right: 16px;
             width: 45px;
             height: 45px;
-            background: white;
+            background: #16213e;
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -719,6 +769,7 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.15);
             font-size: 22px;
             border: none;
+            color: white;
         }
         
         .notification-badge {
@@ -744,68 +795,6 @@
         
         .hidden {
             display: none;
-        }
-        
-        @media (prefers-color-scheme: dark) {
-            body {
-                background: #1a1a2e;
-            }
-            .card, .current-date-display, .nav-arrow {
-                background: #16213e;
-                border-color: #0f3460;
-            }
-            .menu-btn, .notification-bell {
-                background: #16213e;
-            }
-            .menu-btn span {
-                background: white;
-            }
-            .quick-btn {
-                background: #0f3460;
-                color: #90caf9;
-            }
-            .week-day-card {
-                background: #16213e;
-                border-color: #0f3460;
-                color: white;
-            }
-            .week-day-card.active {
-                border-color: #4CAF50;
-                background: #1a4a2a;
-            }
-            .week-day-date {
-                color: #aaa;
-            }
-            .schedule-item, .teacher-item, .ring-item, .history-block, .news-item {
-                background: #0f3460;
-            }
-            .event-item {
-                background: #4a3a1a;
-            }
-            .schedule-item.replacement {
-                background: #4a1a1a;
-            }
-            .schedule-item.cancelled {
-                background: #2a2a2a;
-            }
-            .lesson-subject, .teacher-name, .news-title, .event-name {
-                color: white;
-            }
-            .lesson-teacher, .teacher-info, .news-text {
-                color: #aaa;
-            }
-            .select-class {
-                background: #0f3460;
-                color: white;
-                border-color: #1a4a7a;
-            }
-            .notification {
-                background: #16213e;
-                color: white;
-            }
-            .notification-text {
-                color: #aaa;
-            }
         }
     </style>
 </head>
@@ -835,10 +824,8 @@
             </li>
             <li><button class="nav-btn" data-tab="teachers">👨‍🏫 Учителя</button></li>
             <li><button class="nav-btn" data-tab="rings">🔔 Звонки</button></li>
-            <li>
-                <button class="nav-btn" data-tab="news">📢 Новости</button>
-                <span id="newsReplacementIndicator" class="replacement-indicator" style="display: none;"></span>
-            </li>
+            <li><button class="nav-btn" data-tab="clubs">🎯 Кружки</button></li>
+            <li><button class="nav-btn" data-tab="news">📢 Новости</button></li>
             <li><button class="nav-btn" data-tab="about">🏛️ История</button></li>
         </ul>
         <div class="sidebar-footer">
@@ -895,21 +882,18 @@
                 </optgroup>
             </select>
             
-            <!-- Навигация по дням -->
             <div class="date-navigation">
                 <button class="nav-arrow" id="prevDayBtn">←</button>
                 <div class="current-date-display" id="currentDateDisplay"></div>
                 <button class="nav-arrow" id="nextDayBtn">→</button>
             </div>
             
-            <!-- Быстрые кнопки -->
             <div class="quick-buttons">
                 <button class="quick-btn" id="tomorrowBtn">Завтра</button>
                 <button class="quick-btn" id="dayAfterBtn">Послезавтра</button>
                 <button class="quick-btn" id="mondayBtn">Понедельник</button>
             </div>
             
-            <!-- Недельное расписание -->
             <div id="weekSchedule" class="week-schedule"></div>
             
             <button id="updateBtn" class="btn-danger">🔄 Обновить расписание</button>
@@ -933,6 +917,11 @@
             <div id="ringsContent"></div>
         </div>
         
+        <div class="card hidden" id="clubsCard">
+            <h3 style="margin-bottom: 15px;">🎯 Кружки и секции</h3>
+            <div id="clubsContent"></div>
+        </div>
+        
         <div class="card hidden" id="newsCard">
             <h3 style="margin-bottom: 15px;">📢 Новости и объявления</h3>
             <div id="newsContent"></div>
@@ -950,10 +939,12 @@
         const SCHEDULE_URL = "https://raw.githubusercontent.com/TheRuslan17/school-schedule/main/schedule.json";
         const REPLACEMENTS_URL = "https://raw.githubusercontent.com/TheRuslan17/school-schedule/main/replacements.json";
         const NEWS_URL = "https://raw.githubusercontent.com/TheRuslan17/school-schedule/main/news.json";
+        const CLUBS_URL = "https://raw.githubusercontent.com/TheRuslan17/school-schedule/main/clubs.json";
         
         let scheduleData = null;
         let replacementsData = null;
         let newsData = null;
+        let clubsData = null;
         let currentDate = new Date();
         let notificationPermission = false;
         let pendingNotifications = [];
@@ -1004,7 +995,6 @@
             { name: "ЕГЭ по математике", date: "2026-05-31" }
         ];
         
-        // Группировка уведомлений
         function addNotification(title, text, type = 'info') {
             const container = document.getElementById('notificationGroup');
             const notification = document.createElement('div');
@@ -1019,15 +1009,15 @@
             setTimeout(() => notification.remove(), 5000);
         }
         
-        // Анимация при переключении вкладок
         function animateCardSwitch(cardId) {
             const card = document.getElementById(cardId);
-            card.classList.remove('fade-in');
-            void card.offsetWidth; // Триггер перерисовки
-            card.classList.add('fade-in');
+            if (card) {
+                card.classList.remove('fade-in');
+                void card.offsetWidth;
+                card.classList.add('fade-in');
+            }
         }
         
-        // Скелетон загрузки
         function showSkeleton(containerId) {
             const container = document.getElementById(containerId);
             if (!container) return;
@@ -1050,7 +1040,6 @@
             `;
         }
         
-        // Проверка наличия замен для индикатора
         function hasReplacementsToday() {
             if (!replacementsData || !replacementsData.replacements) return false;
             const todayStr = currentDate.toISOString().split('T')[0];
@@ -1071,7 +1060,6 @@
             }
         }
         
-        // Обновление недельного расписания
         function updateWeekSchedule() {
             const container = document.getElementById('weekSchedule');
             if (!container || !scheduleData) return;
@@ -1117,20 +1105,16 @@
             document.querySelectorAll('.week-day-card').forEach(card => {
                 card.addEventListener('click', () => {
                     const dateStr = card.dataset.date;
-                    const dayName = card.dataset.dayname;
                     if (dateStr) {
                         currentDate = new Date(dateStr);
                         updateDateDisplay();
                         showScheduleForDate(currentDate);
                         updateWeekSchedule();
-                    } else if (dayName) {
-                        showScheduleForDay(dayName);
                     }
                 });
             });
         }
         
-        // Обновление отображения даты
         function updateDateDisplay() {
             const displayDiv = document.getElementById('currentDateDisplay');
             if (displayDiv) {
@@ -1144,7 +1128,6 @@
             return `${dayName}, ${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
         }
         
-        // Навигация по дням
         function goPrevDay() {
             currentDate.setDate(currentDate.getDate() - 1);
             updateDateDisplay();
@@ -1159,7 +1142,6 @@
             updateWeekSchedule();
         }
         
-        // Быстрые кнопки
         function goTomorrow() {
             currentDate.setDate(currentDate.getDate() + 1);
             updateDateDisplay();
@@ -1185,7 +1167,6 @@
             updateWeekSchedule();
         }
         
-        // Инициализация уведомлений
         async function initNotifications() {
             if ('Notification' in window) {
                 const permission = await Notification.requestPermission();
@@ -1212,7 +1193,6 @@
             }
         }
         
-        // Проверка обновлений
         async function checkForUpdates() {
             try {
                 const response = await fetch(SCHEDULE_URL + '?t=' + Date.now());
@@ -1263,6 +1243,22 @@
             } catch (e) {
                 const saved = localStorage.getItem('newsData');
                 if (saved) newsData = JSON.parse(saved);
+            }
+        }
+        
+        async function loadClubs() {
+            try {
+                const response = await fetch(CLUBS_URL + '?t=' + Date.now());
+                if (response.ok) {
+                    clubsData = await response.json();
+                    localStorage.setItem('clubsData', JSON.stringify(clubsData));
+                } else {
+                    const saved = localStorage.getItem('clubsData');
+                    if (saved) clubsData = JSON.parse(saved);
+                }
+            } catch (e) {
+                const saved = localStorage.getItem('clubsData');
+                if (saved) clubsData = JSON.parse(saved);
             }
         }
         
@@ -1320,6 +1316,7 @@
                 
                 await loadReplacements();
                 await loadNews();
+                await loadClubs();
                 await checkForUpdates();
                 
                 showScheduleForDate(currentDate);
@@ -1448,7 +1445,7 @@
         
         function showByDatePicker() {
             const datePicker = document.getElementById('datePicker');
-            if (datePicker.value) {
+            if (datePicker && datePicker.value) {
                 currentDate = new Date(datePicker.value);
                 updateDateDisplay();
                 showScheduleForDate(currentDate);
@@ -1497,6 +1494,33 @@
             }
             container.innerHTML = html;
             animateCardSwitch('ringsCard');
+        }
+        
+        function showClubs() {
+            const container = document.getElementById('clubsContent');
+            
+            if (!clubsData || !clubsData.clubs || clubsData.clubs.length === 0) {
+                container.innerHTML = '<div class="status info">🎯 Информация о кружках и секциях появится позже</div>';
+                return;
+            }
+            
+            let html = '';
+            for (const club of clubsData.clubs) {
+                html += `
+                    <div class="club-item">
+                        <div class="club-name">${club.name}</div>
+                        <div class="club-detail">
+                            <span class="club-day">📅 ${club.day}</span>
+                            <span class="club-badge">🕐 ${club.time}</span>
+                            <span class="club-cabinet">🚪 ${club.room}</span>
+                        </div>
+                        <div class="teacher-info" style="margin-top: 8px;">👨‍🏫 Руководитель: ${club.teacher}</div>
+                        ${club.description ? `<div class="teacher-info" style="margin-top: 5px;">📝 ${club.description}</div>` : ''}
+                    </div>
+                `;
+            }
+            container.innerHTML = html;
+            animateCardSwitch('clubsCard');
         }
         
         function showNews() {
@@ -1570,13 +1594,13 @@
             animateCardSwitch('aboutCard');
         }
         
-        // Переключение вкладок
         function switchTab(tab) {
             closeMenu();
             
             document.getElementById('scheduleCard').classList.add('hidden');
             document.getElementById('teachersCard').classList.add('hidden');
             document.getElementById('ringsCard').classList.add('hidden');
+            document.getElementById('clubsCard').classList.add('hidden');
             document.getElementById('newsCard').classList.add('hidden');
             document.getElementById('aboutCard').classList.add('hidden');
             
@@ -1589,6 +1613,9 @@
             } else if (tab === 'rings') {
                 document.getElementById('ringsCard').classList.remove('hidden');
                 showRings();
+            } else if (tab === 'clubs') {
+                document.getElementById('clubsCard').classList.remove('hidden');
+                showClubs();
             } else if (tab === 'news') {
                 document.getElementById('newsCard').classList.remove('hidden');
                 showNews();
@@ -1620,6 +1647,37 @@
             else openMenu();
         }
         
+        // Обработчики
+        document.getElementById('menuBtn').addEventListener('click', toggleMenu);
+        document.getElementById('overlay').addEventListener('click', closeMenu);
+        document.getElementById('updateBtn').addEventListener('click', loadSchedule);
+        document.getElementById('prevDayBtn').addEventListener('click', goPrevDay);
+        document.getElementById('nextDayBtn').addEventListener('click', goNextDay);
+        document.getElementById('tomorrowBtn').addEventListener('click', goTomorrow);
+        document.getElementById('dayAfterBtn').addEventListener('click', goDayAfter);
+        document.getElementById('mondayBtn').addEventListener('click', goMonday);
+        document.getElementById('classSelect').addEventListener('change', () => {
+            if (scheduleData) showScheduleForDate(currentDate);
+            updateWeekSchedule();
+        });
+        document.getElementById('notifyBell').addEventListener('click', () => {
+            document.getElementById('notifyBadge').style.display = 'none';
+        });
+        
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('click', () => switchTab(btn.getAttribute('data-tab')));
+        });
+        
+        const datePicker = document.getElementById('datePicker');
+        if (datePicker) {
+            const todayDate = new Date();
+            const yyyy = todayDate.getFullYear();
+            const mm = String(todayDate.getMonth() + 1).padStart(2, '0');
+            const dd = String(todayDate.getDate()).padStart(2, '0');
+            datePicker.value = `${yyyy}-${mm}-${dd}`;
+            datePicker.addEventListener('change', showByDatePicker);
+        }
+        
         // Pull-to-refresh
         let touchStartY = 0;
         let isRefreshing = false;
@@ -1648,38 +1706,6 @@
             }
         });
         
-        // Обработчики
-        document.getElementById('menuBtn').addEventListener('click', toggleMenu);
-        document.getElementById('overlay').addEventListener('click', closeMenu);
-        document.getElementById('updateBtn').addEventListener('click', loadSchedule);
-        document.getElementById('todayBtn')?.addEventListener('click', showToday);
-        document.getElementById('anyDayBtn')?.addEventListener('click', showAnyDay);
-        document.getElementById('dateBtn')?.addEventListener('click', showByDatePicker);
-        document.getElementById('prevDayBtn')?.addEventListener('click', goPrevDay);
-        document.getElementById('nextDayBtn')?.addEventListener('click', goNextDay);
-        document.getElementById('tomorrowBtn')?.addEventListener('click', goTomorrow);
-        document.getElementById('dayAfterBtn')?.addEventListener('click', goDayAfter);
-        document.getElementById('mondayBtn')?.addEventListener('click', goMonday);
-        document.getElementById('classSelect')?.addEventListener('change', () => {
-            if (scheduleData) showScheduleForDate(currentDate);
-            updateWeekSchedule();
-        });
-        document.getElementById('notifyBell')?.addEventListener('click', () => {
-            document.getElementById('notifyBadge').style.display = 'none';
-        });
-        
-        document.querySelectorAll('.nav-btn').forEach(btn => {
-            btn.addEventListener('click', () => switchTab(btn.getAttribute('data-tab')));
-        });
-        
-        // Установка сегодняшней даты
-        const todayDate = new Date();
-        const yyyy = todayDate.getFullYear();
-        const mm = String(todayDate.getMonth() + 1).padStart(2, '0');
-        const dd = String(todayDate.getDate()).padStart(2, '0');
-        const datePicker = document.getElementById('datePicker');
-        if (datePicker) datePicker.value = `${yyyy}-${mm}-${dd}`;
-        
         initNotifications();
         loadSchedule();
         
@@ -1687,6 +1713,7 @@
             checkForUpdates();
             loadReplacements();
             loadNews();
+            loadClubs();
             if (document.getElementById('scheduleCard') && !document.getElementById('scheduleCard').classList.contains('hidden')) {
                 showScheduleForDate(currentDate);
             }
