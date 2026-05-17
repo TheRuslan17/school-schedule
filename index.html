@@ -21,9 +21,148 @@
             padding-bottom: 80px;
         }
         
+        /* Боковое меню */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -280px;
+            width: 280px;
+            height: 100%;
+            background: linear-gradient(180deg, #1e3c72 0%, #2a5298 100%);
+            z-index: 1000;
+            transition: left 0.3s ease;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+            overflow-y: auto;
+        }
+        
+        .sidebar.open {
+            left: 0;
+        }
+        
+        .sidebar-header {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            margin-bottom: 15px;
+        }
+        
+        .sidebar-header h3 {
+            color: white;
+            font-size: 18px;
+        }
+        
+        .sidebar-header p {
+            color: rgba(255,255,255,0.7);
+            font-size: 11px;
+            margin-top: 5px;
+        }
+        
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .sidebar-menu li {
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .sidebar-menu button {
+            width: 100%;
+            padding: 16px 20px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+            text-align: left;
+            cursor: pointer;
+            transition: background 0.2s;
+            border-radius: 0;
+        }
+        
+        .sidebar-menu button:active {
+            background: rgba(255,255,255,0.1);
+            transform: none;
+        }
+        
+        .sidebar-menu button.active {
+            background: rgba(255,255,255,0.15);
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .sidebar-footer {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            padding: 15px 20px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            font-size: 11px;
+            color: rgba(255,255,255,0.5);
+            text-align: center;
+        }
+        
+        /* Затемнение фона */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+        }
+        
+        .overlay.active {
+            display: block;
+        }
+        
+        /* Кнопка гамбургер */
+        .menu-btn {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            width: 45px;
+            height: 45px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            border: none;
+        }
+        
+        .menu-btn span {
+            width: 24px;
+            height: 2.5px;
+            background: #1e3c72;
+            border-radius: 2px;
+            transition: 0.2s;
+        }
+        
+        /* Анимация при открытом меню */
+        .menu-btn.open span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        
+        .menu-btn.open span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .menu-btn.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+        
         .container {
             max-width: 600px;
             margin: 0 auto;
+            margin-top: 60px;
         }
         
         .header {
@@ -121,11 +260,6 @@
             color: white;
         }
         
-        .btn-info {
-            background: #607d8b;
-            color: white;
-        }
-        
         .schedule-item {
             background: #f8f9fa;
             border-radius: 12px;
@@ -220,38 +354,6 @@
         .status.info {
             background: #fff3e0;
             color: #e65100;
-        }
-        
-        .tab-bar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: white;
-            display: flex;
-            padding: 8px 16px;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-            border-top: 1px solid #e0e0e0;
-        }
-        
-        .tab {
-            flex: 1;
-            text-align: center;
-            padding: 10px;
-            background: none;
-            color: #666;
-            font-size: 13px;
-            border-radius: 0;
-            border-bottom: 3px solid transparent;
-        }
-        
-        .tab.active {
-            color: #4CAF50;
-            border-bottom-color: #4CAF50;
-        }
-        
-        .hidden {
-            display: none;
         }
         
         .teacher-item {
@@ -425,16 +527,27 @@
         }
         
         .notification-bell {
-            position: relative;
-            display: inline-block;
-            margin-left: 10px;
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            width: 45px;
+            height: 45px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
+            z-index: 1001;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            font-size: 22px;
+            border: none;
         }
         
         .notification-badge {
             position: absolute;
-            top: -8px;
-            right: -8px;
+            top: -5px;
+            right: -5px;
             background: #f44336;
             color: white;
             font-size: 10px;
@@ -452,12 +565,22 @@
             font-weight: bold;
         }
         
+        .hidden {
+            display: none;
+        }
+        
         @media (prefers-color-scheme: dark) {
             body {
                 background: #1a1a2e;
             }
             .card {
                 background: #16213e;
+            }
+            .menu-btn, .notification-bell {
+                background: #16213e;
+            }
+            .menu-btn span {
+                background: white;
             }
             .schedule-item, .teacher-item, .ring-item, .history-block, .news-item {
                 background: #0f3460;
@@ -477,10 +600,6 @@
             .lesson-teacher, .teacher-info, .news-text {
                 color: #aaa;
             }
-            .tab-bar {
-                background: #16213e;
-                border-top-color: #0f3460;
-            }
             .select-class {
                 background: #0f3460;
                 color: white;
@@ -494,6 +613,40 @@
     </style>
 </head>
 <body>
+    <!-- Кнопка гамбургер -->
+    <button class="menu-btn" id="menuBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    
+    <!-- Колокольчик уведомлений -->
+    <div class="notification-bell" id="notifyBell">
+        🔔
+        <span id="notifyBadge" class="notification-badge" style="display: none;">0</span>
+    </div>
+    
+    <!-- Боковое меню -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3>🏫 МБОУ СОШ № 2</h3>
+            <p>им. О.И. Скрипочки</p>
+        </div>
+        <ul class="sidebar-menu">
+            <li><button class="nav-btn" data-tab="schedule">📅 Расписание</button></li>
+            <li><button class="nav-btn" data-tab="teachers">👨‍🏫 Учителя</button></li>
+            <li><button class="nav-btn" data-tab="rings">🔔 Звонки</button></li>
+            <li><button class="nav-btn" data-tab="news">📢 Новости</button></li>
+            <li><button class="nav-btn" data-tab="about">🏛️ История</button></li>
+        </ul>
+        <div class="sidebar-footer">
+            Версия 2.0<br>
+            © Школьный помощник
+        </div>
+    </div>
+    
+    <div class="overlay" id="overlay"></div>
+    
     <div class="container">
         <div class="header">
             <h1>🏫 МБОУ СОШ № 2</h1>
@@ -502,49 +655,43 @@
         </div>
         
         <div class="card">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <select id="classSelect" class="select-class" style="flex: 1; margin-bottom: 0;">
-                    <optgroup label="5 классы">
-                        <option value="5А">5А класс</option>
-                        <option value="5Б">5Б класс</option>
-                        <option value="5В">5В класс</option>
-                    </optgroup>
-                    <optgroup label="6 классы">
-                        <option value="6А">6А класс</option>
-                        <option value="6Б">6Б класс</option>
-                        <option value="6В">6В класс</option>
-                    </optgroup>
-                    <optgroup label="7 классы">
-                        <option value="7А">7А класс</option>
-                        <option value="7Б">7Б класс</option>
-                        <option value="7В">7В класс</option>
-                    </optgroup>
-                    <optgroup label="8 классы">
-                        <option value="8А">8А класс</option>
-                        <option value="8Б">8Б класс</option>
-                        <option value="8В">8В класс</option>
-                    </optgroup>
-                    <optgroup label="9 классы">
-                        <option value="9А">9А класс</option>
-                        <option value="9Б">9Б класс</option>
-                        <option value="9В">9В класс</option>
-                    </optgroup>
-                    <optgroup label="10 классы">
-                        <option value="10А">10А класс</option>
-                        <option value="10Б">10Б класс</option>
-                        <option value="10В">10В класс</option>
-                    </optgroup>
-                    <optgroup label="11 классы">
-                        <option value="11А">11А класс</option>
-                        <option value="11Б">11Б класс</option>
-                        <option value="11В">11В класс</option>
-                    </optgroup>
-                </select>
-                <div class="notification-bell" id="notifyBell" style="margin-left: 10px;">
-                    🔔
-                    <span id="notifyBadge" class="notification-badge" style="display: none;">0</span>
-                </div>
-            </div>
+            <select id="classSelect" class="select-class">
+                <optgroup label="5 классы">
+                    <option value="5А">5А класс</option>
+                    <option value="5Б">5Б класс</option>
+                    <option value="5В">5В класс</option>
+                </optgroup>
+                <optgroup label="6 классы">
+                    <option value="6А">6А класс</option>
+                    <option value="6Б">6Б класс</option>
+                    <option value="6В">6В класс</option>
+                </optgroup>
+                <optgroup label="7 классы">
+                    <option value="7А">7А класс</option>
+                    <option value="7Б">7Б класс</option>
+                    <option value="7В">7В класс</option>
+                </optgroup>
+                <optgroup label="8 классы">
+                    <option value="8А">8А класс</option>
+                    <option value="8Б">8Б класс</option>
+                    <option value="8В">8В класс</option>
+                </optgroup>
+                <optgroup label="9 классы">
+                    <option value="9А">9А класс</option>
+                    <option value="9Б">9Б класс</option>
+                    <option value="9В">9В класс</option>
+                </optgroup>
+                <optgroup label="10 классы">
+                    <option value="10А">10А класс</option>
+                    <option value="10Б">10Б класс</option>
+                    <option value="10В">10В класс</option>
+                </optgroup>
+                <optgroup label="11 классы">
+                    <option value="11А">11А класс</option>
+                    <option value="11Б">11Б класс</option>
+                    <option value="11В">11В класс</option>
+                </optgroup>
+            </select>
             
             <div class="date-input-group" style="margin-top: 15px;">
                 <input type="date" id="datePicker" placeholder="Выберите дату">
@@ -556,10 +703,7 @@
                 <button id="anyDayBtn" class="btn-secondary">📆 День недели</button>
             </div>
             
-            <div class="btn-grid">
-                <button id="updateBtn" class="btn-danger">🔄 Обновить расписание</button>
-                <button id="aboutBtn" class="btn-info">ℹ️ О школе</button>
-            </div>
+            <button id="updateBtn" class="btn-danger">🔄 Обновить расписание</button>
         </div>
         
         <div id="examCounter" class="exam-counter hidden"></div>
@@ -591,14 +735,6 @@
             <h3 style="margin-bottom: 15px;">📖 История школы</h3>
             <div id="aboutContent"></div>
         </div>
-    </div>
-    
-    <div class="tab-bar">
-        <button class="tab active" data-tab="schedule">📅 Расписание</button>
-        <button class="tab" data-tab="teachers">👨‍🏫 Учителя</button>
-        <button class="tab" data-tab="rings">🔔 Звонки</button>
-        <button class="tab" data-tab="news">📢 Новости</button>
-        <button class="tab" data-tab="about">🏛️ История</button>
     </div>
     
     <script>
@@ -650,7 +786,6 @@
             "7": {"start": "14:00", "end": "14:45"}
         };
         
-        // Даты экзаменов для счётчика
         const examDates = [
             { name: "ОГЭ по русскому языку", date: "2026-05-27" },
             { name: "ОГЭ по математике", date: "2026-05-30" },
@@ -988,7 +1123,6 @@
                 return;
             }
             
-            // Новости
             if (newsData.news && newsData.news.length > 0) {
                 let newsHtml = '';
                 for (const item of newsData.news) {
@@ -1005,7 +1139,6 @@
                 newsContainer.innerHTML = '<div class="status info">📭 Новостей пока нет</div>';
             }
             
-            // События
             if (newsData.events && newsData.events.length > 0) {
                 let eventsHtml = '';
                 for (const event of newsData.events) {
@@ -1076,17 +1209,17 @@
         }
         
         function switchTab(tab) {
-            document.querySelectorAll('.tab').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            document.querySelector(`.tab[data-tab="${tab}"]`).classList.add('active');
+            // Закрываем меню
+            closeMenu();
             
+            // Скрываем все карточки
             document.getElementById('scheduleCard').classList.add('hidden');
             document.getElementById('teachersCard').classList.add('hidden');
             document.getElementById('ringsCard').classList.add('hidden');
             document.getElementById('newsCard').classList.add('hidden');
             document.getElementById('aboutCard').classList.add('hidden');
             
+            // Показываем выбранную
             if (tab === 'schedule') {
                 document.getElementById('scheduleCard').classList.remove('hidden');
                 if (currentDate && scheduleData) showScheduleForDate(currentDate);
@@ -1105,14 +1238,43 @@
                 document.getElementById('aboutCard').classList.remove('hidden');
                 showAbout();
             }
+            
+            // Обновляем активную кнопку в меню
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-tab') === tab) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+        
+        function openMenu() {
+            document.getElementById('sidebar').classList.add('open');
+            document.getElementById('overlay').classList.add('active');
+            document.getElementById('menuBtn').classList.add('open');
+        }
+        
+        function closeMenu() {
+            document.getElementById('sidebar').classList.remove('open');
+            document.getElementById('overlay').classList.remove('active');
+            document.getElementById('menuBtn').classList.remove('open');
+        }
+        
+        function toggleMenu() {
+            if (document.getElementById('sidebar').classList.contains('open')) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
         }
         
         // Обработчики
+        document.getElementById('menuBtn').addEventListener('click', toggleMenu);
+        document.getElementById('overlay').addEventListener('click', closeMenu);
         document.getElementById('updateBtn').addEventListener('click', loadSchedule);
         document.getElementById('todayBtn').addEventListener('click', showToday);
         document.getElementById('anyDayBtn').addEventListener('click', showAnyDay);
         document.getElementById('dateBtn').addEventListener('click', showByDatePicker);
-        document.getElementById('aboutBtn').addEventListener('click', () => switchTab('about'));
         document.getElementById('classSelect').addEventListener('change', () => {
             if (currentDate && scheduleData) showScheduleForDate(currentDate);
             else if (currentDay && scheduleData) showAnyDay();
@@ -1121,8 +1283,8 @@
             document.getElementById('notifyBadge').style.display = 'none';
         });
         
-        document.querySelectorAll('.tab').forEach(btn => {
-            btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('click', () => switchTab(btn.getAttribute('data-tab')));
         });
         
         // Установка сегодняшней даты в datePicker
