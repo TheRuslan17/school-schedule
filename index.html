@@ -16,15 +16,14 @@
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #1a1a2e;
+            background: #0f0f1a;
             padding: 16px;
             padding-bottom: 80px;
             color: white;
         }
         
-        /* Анимации */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
@@ -33,33 +32,32 @@
             50% { opacity: 1; }
         }
         
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
         .fade-in {
             animation: fadeIn 0.3s ease forwards;
         }
         
-        /* Скелетон загрузки */
         .skeleton-card {
-            background: #2a2a3e;
-            border-radius: 12px;
-            padding: 12px;
-            margin-bottom: 10px;
+            background: #1a1a2e;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
             animation: pulse 1.5s infinite;
         }
         
         .skeleton-line {
             height: 16px;
-            background: #3a3a4e;
+            background: #2a2a3e;
             border-radius: 8px;
             margin-bottom: 8px;
         }
         
-        .skeleton-line.short {
-            width: 60%;
-        }
-        
-        .skeleton-line.medium {
-            width: 80%;
-        }
+        .skeleton-line.short { width: 60%; }
+        .skeleton-line.medium { width: 80%; }
         
         /* Боковое меню */
         .sidebar {
@@ -68,31 +66,34 @@
             left: -280px;
             width: 280px;
             height: 100%;
-            background: linear-gradient(180deg, #1e3c72 0%, #2a5298 100%);
+            background: linear-gradient(180deg, #1a1a2e 0%, #0f0f1a 100%);
             z-index: 1000;
-            transition: left 0.3s ease;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+            transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 2px 0 20px rgba(0,0,0,0.5);
             overflow-y: auto;
+            border-right: 1px solid rgba(76, 175, 80, 0.3);
         }
         
-        .sidebar.open {
-            left: 0;
-        }
+        .sidebar.open { left: 0; }
         
         .sidebar-header {
-            padding: 20px;
+            padding: 25px 20px;
             text-align: center;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
+            border-bottom: 1px solid rgba(76, 175, 80, 0.3);
             margin-bottom: 15px;
         }
         
         .sidebar-header h3 {
             color: white;
             font-size: 18px;
+            background: linear-gradient(135deg, #4CAF50, #2196F3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .sidebar-header p {
-            color: rgba(255,255,255,0.7);
+            color: rgba(255,255,255,0.5);
             font-size: 11px;
             margin-top: 5px;
         }
@@ -103,7 +104,7 @@
         }
         
         .sidebar-menu li {
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
             position: relative;
         }
         
@@ -112,23 +113,23 @@
             padding: 16px 20px;
             background: none;
             border: none;
-            color: white;
+            color: rgba(255,255,255,0.8);
             font-size: 16px;
             font-weight: 500;
             text-align: left;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: all 0.2s;
             border-radius: 0;
         }
         
         .sidebar-menu button:active {
-            background: rgba(255,255,255,0.1);
-            transform: none;
+            background: rgba(76, 175, 80, 0.1);
         }
         
         .sidebar-menu button.active {
-            background: rgba(255,255,255,0.15);
-            border-left: 4px solid #4CAF50;
+            background: linear-gradient(90deg, rgba(76, 175, 80, 0.2), transparent);
+            border-left: 3px solid #4CAF50;
+            color: white;
         }
         
         .replacement-indicator {
@@ -136,12 +137,11 @@
             right: 20px;
             top: 50%;
             transform: translateY(-50%);
-            width: 10px;
-            height: 10px;
+            width: 8px;
+            height: 8px;
             background: #f44336;
             border-radius: 50%;
             box-shadow: 0 0 5px #f44336;
-            animation: pulse 1s infinite;
         }
         
         .sidebar-footer {
@@ -150,9 +150,9 @@
             left: 0;
             right: 0;
             padding: 15px 20px;
-            border-top: 1px solid rgba(255,255,255,0.2);
+            border-top: 1px solid rgba(255,255,255,0.05);
             font-size: 11px;
-            color: rgba(255,255,255,0.5);
+            color: rgba(255,255,255,0.3);
             text-align: center;
         }
         
@@ -162,24 +162,23 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
             z-index: 999;
             display: none;
         }
         
-        .overlay.active {
-            display: block;
-        }
+        .overlay.active { display: block; }
         
-        /* Кнопка гамбургер */
         .menu-btn {
             position: fixed;
             top: 16px;
             left: 16px;
-            width: 45px;
-            height: 45px;
-            background: #16213e;
-            border-radius: 12px;
+            width: 48px;
+            height: 48px;
+            background: rgba(22, 33, 62, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 14px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -187,127 +186,121 @@
             gap: 5px;
             cursor: pointer;
             z-index: 1001;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-            border: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            border: 1px solid rgba(76, 175, 80, 0.3);
         }
         
         .menu-btn span {
             width: 24px;
-            height: 2.5px;
+            height: 2px;
             background: white;
             border-radius: 2px;
             transition: 0.2s;
         }
         
-        .menu-btn.open span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-        
-        .menu-btn.open span:nth-child(2) {
-            opacity: 0;
-        }
-        
-        .menu-btn.open span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
+        .menu-btn.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .menu-btn.open span:nth-child(2) { opacity: 0; }
+        .menu-btn.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
         
         .container {
             max-width: 600px;
             margin: 0 auto;
-            margin-top: 60px;
+            margin-top: 70px;
         }
         
         .ptr-element {
             text-align: center;
             padding: 10px;
-            color: #aaa;
+            color: #4CAF50;
             font-size: 12px;
-            transition: all 0.2s;
         }
         
         .date-navigation {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 15px;
-            gap: 10px;
+            gap: 12px;
+            margin-bottom: 20px;
         }
         
         .nav-arrow {
-            width: 45px;
-            height: 45px;
-            background: #16213e;
-            border: 2px solid #0f3460;
-            border-radius: 12px;
+            width: 48px;
+            height: 48px;
+            background: rgba(22, 33, 62, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            border-radius: 14px;
             font-size: 20px;
             cursor: pointer;
             transition: all 0.2s;
             color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .nav-arrow:active {
             transform: scale(0.95);
-            background: #0f3460;
+            background: rgba(76, 175, 80, 0.2);
         }
         
         .current-date-display {
             flex: 1;
             text-align: center;
-            padding: 10px;
-            background: #16213e;
-            border-radius: 12px;
-            font-weight: bold;
-            border: 2px solid #0f3460;
+            padding: 14px;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border-radius: 16px;
+            font-weight: 600;
+            font-size: 16px;
+            border: 1px solid rgba(76, 175, 80, 0.3);
             color: white;
-        }
-        
-        .quick-buttons {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 15px;
-        }
-        
-        .quick-btn {
-            flex: 1;
-            padding: 10px;
-            background: #0f3460;
-            border: none;
-            border-radius: 10px;
-            font-size: 13px;
-            font-weight: 500;
-            color: #90caf9;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        
-        .quick-btn:active {
-            transform: scale(0.97);
-            background: #1a4a7a;
+            letter-spacing: 0.5px;
         }
         
         .week-schedule {
             display: flex;
-            overflow-x: auto;
             gap: 10px;
             margin-bottom: 20px;
+            overflow-x: auto;
             padding-bottom: 5px;
+            scrollbar-width: thin;
+        }
+        
+        .week-schedule::-webkit-scrollbar {
+            height: 3px;
+        }
+        
+        .week-schedule::-webkit-scrollbar-track {
+            background: #1a1a2e;
+            border-radius: 10px;
+        }
+        
+        .week-schedule::-webkit-scrollbar-thumb {
+            background: #4CAF50;
+            border-radius: 10px;
         }
         
         .week-day-card {
-            min-width: 100px;
-            background: #16213e;
-            border-radius: 12px;
-            padding: 10px;
+            min-width: 80px;
+            background: rgba(22, 33, 62, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 12px 8px;
             text-align: center;
             cursor: pointer;
             transition: all 0.2s;
-            border: 2px solid #0f3460;
-            color: white;
+            border: 1px solid rgba(76, 175, 80, 0.2);
         }
         
         .week-day-card.active {
             border-color: #4CAF50;
-            background: #1a4a2a;
+            background: linear-gradient(135deg, #1a4a2a, #0f3460);
+            transform: scale(1.02);
+        }
+        
+        .week-day-card.replacement-day {
+            border-color: #f44336;
+            background: rgba(244, 67, 54, 0.15);
         }
         
         .week-day-name {
@@ -316,78 +309,93 @@
         }
         
         .week-day-date {
-            font-size: 11px;
-            color: #aaa;
-            margin-top: 3px;
+            font-size: 10px;
+            color: rgba(255,255,255,0.5);
+            margin-top: 4px;
         }
         
         .week-day-lessons {
             font-size: 10px;
             color: #4CAF50;
-            margin-top: 5px;
-        }
-        
-        .week-day-card.replacement-day {
-            border-color: #f44336;
-            background: #4a1a1a;
+            margin-top: 6px;
         }
         
         .header {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            background: linear-gradient(135deg, #1a1a2e, #0f0f1a);
+            border: 1px solid rgba(76, 175, 80, 0.3);
             color: white;
-            padding: 20px;
-            border-radius: 20px;
+            padding: 24px 20px;
+            border-radius: 24px;
             margin-bottom: 20px;
             text-align: center;
         }
         
         .header h1 {
             font-size: 20px;
+            background: linear-gradient(135deg, #4CAF50, #2196F3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 5px;
         }
         
         .header p {
             font-size: 12px;
-            opacity: 0.9;
+            opacity: 0.7;
         }
         
         .header .founded {
             font-size: 11px;
             margin-top: 8px;
-            opacity: 0.8;
+            opacity: 0.5;
         }
         
         .card {
-            background: #16213e;
-            border-radius: 16px;
+            background: rgba(22, 33, 62, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
             padding: 20px;
             margin-bottom: 16px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            color: white;
+            border: 1px solid rgba(76, 175, 80, 0.2);
         }
         
         .select-class {
             width: 100%;
-            padding: 14px;
+            padding: 14px 16px;
             font-size: 16px;
-            border: 2px solid #0f3460;
-            border-radius: 12px;
-            background: #0f3460;
-            margin-bottom: 15px;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            border-radius: 16px;
+            background: rgba(15, 15, 26, 0.9);
+            margin-bottom: 16px;
             font-weight: 500;
             color: white;
+            cursor: pointer;
         }
         
         .select-class option {
-            background: #0f3460;
+            background: #0f0f1a;
             color: white;
         }
         
-        .btn-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 12px;
+        .date-input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        
+        .date-input-group input {
+            flex: 1;
+            padding: 14px;
+            font-size: 14px;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            border-radius: 16px;
+            background: rgba(15, 15, 26, 0.9);
+            color: white;
+        }
+        
+        .date-input-group input::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+            cursor: pointer;
         }
         
         button {
@@ -395,151 +403,174 @@
             font-size: 16px;
             font-weight: 600;
             border: none;
-            border-radius: 12px;
+            border-radius: 16px;
             cursor: pointer;
-            transition: transform 0.1s, opacity 0.2s;
-            color: white;
-        }
-        
-        button:active {
-            transform: scale(0.98);
-        }
-        
-        .btn-primary {
-            background: #4CAF50;
-            color: white;
-        }
-        
-        .btn-secondary {
-            background: #2196F3;
-            color: white;
-        }
-        
-        .btn-danger {
-            background: #f44336;
-            color: white;
-        }
-        
-        .schedule-item {
-            background: #0f3460;
-            border-radius: 12px;
-            padding: 12px;
-            margin-bottom: 10px;
-            border-left: 4px solid #4CAF50;
             transition: all 0.2s;
             color: white;
         }
         
+        button:active { transform: scale(0.97); }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+        }
+        
+        .btn-danger {
+            background: linear-gradient(135deg, #f44336, #d32f2f);
+        }
+        
+        /* Красивое расписание */
+        .schedule-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .schedule-item {
+            background: linear-gradient(135deg, rgba(15, 15, 26, 0.9), rgba(22, 33, 62, 0.9));
+            border-radius: 20px;
+            padding: 16px;
+            border-left: 4px solid #4CAF50;
+            transition: all 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .schedule-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, rgba(76, 175, 80, 0.1), transparent);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
         .schedule-item.replacement {
             border-left-color: #f44336;
-            background: #4a1a1a;
+            background: linear-gradient(135deg, rgba(244, 67, 54, 0.15), rgba(22, 33, 62, 0.9));
         }
         
         .schedule-item.cancelled {
-            border-left-color: #9e9e9e;
-            background: #2a2a2a;
-            opacity: 0.7;
+            border-left-color: #757575;
+            opacity: 0.6;
             text-decoration: line-through;
+        }
+        
+        .lesson-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
         }
         
         .lesson-number {
             font-size: 12px;
-            color: #4CAF50;
             font-weight: bold;
-            margin-bottom: 5px;
+            padding: 4px 12px;
+            background: rgba(76, 175, 80, 0.2);
+            border-radius: 20px;
+            color: #4CAF50;
         }
         
         .replacement .lesson-number {
+            background: rgba(244, 67, 54, 0.2);
             color: #f44336;
         }
         
-        .lesson-subject {
-            font-size: 16px;
-            font-weight: 600;
-            color: white;
-            margin-bottom: 5px;
+        .badge {
+            font-size: 10px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: bold;
         }
         
-        .lesson-teacher {
-            font-size: 13px;
-            color: #aaa;
-            margin-top: 5px;
-        }
-        
-        .replacement-badge {
-            display: inline-block;
+        .badge-replacement {
             background: #f44336;
             color: white;
-            font-size: 10px;
-            padding: 2px 8px;
-            border-radius: 20px;
-            margin-left: 8px;
         }
         
-        .cancelled-badge {
-            display: inline-block;
-            background: #9e9e9e;
+        .badge-cancelled {
+            background: #757575;
             color: white;
-            font-size: 10px;
-            padding: 2px 8px;
-            border-radius: 20px;
-            margin-left: 8px;
+        }
+        
+        .lesson-subject {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: white;
+        }
+        
+        .lesson-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 8px;
+        }
+        
+        .lesson-detail {
+            font-size: 13px;
+            color: rgba(255,255,255,0.6);
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
         
         .status {
-            padding: 12px;
-            border-radius: 12px;
+            padding: 16px;
+            border-radius: 20px;
             text-align: center;
             margin: 10px 0;
             font-size: 14px;
-            color: white;
         }
         
         .status.loading {
-            background: #0f3460;
+            background: rgba(33, 150, 243, 0.15);
             color: #90caf9;
         }
         
         .status.success {
-            background: #1a4a2a;
+            background: rgba(76, 175, 80, 0.15);
             color: #a5d6a7;
         }
         
         .status.error {
-            background: #4a1a1a;
+            background: rgba(244, 67, 54, 0.15);
             color: #ef9a9a;
         }
         
         .status.info {
-            background: #4a3a1a;
+            background: rgba(255, 152, 0, 0.15);
             color: #ffcc80;
         }
         
         .notification-group {
             position: fixed;
-            top: 70px;
+            top: 80px;
             right: 16px;
             left: 16px;
-            max-width: 300px;
+            max-width: 320px;
             margin-left: auto;
             z-index: 1002;
         }
         
         .notification {
-            background: #16213e;
-            border-radius: 12px;
-            padding: 12px 16px;
+            background: rgba(22, 33, 62, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 14px 16px;
             margin-bottom: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
             border-left: 4px solid #4CAF50;
             animation: slideIn 0.3s ease;
             cursor: pointer;
             color: white;
-        }
-        
-        @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
         }
         
         .notification-title {
@@ -550,16 +581,15 @@
         
         .notification-text {
             font-size: 12px;
-            color: #aaa;
+            color: rgba(255,255,255,0.6);
         }
         
         .teacher-item, .ring-item, .history-block, .news-item, .club-item {
-            background: #0f3460;
-            border-radius: 12px;
-            padding: 12px;
-            margin-bottom: 10px;
+            background: rgba(15, 15, 26, 0.9);
+            border-radius: 20px;
+            padding: 16px;
+            margin-bottom: 12px;
             border-left: 4px solid #4CAF50;
-            color: white;
         }
         
         .teacher-name {
@@ -577,7 +607,7 @@
         
         .teacher-info {
             font-size: 13px;
-            color: #aaa;
+            color: rgba(255,255,255,0.6);
         }
         
         .ring-item {
@@ -594,7 +624,6 @@
         .ring-time {
             font-size: 16px;
             font-weight: 600;
-            color: white;
         }
         
         .history-block strong {
@@ -602,82 +631,52 @@
         }
         
         .director-card {
-            background: linear-gradient(135deg, #4a3a1a 0%, #3a2a0a 100%);
-            border-radius: 12px;
-            padding: 15px;
+            background: linear-gradient(135deg, #1a4a2a, #0f3460);
+            border-radius: 20px;
+            padding: 16px;
             margin-bottom: 12px;
-            color: white;
-        }
-        
-        .director-name {
-            font-size: 16px;
-            font-weight: bold;
-            color: white;
-        }
-        
-        .director-contact {
-            font-size: 12px;
-            color: #ddd;
-            margin-top: 5px;
         }
         
         .hero-name {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 12px;
-            padding: 15px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 20px;
+            padding: 16px;
             margin-bottom: 12px;
             text-align: center;
-            color: white;
-        }
-        
-        .hero-name h4 {
-            font-size: 14px;
-            margin-bottom: 5px;
-            opacity: 0.9;
-        }
-        
-        .hero-name p {
-            font-size: 13px;
-            font-weight: bold;
         }
         
         .news-date {
             font-size: 11px;
             color: #4CAF50;
-            font-weight: bold;
             margin-bottom: 5px;
         }
         
         .news-title {
             font-size: 16px;
             font-weight: bold;
-            color: white;
             margin-bottom: 8px;
         }
         
         .news-text {
             font-size: 13px;
-            color: #aaa;
-            line-height: 1.4;
+            color: rgba(255,255,255,0.6);
         }
         
         .event-item {
-            background: #4a3a1a;
-            border-radius: 12px;
+            background: rgba(255, 152, 0, 0.1);
+            border-radius: 20px;
             padding: 12px;
             margin-bottom: 10px;
             border-left: 4px solid #FF9800;
             display: flex;
             align-items: center;
             gap: 12px;
-            color: white;
         }
         
         .event-date {
             background: #FF9800;
-            color: white;
             padding: 8px 12px;
-            border-radius: 12px;
+            border-radius: 14px;
             text-align: center;
             min-width: 60px;
         }
@@ -691,23 +690,11 @@
             font-size: 10px;
         }
         
-        .event-info {
-            flex: 1;
-        }
-        
         .event-name {
             font-size: 14px;
             font-weight: bold;
-            color: white;
         }
         
-        .event-type {
-            font-size: 11px;
-            color: #FF9800;
-            margin-top: 3px;
-        }
-        
-        /* Стили для кружков */
         .club-item {
             border-left-color: #FF9800;
         }
@@ -715,61 +702,44 @@
         .club-name {
             font-size: 16px;
             font-weight: bold;
-            color: white;
             margin-bottom: 8px;
         }
         
         .club-detail {
-            font-size: 13px;
-            color: #aaa;
-            margin-top: 5px;
             display: flex;
-            align-items: center;
-            gap: 8px;
             flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
         }
         
-        .club-badge {
-            background: #FF9800;
-            color: white;
-            font-size: 11px;
-            padding: 2px 8px;
+        .club-tag {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 4px 12px;
             border-radius: 20px;
+            font-size: 11px;
         }
         
-        .club-day {
-            background: #2196F3;
-            color: white;
-            font-size: 11px;
-            padding: 2px 8px;
-            border-radius: 20px;
-        }
-        
-        .club-cabinet {
-            background: #4CAF50;
-            color: white;
-            font-size: 11px;
-            padding: 2px 8px;
-            border-radius: 20px;
-        }
+        .club-tag.orange { background: rgba(255, 152, 0, 0.2); color: #FF9800; }
+        .club-tag.blue { background: rgba(33, 150, 243, 0.2); color: #2196F3; }
+        .club-tag.green { background: rgba(76, 175, 80, 0.2); color: #4CAF50; }
         
         .notification-bell {
             position: fixed;
             top: 16px;
             right: 16px;
-            width: 45px;
-            height: 45px;
-            background: #16213e;
-            border-radius: 12px;
+            width: 48px;
+            height: 48px;
+            background: rgba(22, 33, 62, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             z-index: 1001;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
             font-size: 22px;
-            border: none;
-            color: white;
+            border: 1px solid rgba(76, 175, 80, 0.3);
         }
         
         .notification-badge {
@@ -785,16 +755,20 @@
         
         .exam-counter {
             background: linear-gradient(135deg, #f44336, #ff9800);
-            color: white;
-            padding: 10px;
-            border-radius: 12px;
+            border-radius: 16px;
+            padding: 12px;
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
             font-weight: bold;
         }
         
-        .hidden {
-            display: none;
+        .hidden { display: none; }
+        
+        @media (max-width: 480px) {
+            body { padding: 12px; }
+            .container { margin-top: 60px; }
+            .week-day-card { min-width: 70px; }
+            .lesson-subject { font-size: 16px; }
         }
     </style>
 </head>
@@ -803,7 +777,7 @@
     
     <button class="menu-btn" id="menuBtn">
         <span></span>
-        <span></span>
+        span>
         <span></span>
     </button>
     
@@ -888,13 +862,10 @@
                 <button class="nav-arrow" id="nextDayBtn">→</button>
             </div>
             
-            <div class="quick-buttons">
-                <button class="quick-btn" id="tomorrowBtn">Завтра</button>
-                <button class="quick-btn" id="dayAfterBtn">Послезавтра</button>
-                <button class="quick-btn" id="mondayBtn">Понедельник</button>
+            <div class="date-input-group">
+                <input type="date" id="datePicker" placeholder="Выберите дату">
+                <button id="dateBtn" class="btn-secondary" style="margin: 0;">📅</button>
             </div>
-            
-            <div id="weekSchedule" class="week-schedule"></div>
             
             <button id="updateBtn" class="btn-danger">🔄 Обновить расписание</button>
         </div>
@@ -950,11 +921,10 @@
         let pendingNotifications = [];
         let isLoading = false;
         
-        const daysRu = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
+        const daysRu = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница'];
+        const shortDays = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт'];
         const months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
-        const shortDays = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
         
-        // Реальные учителя школы №2
         const realTeachers = {
             "Маланин Максим Александрович": {"position": "Директор школы", "subject": "Руководство", "contact": "school2nev1@mail.ru"},
             "Говорущенко Виктория Викторовна": {"position": "Заместитель директора по ВР", "subject": "Физическая культура"},
@@ -1000,10 +970,7 @@
             const notification = document.createElement('div');
             notification.className = 'notification';
             notification.style.borderLeftColor = type === 'error' ? '#f44336' : (type === 'success' ? '#4CAF50' : '#2196F3');
-            notification.innerHTML = `
-                <div class="notification-title">${title}</div>
-                <div class="notification-text">${text}</div>
-            `;
+            notification.innerHTML = `<div class="notification-title">${title}</div><div class="notification-text">${text}</div>`;
             notification.onclick = () => notification.remove();
             container.appendChild(notification);
             setTimeout(() => notification.remove(), 5000);
@@ -1022,21 +989,9 @@
             const container = document.getElementById(containerId);
             if (!container) return;
             container.innerHTML = `
-                <div class="skeleton-card">
-                    <div class="skeleton-line medium"></div>
-                    <div class="skeleton-line short"></div>
-                    <div class="skeleton-line"></div>
-                </div>
-                <div class="skeleton-card">
-                    <div class="skeleton-line medium"></div>
-                    <div class="skeleton-line short"></div>
-                    <div class="skeleton-line"></div>
-                </div>
-                <div class="skeleton-card">
-                    <div class="skeleton-line medium"></div>
-                    <div class="skeleton-line short"></div>
-                    <div class="skeleton-line"></div>
-                </div>
+                <div class="skeleton-card"><div class="skeleton-line medium"></div><div class="skeleton-line short"></div><div class="skeleton-line"></div></div>
+                <div class="skeleton-card"><div class="skeleton-line medium"></div><div class="skeleton-line short"></div><div class="skeleton-line"></div></div>
+                <div class="skeleton-card"><div class="skeleton-line medium"></div><div class="skeleton-line short"></div><div class="skeleton-line"></div></div>
             `;
         }
         
@@ -1045,19 +1000,14 @@
             const todayStr = currentDate.toISOString().split('T')[0];
             const selectedClass = document.getElementById('classSelect').value;
             for (const key in replacementsData.replacements) {
-                if (key.startsWith(`${selectedClass}_${todayStr}`)) {
-                    return true;
-                }
+                if (key.startsWith(`${selectedClass}_${todayStr}`)) return true;
             }
             return false;
         }
         
         function updateReplacementIndicators() {
-            const hasReplacements = hasReplacementsToday();
-            const scheduleIndicator = document.getElementById('scheduleReplacementIndicator');
-            if (scheduleIndicator) {
-                scheduleIndicator.style.display = hasReplacements ? 'block' : 'none';
-            }
+            const indicator = document.getElementById('scheduleReplacementIndicator');
+            if (indicator) indicator.style.display = hasReplacementsToday() ? 'block' : 'none';
         }
         
         function updateWeekSchedule() {
@@ -1071,7 +1021,7 @@
             monday.setDate(today.getDate() - daysToMonday);
             
             let html = '';
-            for (let i = 0; i < 6; i++) {
+            for (let i = 0; i < 5; i++) {
                 const date = new Date(monday);
                 date.setDate(monday.getDate() + i);
                 const dateStr = date.toISOString().split('T')[0];
@@ -1081,10 +1031,7 @@
                 let hasReplacement = false;
                 if (replacementsData && replacementsData.replacements) {
                     for (const key in replacementsData.replacements) {
-                        if (key.startsWith(`${selectedClass}_${dateStr}`)) {
-                            hasReplacement = true;
-                            break;
-                        }
+                        if (key.startsWith(`${selectedClass}_${dateStr}`)) { hasReplacement = true; break; }
                     }
                 }
                 
@@ -1092,13 +1039,11 @@
                 const lessons = scheduleData.schedule?.[selectedClass]?.[dayName];
                 const lessonsCount = lessons ? lessons.length : 0;
                 
-                html += `
-                    <div class="week-day-card ${isCurrent ? 'active' : ''} ${hasReplacement ? 'replacement-day' : ''}" data-date="${dateStr}" data-dayname="${dayName}">
-                        <div class="week-day-name">${shortDays[i]}</div>
-                        <div class="week-day-date">${date.getDate()} ${months[date.getMonth()].slice(0, 3)}</div>
-                        <div class="week-day-lessons">${lessonsCount} уроков</div>
-                    </div>
-                `;
+                html += `<div class="week-day-card ${isCurrent ? 'active' : ''} ${hasReplacement ? 'replacement-day' : ''}" data-date="${dateStr}">
+                            <div class="week-day-name">${shortDays[i]}</div>
+                            <div class="week-day-date">${date.getDate()} ${months[date.getMonth()].slice(0, 3)}</div>
+                            <div class="week-day-lessons">${lessonsCount} ур.</div>
+                        </div>`;
             }
             container.innerHTML = html;
             
@@ -1118,14 +1063,10 @@
         function updateDateDisplay() {
             const displayDiv = document.getElementById('currentDateDisplay');
             if (displayDiv) {
-                displayDiv.textContent = formatDateLong(currentDate);
+                const dayIndex = currentDate.getDay();
+                const dayName = dayIndex === 0 || dayIndex === 6 ? 'Выходной' : daysRu[dayIndex - 1];
+                displayDiv.textContent = `${dayName}, ${currentDate.getDate()} ${months[currentDate.getMonth()]} ${currentDate.getFullYear()}`;
             }
-        }
-        
-        function formatDateLong(date) {
-            const dayIndex = date.getDay();
-            const dayName = dayIndex === 0 || dayIndex === 6 ? 'Выходной' : daysRu[dayIndex - 1];
-            return `${dayName}, ${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
         }
         
         function goPrevDay() {
@@ -1137,31 +1078,6 @@
         
         function goNextDay() {
             currentDate.setDate(currentDate.getDate() + 1);
-            updateDateDisplay();
-            showScheduleForDate(currentDate);
-            updateWeekSchedule();
-        }
-        
-        function goTomorrow() {
-            currentDate.setDate(currentDate.getDate() + 1);
-            updateDateDisplay();
-            showScheduleForDate(currentDate);
-            updateWeekSchedule();
-        }
-        
-        function goDayAfter() {
-            currentDate.setDate(currentDate.getDate() + 2);
-            updateDateDisplay();
-            showScheduleForDate(currentDate);
-            updateWeekSchedule();
-        }
-        
-        function goMonday() {
-            const today = new Date();
-            const dayOfWeek = today.getDay();
-            const daysToMonday = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
-            currentDate = new Date(today);
-            currentDate.setDate(today.getDate() - daysToMonday);
             updateDateDisplay();
             showScheduleForDate(currentDate);
             updateWeekSchedule();
@@ -1201,15 +1117,13 @@
                     const newVersion = data.version || Object.keys(data.schedule).length + '_' + Date.now();
                     const savedVersion = localStorage.getItem('scheduleVersion');
                     if (savedVersion && savedVersion !== newVersion) {
-                        addNotification('📅 Обновление расписания', 'Расписание уроков было обновлено!', 'success');
-                        sendNotification('Обновление расписания', 'Расписание уроков было обновлено!');
+                        addNotification('📅 Обновление расписания', 'Расписание было обновлено!', 'success');
+                        sendNotification('Обновление расписания', 'Расписание было обновлено!');
                         document.getElementById('notifyBadge').style.display = 'inline-block';
                     }
                     localStorage.setItem('scheduleVersion', newVersion);
                 }
-            } catch (e) {
-                console.log('Ошибка проверки обновлений');
-            }
+            } catch (e) { console.log('Ошибка проверки обновлений'); }
         }
         
         async function loadReplacements() {
@@ -1271,21 +1185,14 @@
         function updateExamCounter() {
             const today = new Date();
             today.setHours(0, 0, 0, 0);
-            
-            let nearestExam = null;
-            let minDays = Infinity;
-            
+            let nearestExam = null, minDays = Infinity;
             for (const exam of examDates) {
                 const examDate = new Date(exam.date);
                 if (examDate >= today) {
                     const daysLeft = Math.ceil((examDate - today) / (1000 * 60 * 60 * 24));
-                    if (daysLeft < minDays) {
-                        minDays = daysLeft;
-                        nearestExam = exam;
-                    }
+                    if (daysLeft < minDays) { minDays = daysLeft; nearestExam = exam; }
                 }
             }
-            
             const examCounterDiv = document.getElementById('examCounter');
             if (nearestExam && minDays <= 30) {
                 examCounterDiv.classList.remove('hidden');
@@ -1304,30 +1211,21 @@
         async function loadSchedule() {
             if (isLoading) return;
             isLoading = true;
-            
             showSkeleton('scheduleContent');
-            
             try {
                 const response = await fetch(SCHEDULE_URL + '?t=' + Date.now());
                 if (!response.ok) throw new Error(`Ошибка HTTP ${response.status}`);
                 const data = await response.json();
                 scheduleData = data;
                 addNotification('✅ Успешно', 'Расписание загружено!', 'success');
-                
-                await loadReplacements();
-                await loadNews();
-                await loadClubs();
-                await checkForUpdates();
-                
+                await Promise.all([loadReplacements(), loadNews(), loadClubs(), checkForUpdates()]);
                 showScheduleForDate(currentDate);
                 updateExamCounter();
                 updateWeekSchedule();
             } catch (error) {
                 document.getElementById('scheduleContent').innerHTML = `<div class="status error">❌ Ошибка: ${error.message}</div>`;
                 addNotification('❌ Ошибка', 'Не удалось загрузить расписание', 'error');
-            } finally {
-                isLoading = false;
-            }
+            } finally { isLoading = false; }
         }
         
         function getDayNameFromDate(date) {
@@ -1351,13 +1249,7 @@
             }
             
             const selectedClass = document.getElementById('classSelect').value;
-            
-            if (!scheduleData) {
-                document.getElementById('scheduleContent').innerHTML = `<div class="status error">❌ Нет данных</div>`;
-                return;
-            }
-            
-            if (!scheduleData.schedule || !scheduleData.schedule[selectedClass]) {
+            if (!scheduleData || !scheduleData.schedule || !scheduleData.schedule[selectedClass]) {
                 document.getElementById('scheduleContent').innerHTML = `<div class="status error">❌ Нет расписания для класса ${selectedClass}</div>`;
                 return;
             }
@@ -1368,71 +1260,36 @@
                 return;
             }
             
-            let html = `<h3 style="margin-bottom: 15px;">📚 ${selectedClass} · ${displayDate} (${dayName})</h3>`;
-            
+            let html = `<div class="schedule-list">`;
             lessons.forEach(lesson => {
                 const replacement = getReplacement(selectedClass, dateStr, lesson.number);
-                let extraClass = '';
-                let badgeHtml = '';
-                
+                let extraClass = '', badgeHtml = '';
                 if (replacement) {
                     if (replacement.cancelled) {
                         extraClass = 'cancelled';
-                        badgeHtml = `<span class="cancelled-badge">ОТМЕНЁН</span>`;
+                        badgeHtml = `<span class="badge badge-cancelled">ОТМЕНЁН</span>`;
                     } else {
                         extraClass = 'replacement';
-                        badgeHtml = `<span class="replacement-badge">ЗАМЕНА</span>`;
+                        badgeHtml = `<span class="badge badge-replacement">ЗАМЕНА</span>`;
                     }
                 }
-                
                 const displaySubject = replacement && !replacement.cancelled ? (replacement.newSubject || lesson.subject) : lesson.subject;
                 const displayTeacher = replacement && !replacement.cancelled ? (replacement.newTeacher || lesson.teacher) : lesson.teacher;
                 const displayRoom = replacement && !replacement.cancelled ? (replacement.newRoom || lesson.room) : lesson.room;
                 
-                html += `
-                    <div class="schedule-item ${extraClass}">
-                        <div class="lesson-number">📖 ${lesson.number} урок ${badgeHtml}</div>
-                        <div class="lesson-subject">${displaySubject}</div>
-                        <div class="lesson-teacher">👨‍🏫 ${displayTeacher} · 🚪 ${displayRoom}</div>
-                    </div>
-                `;
+                html += `<div class="schedule-item ${extraClass}">
+                            <div class="lesson-header">
+                                <span class="lesson-number">${lesson.number} урок</span>
+                                ${badgeHtml}
+                            </div>
+                            <div class="lesson-subject">${displaySubject}</div>
+                            <div class="lesson-details">
+                                <div class="lesson-detail">👨‍🏫 ${displayTeacher}</div>
+                                <div class="lesson-detail">🚪 ${displayRoom}</div>
+                            </div>
+                        </div>`;
             });
-            
-            const scheduleContent = document.getElementById('scheduleContent');
-            scheduleContent.innerHTML = html;
-            scheduleContent.classList.add('fade-in');
-            setTimeout(() => scheduleContent.classList.remove('fade-in'), 300);
-        }
-        
-        function showScheduleForDay(day) {
-            const selectedClass = document.getElementById('classSelect').value;
-            
-            if (!scheduleData) {
-                document.getElementById('scheduleContent').innerHTML = `<div class="status error">❌ Нет данных</div>`;
-                return;
-            }
-            
-            if (!scheduleData.schedule || !scheduleData.schedule[selectedClass]) {
-                document.getElementById('scheduleContent').innerHTML = `<div class="status error">❌ Нет расписания для класса ${selectedClass}</div>`;
-                return;
-            }
-            
-            const lessons = scheduleData.schedule[selectedClass][day];
-            if (!lessons || lessons.length === 0) {
-                document.getElementById('scheduleContent').innerHTML = `<div class="status info">📭 Нет уроков на ${day}</div>`;
-                return;
-            }
-            
-            let html = `<h3 style="margin-bottom: 15px;">📚 ${selectedClass} · ${day}</h3>`;
-            lessons.forEach(lesson => {
-                html += `
-                    <div class="schedule-item">
-                        <div class="lesson-number">📖 ${lesson.number} урок</div>
-                        <div class="lesson-subject">${lesson.subject}</div>
-                        <div class="lesson-teacher">👨‍🏫 ${lesson.teacher} · 🚪 ${lesson.room}</div>
-                    </div>
-                `;
-            });
+            html += `</div>`;
             document.getElementById('scheduleContent').innerHTML = html;
         }
         
@@ -1450,17 +1307,6 @@
                 updateDateDisplay();
                 showScheduleForDate(currentDate);
                 updateWeekSchedule();
-            } else {
-                alert('Выберите дату');
-            }
-        }
-        
-        function showAnyDay() {
-            const day = prompt('Введите день недели:\nПонедельник, Вторник, Среда, Четверг, Пятница, Суббота');
-            if (day && daysRu.includes(day)) {
-                showScheduleForDay(day);
-            } else if (day) {
-                alert('Введите корректный день недели');
             }
         }
         
@@ -1468,14 +1314,7 @@
             const container = document.getElementById('teachersContent');
             let html = '';
             for (const [name, info] of Object.entries(realTeachers)) {
-                html += `
-                    <div class="teacher-item">
-                        <div class="teacher-name">${name}</div>
-                        <div class="teacher-position">${info.position || 'Учитель'}</div>
-                        <div class="teacher-info">📖 ${info.subject}</div>
-                        ${info.contact ? `<div class="teacher-info">📧 ${info.contact}</div>` : ''}
-                    </div>
-                `;
+                html += `<div class="teacher-item"><div class="teacher-name">${name}</div><div class="teacher-position">${info.position || 'Учитель'}</div><div class="teacher-info">📖 ${info.subject}</div>${info.contact ? `<div class="teacher-info">📧 ${info.contact}</div>` : ''}</div>`;
             }
             container.innerHTML = html;
             animateCardSwitch('teachersCard');
@@ -1485,12 +1324,7 @@
             const container = document.getElementById('ringsContent');
             let html = '';
             for (const [num, times] of Object.entries(ringsData)) {
-                html += `
-                    <div class="ring-item">
-                        <span class="ring-lesson">${num} урок</span>
-                        <span class="ring-time">${times.start} - ${times.end}</span>
-                    </div>
-                `;
+                html += `<div class="ring-item"><span class="ring-lesson">${num} урок</span><span class="ring-time">${times.start} - ${times.end}</span></div>`;
             }
             container.innerHTML = html;
             animateCardSwitch('ringsCard');
@@ -1498,26 +1332,13 @@
         
         function showClubs() {
             const container = document.getElementById('clubsContent');
-            
             if (!clubsData || !clubsData.clubs || clubsData.clubs.length === 0) {
-                container.innerHTML = '<div class="status info">🎯 Информация о кружках и секциях появится позже</div>';
+                container.innerHTML = '<div class="status info">🎯 Информация о кружках появится позже</div>';
                 return;
             }
-            
             let html = '';
             for (const club of clubsData.clubs) {
-                html += `
-                    <div class="club-item">
-                        <div class="club-name">${club.name}</div>
-                        <div class="club-detail">
-                            <span class="club-day">📅 ${club.day}</span>
-                            <span class="club-badge">🕐 ${club.time}</span>
-                            <span class="club-cabinet">🚪 ${club.room}</span>
-                        </div>
-                        <div class="teacher-info" style="margin-top: 8px;">👨‍🏫 Руководитель: ${club.teacher}</div>
-                        ${club.description ? `<div class="teacher-info" style="margin-top: 5px;">📝 ${club.description}</div>` : ''}
-                    </div>
-                `;
+                html += `<div class="club-item"><div class="club-name">${club.name}</div><div class="club-detail"><span class="club-tag orange">📅 ${club.day}</span><span class="club-tag blue">🕐 ${club.time}</span><span class="club-tag green">🚪 ${club.room}</span></div><div class="teacher-info" style="margin-top: 8px;">👨‍🏫 ${club.teacher}</div>${club.description ? `<div class="teacher-info" style="margin-top: 5px;">📝 ${club.description}</div>` : ''}</div>`;
             }
             container.innerHTML = html;
             animateCardSwitch('clubsCard');
@@ -1526,28 +1347,18 @@
         function showNews() {
             const newsContainer = document.getElementById('newsContent');
             const eventsContainer = document.getElementById('eventsContent');
-            
             if (!newsData) {
                 newsContainer.innerHTML = '<div class="status info">📭 Новостей пока нет</div>';
                 eventsContainer.innerHTML = '<div class="status info">📭 Событий пока нет</div>';
                 return;
             }
-            
             if (newsData.news && newsData.news.length > 0) {
                 let newsHtml = '';
                 for (const item of newsData.news) {
-                    newsHtml += `
-                        <div class="news-item">
-                            <div class="news-date">📅 ${item.date}</div>
-                            <div class="news-title">${item.title}</div>
-                            <div class="news-text">${item.text}</div>
-                        </div>
-                    `;
+                    newsHtml += `<div class="news-item"><div class="news-date">📅 ${item.date}</div><div class="news-title">${item.title}</div><div class="news-text">${item.text}</div></div>`;
                 }
                 newsContainer.innerHTML = newsHtml;
-            } else {
-                newsContainer.innerHTML = '<div class="status info">📭 Новостей пока нет</div>';
-            }
+            } else { newsContainer.innerHTML = '<div class="status info">📭 Новостей пока нет</div>'; }
             
             if (newsData.events && newsData.events.length > 0) {
                 let eventsHtml = '';
@@ -1556,24 +1367,10 @@
                     const day = eventDate.getDate();
                     const month = months[eventDate.getMonth()];
                     const typeEmoji = { 'exam': '📝', 'holiday': '🎉', 'meeting': '👥', 'contest': '🏆', 'control': '📋' }[event.type] || '📌';
-                    
-                    eventsHtml += `
-                        <div class="event-item">
-                            <div class="event-date">
-                                <div class="event-day">${day}</div>
-                                <div class="event-month">${month}</div>
-                            </div>
-                            <div class="event-info">
-                                <div class="event-name">${typeEmoji} ${event.name}</div>
-                                <div class="event-type">${getEventTypeName(event.type)}</div>
-                            </div>
-                        </div>
-                    `;
+                    eventsHtml += `<div class="event-item"><div class="event-date"><div class="event-day">${day}</div><div class="event-month">${month}</div></div><div class="event-info"><div class="event-name">${typeEmoji} ${event.name}</div><div class="event-type">${getEventTypeName(event.type)}</div></div></div>`;
                 }
                 eventsContainer.innerHTML = eventsHtml;
-            } else {
-                eventsContainer.innerHTML = '<div class="status info">📭 Событий пока нет</div>';
-            }
+            } else { eventsContainer.innerHTML = '<div class="status info">📭 Событий пока нет</div>'; }
             animateCardSwitch('newsCard');
         }
         
@@ -1584,19 +1381,17 @@
         
         function showAbout() {
             const container = document.getElementById('aboutContent');
-            container.innerHTML = `
-                <div class="history-block"><strong>🏛️ Основание:</strong> Школа основана в 1907 году купцом Иваном Васильевичем Лапиным с трёхлетним обучением для иногородних детей. Обучение было платным.</div>
+            container.innerHTML = `<div class="history-block"><strong>🏛️ Основание:</strong> Школа основана в 1907 году купцом Иваном Васильевичем Лапиным с трёхлетним обучением для иногородних детей. Обучение было платным.</div>
                 <div class="history-block"><strong>📚 История:</strong> В 20-е годы — начальная школа, затем семилетняя. В 30-е годы — Фабричное заводское училище. В 1937–1938 гг. создана средняя школа №2.</div>
                 <div class="history-block"><strong>🏗️ Здание:</strong> В 1936 году построено новое здание по ул. Шевченко, 2. В годы войны школа была военным госпиталем. При отступлении немцы сожгли школу, восстановлена в 1950 году.</div>
                 <div class="hero-name"><h4>⭐ Имя школы</h4><p>Носит имя лётчика-космонавта, Героя Российской Федерации<br>Олега Ивановича Скрипочки</p></div>
-                <div class="director-card"><div class="director-name">👨‍💼 Директор: Маланин Максим Александрович</div><div class="director-contact">📞 +7 (86554) 2-14-07</div><div class="director-contact">📧 school2nev1@mail.ru</div><div class="director-contact">🕐 Приём: четверг 14:00-16:00</div></div>
-            `;
+                <div class="director-card"><div class="director-name">👨‍💼 Директор: Маланин Максим Александрович</div><div class="director-contact">📞 +7 (86554) 2-14-07</div><div class="director-contact">📧 school2nev1@mail.ru</div><div class="director-contact">🕐 Приём: четверг 14:00-16:00</div></div>`;
             animateCardSwitch('aboutCard');
         }
         
         function switchTab(tab) {
             closeMenu();
-            
+            document.querySelectorAll('.card:not(.fade-in)').forEach(c => c.classList.add('hidden'));
             document.getElementById('scheduleCard').classList.add('hidden');
             document.getElementById('teachersCard').classList.add('hidden');
             document.getElementById('ringsCard').classList.add('hidden');
@@ -1607,22 +1402,11 @@
             if (tab === 'schedule') {
                 document.getElementById('scheduleCard').classList.remove('hidden');
                 if (scheduleData) showScheduleForDate(currentDate);
-            } else if (tab === 'teachers') {
-                document.getElementById('teachersCard').classList.remove('hidden');
-                showTeachers();
-            } else if (tab === 'rings') {
-                document.getElementById('ringsCard').classList.remove('hidden');
-                showRings();
-            } else if (tab === 'clubs') {
-                document.getElementById('clubsCard').classList.remove('hidden');
-                showClubs();
-            } else if (tab === 'news') {
-                document.getElementById('newsCard').classList.remove('hidden');
-                showNews();
-            } else if (tab === 'about') {
-                document.getElementById('aboutCard').classList.remove('hidden');
-                showAbout();
-            }
+            } else if (tab === 'teachers') { document.getElementById('teachersCard').classList.remove('hidden'); showTeachers();
+            } else if (tab === 'rings') { document.getElementById('ringsCard').classList.remove('hidden'); showRings();
+            } else if (tab === 'clubs') { document.getElementById('clubsCard').classList.remove('hidden'); showClubs();
+            } else if (tab === 'news') { document.getElementById('newsCard').classList.remove('hidden'); showNews();
+            } else if (tab === 'about') { document.getElementById('aboutCard').classList.remove('hidden'); showAbout(); }
             
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.classList.remove('active');
@@ -1635,13 +1419,11 @@
             document.getElementById('overlay').classList.add('active');
             document.getElementById('menuBtn').classList.add('open');
         }
-        
         function closeMenu() {
             document.getElementById('sidebar').classList.remove('open');
             document.getElementById('overlay').classList.remove('active');
             document.getElementById('menuBtn').classList.remove('open');
         }
-        
         function toggleMenu() {
             if (document.getElementById('sidebar').classList.contains('open')) closeMenu();
             else openMenu();
@@ -1653,12 +1435,9 @@
         document.getElementById('updateBtn').addEventListener('click', loadSchedule);
         document.getElementById('prevDayBtn').addEventListener('click', goPrevDay);
         document.getElementById('nextDayBtn').addEventListener('click', goNextDay);
-        document.getElementById('tomorrowBtn').addEventListener('click', goTomorrow);
-        document.getElementById('dayAfterBtn').addEventListener('click', goDayAfter);
-        document.getElementById('mondayBtn').addEventListener('click', goMonday);
+        document.getElementById('dateBtn').addEventListener('click', showByDatePicker);
         document.getElementById('classSelect').addEventListener('change', () => {
-            if (scheduleData) showScheduleForDate(currentDate);
-            updateWeekSchedule();
+            if (scheduleData) { showScheduleForDate(currentDate); updateWeekSchedule(); }
         });
         document.getElementById('notifyBell').addEventListener('click', () => {
             document.getElementById('notifyBadge').style.display = 'none';
@@ -1670,24 +1449,13 @@
         
         const datePicker = document.getElementById('datePicker');
         if (datePicker) {
-            const todayDate = new Date();
-            const yyyy = todayDate.getFullYear();
-            const mm = String(todayDate.getMonth() + 1).padStart(2, '0');
-            const dd = String(todayDate.getDate()).padStart(2, '0');
-            datePicker.value = `${yyyy}-${mm}-${dd}`;
-            datePicker.addEventListener('change', showByDatePicker);
+            const today = new Date();
+            datePicker.value = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
         }
         
         // Pull-to-refresh
-        let touchStartY = 0;
-        let isRefreshing = false;
-        
-        document.addEventListener('touchstart', (e) => {
-            if (window.scrollY === 0) {
-                touchStartY = e.touches[0].clientY;
-            }
-        });
-        
+        let touchStartY = 0, isRefreshing = false;
+        document.addEventListener('touchstart', (e) => { if (window.scrollY === 0) touchStartY = e.touches[0].clientY; });
         document.addEventListener('touchmove', (e) => {
             if (touchStartY > 0 && window.scrollY === 0 && !isRefreshing) {
                 const diff = e.touches[0].clientY - touchStartY;
@@ -1697,10 +1465,7 @@
                     ptrElement.className = 'ptr-element';
                     ptrElement.innerHTML = '⬇️ Обновление...';
                     document.getElementById('mainContainer').prepend(ptrElement);
-                    loadSchedule().finally(() => {
-                        ptrElement.remove();
-                        isRefreshing = false;
-                    });
+                    loadSchedule().finally(() => { ptrElement.remove(); isRefreshing = false; });
                     touchStartY = 0;
                 }
             }
@@ -1708,15 +1473,12 @@
         
         initNotifications();
         loadSchedule();
-        
         setInterval(() => {
             checkForUpdates();
             loadReplacements();
             loadNews();
             loadClubs();
-            if (document.getElementById('scheduleCard') && !document.getElementById('scheduleCard').classList.contains('hidden')) {
-                showScheduleForDate(currentDate);
-            }
+            if (!document.getElementById('scheduleCard').classList.contains('hidden')) showScheduleForDate(currentDate);
         }, 300000);
     </script>
 </body>
