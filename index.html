@@ -21,6 +21,54 @@
             padding-bottom: 80px;
         }
         
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.3s ease forwards;
+        }
+        
+        /* Скелетон загрузки */
+        .skeleton-card {
+            background: #e0e0e0;
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 10px;
+            animation: pulse 1.5s infinite;
+        }
+        
+        .skeleton-line {
+            height: 16px;
+            background: #ccc;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .skeleton-line.short {
+            width: 60%;
+        }
+        
+        .skeleton-line.medium {
+            width: 80%;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            .skeleton-card {
+                background: #2a2a3e;
+            }
+            .skeleton-line {
+                background: #3a3a4e;
+            }
+        }
+        
         /* Боковое меню */
         .sidebar {
             position: fixed;
@@ -64,6 +112,7 @@
         
         .sidebar-menu li {
             border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: relative;
         }
         
         .sidebar-menu button {
@@ -90,6 +139,20 @@
             border-left: 4px solid #4CAF50;
         }
         
+        /* Индикатор замен в меню */
+        .replacement-indicator {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 10px;
+            height: 10px;
+            background: #f44336;
+            border-radius: 50%;
+            box-shadow: 0 0 5px #f44336;
+            animation: pulse 1s infinite;
+        }
+        
         .sidebar-footer {
             position: absolute;
             bottom: 20px;
@@ -102,7 +165,6 @@
             text-align: center;
         }
         
-        /* Затемнение фона */
         .overlay {
             position: fixed;
             top: 0;
@@ -146,7 +208,6 @@
             transition: 0.2s;
         }
         
-        /* Анимация при открытом меню */
         .menu-btn.open span:nth-child(1) {
             transform: rotate(45deg) translate(5px, 5px);
         }
@@ -163,6 +224,122 @@
             max-width: 600px;
             margin: 0 auto;
             margin-top: 60px;
+        }
+        
+        /* Pull-to-refresh индикатор */
+        .ptr-element {
+            text-align: center;
+            padding: 10px;
+            color: #666;
+            font-size: 12px;
+            transition: all 0.2s;
+        }
+        
+        /* Навигация по дням */
+        .date-navigation {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            gap: 10px;
+        }
+        
+        .nav-arrow {
+            width: 45px;
+            height: 45px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .nav-arrow:active {
+            transform: scale(0.95);
+            background: #f0f0f0;
+        }
+        
+        .current-date-display {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            background: white;
+            border-radius: 12px;
+            font-weight: bold;
+            border: 2px solid #e0e0e0;
+        }
+        
+        /* Быстрые кнопки */
+        .quick-buttons {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .quick-btn {
+            flex: 1;
+            padding: 10px;
+            background: #e3f2fd;
+            border: none;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #1976d2;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .quick-btn:active {
+            transform: scale(0.97);
+            background: #bbdef5;
+        }
+        
+        /* Недельное расписание */
+        .week-schedule {
+            display: flex;
+            overflow-x: auto;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding-bottom: 5px;
+        }
+        
+        .week-day-card {
+            min-width: 100px;
+            background: white;
+            border-radius: 12px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .week-day-card.active {
+            border-color: #4CAF50;
+            background: #e8f5e9;
+        }
+        
+        .week-day-name {
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .week-day-date {
+            font-size: 11px;
+            color: #666;
+            margin-top: 3px;
+        }
+        
+        .week-day-lessons {
+            font-size: 10px;
+            color: #4CAF50;
+            margin-top: 5px;
+        }
+        
+        .week-day-card.replacement-day {
+            border-color: #f44336;
+            background: #ffebee;
         }
         
         .header {
@@ -207,21 +384,6 @@
             background: white;
             margin-bottom: 15px;
             font-weight: 500;
-        }
-        
-        .date-input-group {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-        
-        .date-input-group input {
-            flex: 1;
-            padding: 12px;
-            font-size: 14px;
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            text-align: center;
         }
         
         .btn-grid {
@@ -302,9 +464,6 @@
         .lesson-teacher {
             font-size: 13px;
             color: #666;
-            display: flex;
-            align-items: center;
-            gap: 5px;
             margin-top: 5px;
         }
         
@@ -356,7 +515,45 @@
             color: #e65100;
         }
         
-        .teacher-item {
+        /* Уведомления */
+        .notification-group {
+            position: fixed;
+            top: 70px;
+            right: 16px;
+            left: 16px;
+            max-width: 300px;
+            margin-left: auto;
+            z-index: 1002;
+        }
+        
+        .notification {
+            background: white;
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin-bottom: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-left: 4px solid #4CAF50;
+            animation: slideIn 0.3s ease;
+            cursor: pointer;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .notification-title {
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+        
+        .notification-text {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .teacher-item, .ring-item, .history-block, .news-item {
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             border-radius: 12px;
             padding: 12px;
@@ -383,10 +580,6 @@
         }
         
         .ring-item {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border-radius: 12px;
-            padding: 12px;
-            margin-bottom: 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -400,14 +593,6 @@
         .ring-time {
             font-size: 16px;
             font-weight: 600;
-        }
-        
-        .history-block {
-            background: linear-gradient(135deg, #f0f4ff 0%, #e8edf5 100%);
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 12px;
-            border-left: 4px solid #4CAF50;
         }
         
         .history-block strong {
@@ -451,14 +636,6 @@
         .hero-name p {
             font-size: 13px;
             font-weight: bold;
-        }
-        
-        .news-item {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 12px;
-            border-left: 4px solid #4CAF50;
         }
         
         .news-date {
@@ -573,14 +750,31 @@
             body {
                 background: #1a1a2e;
             }
-            .card {
+            .card, .current-date-display, .nav-arrow {
                 background: #16213e;
+                border-color: #0f3460;
             }
             .menu-btn, .notification-bell {
                 background: #16213e;
             }
             .menu-btn span {
                 background: white;
+            }
+            .quick-btn {
+                background: #0f3460;
+                color: #90caf9;
+            }
+            .week-day-card {
+                background: #16213e;
+                border-color: #0f3460;
+                color: white;
+            }
+            .week-day-card.active {
+                border-color: #4CAF50;
+                background: #1a4a2a;
+            }
+            .week-day-date {
+                color: #aaa;
             }
             .schedule-item, .teacher-item, .ring-item, .history-block, .news-item {
                 background: #0f3460;
@@ -605,49 +799,57 @@
                 color: white;
                 border-color: #1a4a7a;
             }
-            .history-block {
-                background: #0f3460;
-                color: #ddd;
+            .notification {
+                background: #16213e;
+                color: white;
+            }
+            .notification-text {
+                color: #aaa;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Кнопка гамбургер -->
+    <div class="notification-group" id="notificationGroup"></div>
+    
     <button class="menu-btn" id="menuBtn">
         <span></span>
         <span></span>
         <span></span>
     </button>
     
-    <!-- Колокольчик уведомлений -->
     <div class="notification-bell" id="notifyBell">
         🔔
         <span id="notifyBadge" class="notification-badge" style="display: none;">0</span>
     </div>
     
-    <!-- Боковое меню -->
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <h3>🏫 МБОУ СОШ № 2</h3>
             <p>им. О.И. Скрипочки</p>
         </div>
         <ul class="sidebar-menu">
-            <li><button class="nav-btn" data-tab="schedule">📅 Расписание</button></li>
+            <li>
+                <button class="nav-btn" data-tab="schedule">📅 Расписание</button>
+                <span id="scheduleReplacementIndicator" class="replacement-indicator" style="display: none;"></span>
+            </li>
             <li><button class="nav-btn" data-tab="teachers">👨‍🏫 Учителя</button></li>
             <li><button class="nav-btn" data-tab="rings">🔔 Звонки</button></li>
-            <li><button class="nav-btn" data-tab="news">📢 Новости</button></li>
+            <li>
+                <button class="nav-btn" data-tab="news">📢 Новости</button>
+                <span id="newsReplacementIndicator" class="replacement-indicator" style="display: none;"></span>
+            </li>
             <li><button class="nav-btn" data-tab="about">🏛️ История</button></li>
         </ul>
         <div class="sidebar-footer">
-            Версия 2.0<br>
+            Версия 2.1<br>
             © Школьный помощник
         </div>
     </div>
     
     <div class="overlay" id="overlay"></div>
     
-    <div class="container">
+    <div class="container" id="mainContainer">
         <div class="header">
             <h1>🏫 МБОУ СОШ № 2</h1>
             <p>г. Невинномысск</p>
@@ -693,22 +895,29 @@
                 </optgroup>
             </select>
             
-            <div class="date-input-group" style="margin-top: 15px;">
-                <input type="date" id="datePicker" placeholder="Выберите дату">
-                <button id="dateBtn" class="btn-secondary" style="margin: 0;">📅 Показать</button>
+            <!-- Навигация по дням -->
+            <div class="date-navigation">
+                <button class="nav-arrow" id="prevDayBtn">←</button>
+                <div class="current-date-display" id="currentDateDisplay"></div>
+                <button class="nav-arrow" id="nextDayBtn">→</button>
             </div>
             
-            <div class="btn-grid">
-                <button id="todayBtn" class="btn-primary">📅 Сегодня</button>
-                <button id="anyDayBtn" class="btn-secondary">📆 День недели</button>
+            <!-- Быстрые кнопки -->
+            <div class="quick-buttons">
+                <button class="quick-btn" id="tomorrowBtn">Завтра</button>
+                <button class="quick-btn" id="dayAfterBtn">Послезавтра</button>
+                <button class="quick-btn" id="mondayBtn">Понедельник</button>
             </div>
+            
+            <!-- Недельное расписание -->
+            <div id="weekSchedule" class="week-schedule"></div>
             
             <button id="updateBtn" class="btn-danger">🔄 Обновить расписание</button>
         </div>
         
         <div id="examCounter" class="exam-counter hidden"></div>
         
-        <div id="scheduleCard" class="card">
+        <div id="scheduleCard" class="card fade-in">
             <div id="scheduleContent">
                 <div class="status loading">📡 Нажмите «Обновить» для загрузки расписания</div>
             </div>
@@ -745,12 +954,14 @@
         let scheduleData = null;
         let replacementsData = null;
         let newsData = null;
-        let currentDay = null;
-        let currentDate = null;
+        let currentDate = new Date();
         let notificationPermission = false;
+        let pendingNotifications = [];
+        let isLoading = false;
         
         const daysRu = ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
         const months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+        const shortDays = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
         
         // Реальные учителя школы №2
         const realTeachers = {
@@ -793,6 +1004,188 @@
             { name: "ЕГЭ по математике", date: "2026-05-31" }
         ];
         
+        // Группировка уведомлений
+        function addNotification(title, text, type = 'info') {
+            const container = document.getElementById('notificationGroup');
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.style.borderLeftColor = type === 'error' ? '#f44336' : (type === 'success' ? '#4CAF50' : '#2196F3');
+            notification.innerHTML = `
+                <div class="notification-title">${title}</div>
+                <div class="notification-text">${text}</div>
+            `;
+            notification.onclick = () => notification.remove();
+            container.appendChild(notification);
+            setTimeout(() => notification.remove(), 5000);
+        }
+        
+        // Анимация при переключении вкладок
+        function animateCardSwitch(cardId) {
+            const card = document.getElementById(cardId);
+            card.classList.remove('fade-in');
+            void card.offsetWidth; // Триггер перерисовки
+            card.classList.add('fade-in');
+        }
+        
+        // Скелетон загрузки
+        function showSkeleton(containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            container.innerHTML = `
+                <div class="skeleton-card">
+                    <div class="skeleton-line medium"></div>
+                    <div class="skeleton-line short"></div>
+                    <div class="skeleton-line"></div>
+                </div>
+                <div class="skeleton-card">
+                    <div class="skeleton-line medium"></div>
+                    <div class="skeleton-line short"></div>
+                    <div class="skeleton-line"></div>
+                </div>
+                <div class="skeleton-card">
+                    <div class="skeleton-line medium"></div>
+                    <div class="skeleton-line short"></div>
+                    <div class="skeleton-line"></div>
+                </div>
+            `;
+        }
+        
+        // Проверка наличия замен для индикатора
+        function hasReplacementsToday() {
+            if (!replacementsData || !replacementsData.replacements) return false;
+            const todayStr = currentDate.toISOString().split('T')[0];
+            const selectedClass = document.getElementById('classSelect').value;
+            for (const key in replacementsData.replacements) {
+                if (key.startsWith(`${selectedClass}_${todayStr}`)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        
+        function updateReplacementIndicators() {
+            const hasReplacements = hasReplacementsToday();
+            const scheduleIndicator = document.getElementById('scheduleReplacementIndicator');
+            if (scheduleIndicator) {
+                scheduleIndicator.style.display = hasReplacements ? 'block' : 'none';
+            }
+        }
+        
+        // Обновление недельного расписания
+        function updateWeekSchedule() {
+            const container = document.getElementById('weekSchedule');
+            if (!container || !scheduleData) return;
+            
+            const today = new Date();
+            const monday = new Date(today);
+            const dayOfWeek = today.getDay();
+            const daysToMonday = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
+            monday.setDate(today.getDate() - daysToMonday);
+            
+            let html = '';
+            for (let i = 0; i < 6; i++) {
+                const date = new Date(monday);
+                date.setDate(monday.getDate() + i);
+                const dateStr = date.toISOString().split('T')[0];
+                const dayName = daysRu[i];
+                const selectedClass = document.getElementById('classSelect').value;
+                
+                let hasReplacement = false;
+                if (replacementsData && replacementsData.replacements) {
+                    for (const key in replacementsData.replacements) {
+                        if (key.startsWith(`${selectedClass}_${dateStr}`)) {
+                            hasReplacement = true;
+                            break;
+                        }
+                    }
+                }
+                
+                const isCurrent = date.toDateString() === currentDate.toDateString();
+                const lessons = scheduleData.schedule?.[selectedClass]?.[dayName];
+                const lessonsCount = lessons ? lessons.length : 0;
+                
+                html += `
+                    <div class="week-day-card ${isCurrent ? 'active' : ''} ${hasReplacement ? 'replacement-day' : ''}" data-date="${dateStr}" data-dayname="${dayName}">
+                        <div class="week-day-name">${shortDays[i]}</div>
+                        <div class="week-day-date">${date.getDate()} ${months[date.getMonth()].slice(0, 3)}</div>
+                        <div class="week-day-lessons">${lessonsCount} уроков</div>
+                    </div>
+                `;
+            }
+            container.innerHTML = html;
+            
+            document.querySelectorAll('.week-day-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const dateStr = card.dataset.date;
+                    const dayName = card.dataset.dayname;
+                    if (dateStr) {
+                        currentDate = new Date(dateStr);
+                        updateDateDisplay();
+                        showScheduleForDate(currentDate);
+                        updateWeekSchedule();
+                    } else if (dayName) {
+                        showScheduleForDay(dayName);
+                    }
+                });
+            });
+        }
+        
+        // Обновление отображения даты
+        function updateDateDisplay() {
+            const displayDiv = document.getElementById('currentDateDisplay');
+            if (displayDiv) {
+                displayDiv.textContent = formatDateLong(currentDate);
+            }
+        }
+        
+        function formatDateLong(date) {
+            const dayIndex = date.getDay();
+            const dayName = dayIndex === 0 || dayIndex === 6 ? 'Выходной' : daysRu[dayIndex - 1];
+            return `${dayName}, ${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
+        }
+        
+        // Навигация по дням
+        function goPrevDay() {
+            currentDate.setDate(currentDate.getDate() - 1);
+            updateDateDisplay();
+            showScheduleForDate(currentDate);
+            updateWeekSchedule();
+        }
+        
+        function goNextDay() {
+            currentDate.setDate(currentDate.getDate() + 1);
+            updateDateDisplay();
+            showScheduleForDate(currentDate);
+            updateWeekSchedule();
+        }
+        
+        // Быстрые кнопки
+        function goTomorrow() {
+            currentDate.setDate(currentDate.getDate() + 1);
+            updateDateDisplay();
+            showScheduleForDate(currentDate);
+            updateWeekSchedule();
+        }
+        
+        function goDayAfter() {
+            currentDate.setDate(currentDate.getDate() + 2);
+            updateDateDisplay();
+            showScheduleForDate(currentDate);
+            updateWeekSchedule();
+        }
+        
+        function goMonday() {
+            const today = new Date();
+            const dayOfWeek = today.getDay();
+            const daysToMonday = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
+            currentDate = new Date(today);
+            currentDate.setDate(today.getDate() - daysToMonday);
+            updateDateDisplay();
+            showScheduleForDate(currentDate);
+            updateWeekSchedule();
+        }
+        
+        // Инициализация уведомлений
         async function initNotifications() {
             if ('Notification' in window) {
                 const permission = await Notification.requestPermission();
@@ -800,12 +1193,26 @@
             }
         }
         
-        function sendNotification(title, body, tag = 'update') {
+        function sendNotification(title, body) {
             if (notificationPermission && document.hidden) {
-                new Notification(title, { body, icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🏫</text></svg>', tag: tag });
+                pendingNotifications.push({ title, body });
+                if (pendingNotifications.length === 1) {
+                    setTimeout(() => {
+                        if (pendingNotifications.length === 1) {
+                            new Notification(title, { body, icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🏫</text></svg>' });
+                        } else {
+                            new Notification(`📢 ${pendingNotifications.length} новых уведомлений`, { 
+                                body: pendingNotifications.map(n => n.title).join(', '),
+                                icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🏫</text></svg>'
+                            });
+                        }
+                        pendingNotifications = [];
+                    }, 100);
+                }
             }
         }
         
+        // Проверка обновлений
         async function checkForUpdates() {
             try {
                 const response = await fetch(SCHEDULE_URL + '?t=' + Date.now());
@@ -814,22 +1221,11 @@
                     const newVersion = data.version || Object.keys(data.schedule).length + '_' + Date.now();
                     const savedVersion = localStorage.getItem('scheduleVersion');
                     if (savedVersion && savedVersion !== newVersion) {
-                        sendNotification('📅 Обновление расписания', 'Расписание уроков было обновлено!');
+                        addNotification('📅 Обновление расписания', 'Расписание уроков было обновлено!', 'success');
+                        sendNotification('Обновление расписания', 'Расписание уроков было обновлено!');
                         document.getElementById('notifyBadge').style.display = 'inline-block';
                     }
                     localStorage.setItem('scheduleVersion', newVersion);
-                }
-                
-                const newsResp = await fetch(NEWS_URL + '?t=' + Date.now());
-                if (newsResp.ok) {
-                    const newNews = await newsResp.json();
-                    const savedNewsVersion = localStorage.getItem('newsVersion');
-                    const newNewsVersion = newNews.version || newNews.news.length + '_' + Date.now();
-                    if (savedNewsVersion && savedNewsVersion !== newNewsVersion) {
-                        sendNotification('📢 Новые объявления', 'Появились новые новости и объявления!');
-                        document.getElementById('notifyBadge').style.display = 'inline-block';
-                    }
-                    localStorage.setItem('newsVersion', newNewsVersion);
                 }
             } catch (e) {
                 console.log('Ошибка проверки обновлений');
@@ -842,6 +1238,8 @@
                 if (response.ok) {
                     replacementsData = await response.json();
                     localStorage.setItem('replacementsData', JSON.stringify(replacementsData));
+                    updateReplacementIndicators();
+                    updateWeekSchedule();
                 } else {
                     const saved = localStorage.getItem('replacementsData');
                     if (saved) replacementsData = JSON.parse(saved);
@@ -908,47 +1306,30 @@
         }
         
         async function loadSchedule() {
-            showStatus('loading', '⏳ Загрузка расписания...');
+            if (isLoading) return;
+            isLoading = true;
+            
+            showSkeleton('scheduleContent');
             
             try {
                 const response = await fetch(SCHEDULE_URL + '?t=' + Date.now());
                 if (!response.ok) throw new Error(`Ошибка HTTP ${response.status}`);
                 const data = await response.json();
                 scheduleData = data;
-                showStatus('success', '✅ Расписание успешно обновлено!');
+                addNotification('✅ Успешно', 'Расписание загружено!', 'success');
                 
                 await loadReplacements();
                 await loadNews();
                 await checkForUpdates();
                 
-                const today = new Date();
-                showScheduleForDate(today);
+                showScheduleForDate(currentDate);
                 updateExamCounter();
+                updateWeekSchedule();
             } catch (error) {
-                showStatus('error', `❌ Ошибка: ${error.message}\n\nПроверьте интернет и ссылку на GitHub`);
-                scheduleData = null;
-            }
-        }
-        
-        function showStatus(type, message) {
-            const container = document.getElementById('scheduleContent');
-            if (type === 'loading') {
-                container.innerHTML = `<div class="status loading">${message}</div>`;
-            } else if (type === 'success') {
-                const statusDiv = document.createElement('div');
-                statusDiv.className = 'status success';
-                statusDiv.textContent = message;
-                container.insertBefore(statusDiv, container.firstChild);
-                setTimeout(() => statusDiv.remove(), 3000);
-            } else if (type === 'info') {
-                const container2 = document.getElementById('scheduleContent');
-                const infoDiv = document.createElement('div');
-                infoDiv.className = 'status info';
-                infoDiv.textContent = message;
-                container2.insertBefore(infoDiv, container2.firstChild);
-                setTimeout(() => infoDiv.remove(), 3000);
-            } else {
-                container.innerHTML = `<div class="status error">${message}</div>`;
+                document.getElementById('scheduleContent').innerHTML = `<div class="status error">❌ Ошибка: ${error.message}</div>`;
+                addNotification('❌ Ошибка', 'Не удалось загрузить расписание', 'error');
+            } finally {
+                isLoading = false;
             }
         }
         
@@ -963,7 +1344,6 @@
         }
         
         function showScheduleForDate(date) {
-            currentDate = date;
             const dayName = getDayNameFromDate(date);
             const dateStr = date.toISOString().split('T')[0];
             const displayDate = formatDate(date);
@@ -976,7 +1356,7 @@
             const selectedClass = document.getElementById('classSelect').value;
             
             if (!scheduleData) {
-                document.getElementById('scheduleContent').innerHTML = `<div class="status error">❌ Нет данных. Нажмите «Обновить расписание»</div>`;
+                document.getElementById('scheduleContent').innerHTML = `<div class="status error">❌ Нет данных</div>`;
                 return;
             }
             
@@ -1016,8 +1396,43 @@
                     <div class="schedule-item ${extraClass}">
                         <div class="lesson-number">📖 ${lesson.number} урок ${badgeHtml}</div>
                         <div class="lesson-subject">${displaySubject}</div>
-                        <div class="lesson-teacher">👨‍🏫 ${displayTeacher}</div>
-                        <div class="lesson-teacher">🚪 Кабинет ${displayRoom}</div>
+                        <div class="lesson-teacher">👨‍🏫 ${displayTeacher} · 🚪 ${displayRoom}</div>
+                    </div>
+                `;
+            });
+            
+            const scheduleContent = document.getElementById('scheduleContent');
+            scheduleContent.innerHTML = html;
+            scheduleContent.classList.add('fade-in');
+            setTimeout(() => scheduleContent.classList.remove('fade-in'), 300);
+        }
+        
+        function showScheduleForDay(day) {
+            const selectedClass = document.getElementById('classSelect').value;
+            
+            if (!scheduleData) {
+                document.getElementById('scheduleContent').innerHTML = `<div class="status error">❌ Нет данных</div>`;
+                return;
+            }
+            
+            if (!scheduleData.schedule || !scheduleData.schedule[selectedClass]) {
+                document.getElementById('scheduleContent').innerHTML = `<div class="status error">❌ Нет расписания для класса ${selectedClass}</div>`;
+                return;
+            }
+            
+            const lessons = scheduleData.schedule[selectedClass][day];
+            if (!lessons || lessons.length === 0) {
+                document.getElementById('scheduleContent').innerHTML = `<div class="status info">📭 Нет уроков на ${day}</div>`;
+                return;
+            }
+            
+            let html = `<h3 style="margin-bottom: 15px;">📚 ${selectedClass} · ${day}</h3>`;
+            lessons.forEach(lesson => {
+                html += `
+                    <div class="schedule-item">
+                        <div class="lesson-number">📖 ${lesson.number} урок</div>
+                        <div class="lesson-subject">${lesson.subject}</div>
+                        <div class="lesson-teacher">👨‍🏫 ${lesson.teacher} · 🚪 ${lesson.room}</div>
                     </div>
                 `;
             });
@@ -1025,59 +1440,28 @@
         }
         
         function showToday() {
-            if (!scheduleData) {
-                showStatus('error', 'Сначала обновите расписание');
-                return;
-            }
-            const today = new Date();
-            showScheduleForDate(today);
+            currentDate = new Date();
+            updateDateDisplay();
+            showScheduleForDate(currentDate);
+            updateWeekSchedule();
         }
         
         function showByDatePicker() {
             const datePicker = document.getElementById('datePicker');
             if (datePicker.value) {
-                const selectedDate = new Date(datePicker.value);
-                showScheduleForDate(selectedDate);
+                currentDate = new Date(datePicker.value);
+                updateDateDisplay();
+                showScheduleForDate(currentDate);
+                updateWeekSchedule();
             } else {
                 alert('Выберите дату');
             }
         }
         
         function showAnyDay() {
-            if (!scheduleData) {
-                alert('Сначала обновите расписание');
-                return;
-            }
             const day = prompt('Введите день недели:\nПонедельник, Вторник, Среда, Четверг, Пятница, Суббота');
             if (day && daysRu.includes(day)) {
-                currentDate = null;
-                currentDay = day;
-                const container = document.getElementById('scheduleContent');
-                const selectedClass = document.getElementById('classSelect').value;
-                
-                if (!scheduleData.schedule || !scheduleData.schedule[selectedClass]) {
-                    container.innerHTML = `<div class="status error">❌ Нет расписания для класса ${selectedClass}</div>`;
-                    return;
-                }
-                
-                const lessons = scheduleData.schedule[selectedClass][day];
-                if (!lessons || lessons.length === 0) {
-                    container.innerHTML = `<div class="status info">📭 Нет уроков на ${day}</div>`;
-                    return;
-                }
-                
-                let html = `<h3 style="margin-bottom: 15px;">📚 ${selectedClass} · ${day}</h3>`;
-                lessons.forEach(lesson => {
-                    html += `
-                        <div class="schedule-item">
-                            <div class="lesson-number">📖 ${lesson.number} урок</div>
-                            <div class="lesson-subject">${lesson.subject}</div>
-                            <div class="lesson-teacher">👨‍🏫 ${lesson.teacher}</div>
-                            <div class="lesson-teacher">🚪 Кабинет ${lesson.room}</div>
-                        </div>
-                    `;
-                });
-                container.innerHTML = html;
+                showScheduleForDay(day);
             } else if (day) {
                 alert('Введите корректный день недели');
             }
@@ -1091,12 +1475,13 @@
                     <div class="teacher-item">
                         <div class="teacher-name">${name}</div>
                         <div class="teacher-position">${info.position || 'Учитель'}</div>
-                        <div class="teacher-info">📖 Преподает: ${info.subject}</div>
+                        <div class="teacher-info">📖 ${info.subject}</div>
                         ${info.contact ? `<div class="teacher-info">📧 ${info.contact}</div>` : ''}
                     </div>
                 `;
             }
             container.innerHTML = html;
+            animateCardSwitch('teachersCard');
         }
         
         function showRings() {
@@ -1111,6 +1496,7 @@
                 `;
             }
             container.innerHTML = html;
+            animateCardSwitch('ringsCard');
         }
         
         function showNews() {
@@ -1145,13 +1531,7 @@
                     const eventDate = new Date(event.date);
                     const day = eventDate.getDate();
                     const month = months[eventDate.getMonth()];
-                    const typeEmoji = {
-                        'exam': '📝',
-                        'holiday': '🎉',
-                        'meeting': '👥',
-                        'contest': '🏆',
-                        'control': '📋'
-                    }[event.type] || '📌';
+                    const typeEmoji = { 'exam': '📝', 'holiday': '🎉', 'meeting': '👥', 'contest': '🏆', 'control': '📋' }[event.type] || '📌';
                     
                     eventsHtml += `
                         <div class="event-item">
@@ -1170,61 +1550,39 @@
             } else {
                 eventsContainer.innerHTML = '<div class="status info">📭 Событий пока нет</div>';
             }
+            animateCardSwitch('newsCard');
         }
         
         function getEventTypeName(type) {
-            const types = {
-                'exam': 'Экзамен / Контрольная',
-                'holiday': 'Праздник / Каникулы',
-                'meeting': 'Собрание',
-                'contest': 'Олимпиада / Конкурс',
-                'control': 'Контрольная работа'
-            };
+            const types = { 'exam': 'Экзамен', 'holiday': 'Праздник', 'meeting': 'Собрание', 'contest': 'Конкурс', 'control': 'Контрольная' };
             return types[type] || 'Событие';
         }
         
         function showAbout() {
             const container = document.getElementById('aboutContent');
             container.innerHTML = `
-                <div class="history-block">
-                    <strong>🏛️ Основание:</strong> Школа основана в 1907 году купцом Иваном Васильевичем Лапиным с трёхлетним обучением для иногородних детей. Обучение было платным.
-                </div>
-                <div class="history-block">
-                    <strong>📚 История:</strong> В 20-е годы — начальная школа, затем семилетняя. В 30-е годы — Фабричное заводское училище. В 1937–1938 гг. создана средняя школа №2.
-                </div>
-                <div class="history-block">
-                    <strong>🏗️ Здание:</strong> В 1936 году построено новое здание по ул. Шевченко, 2. В годы войны школа была военным госпиталем. При отступлении немцы сожгли школу, восстановлена в 1950 году.
-                </div>
-                <div class="hero-name">
-                    <h4>⭐ Имя школы</h4>
-                    <p>Носит имя лётчика-космонавта, Героя Российской Федерации<br>Олега Ивановича Скрипочки</p>
-                </div>
-                <div class="director-card">
-                    <div class="director-name">👨‍💼 Директор: Маланин Максим Александрович</div>
-                    <div class="director-contact">📞 Телефон: +7 (86554) 2-14-07</div>
-                    <div class="director-contact">📧 Email: school2nev1@mail.ru</div>
-                    <div class="director-contact">🕐 Приём: четверг 14:00-16:00</div>
-                </div>
+                <div class="history-block"><strong>🏛️ Основание:</strong> Школа основана в 1907 году купцом Иваном Васильевичем Лапиным с трёхлетним обучением для иногородних детей. Обучение было платным.</div>
+                <div class="history-block"><strong>📚 История:</strong> В 20-е годы — начальная школа, затем семилетняя. В 30-е годы — Фабричное заводское училище. В 1937–1938 гг. создана средняя школа №2.</div>
+                <div class="history-block"><strong>🏗️ Здание:</strong> В 1936 году построено новое здание по ул. Шевченко, 2. В годы войны школа была военным госпиталем. При отступлении немцы сожгли школу, восстановлена в 1950 году.</div>
+                <div class="hero-name"><h4>⭐ Имя школы</h4><p>Носит имя лётчика-космонавта, Героя Российской Федерации<br>Олега Ивановича Скрипочки</p></div>
+                <div class="director-card"><div class="director-name">👨‍💼 Директор: Маланин Максим Александрович</div><div class="director-contact">📞 +7 (86554) 2-14-07</div><div class="director-contact">📧 school2nev1@mail.ru</div><div class="director-contact">🕐 Приём: четверг 14:00-16:00</div></div>
             `;
+            animateCardSwitch('aboutCard');
         }
         
+        // Переключение вкладок
         function switchTab(tab) {
-            // Закрываем меню
             closeMenu();
             
-            // Скрываем все карточки
             document.getElementById('scheduleCard').classList.add('hidden');
             document.getElementById('teachersCard').classList.add('hidden');
             document.getElementById('ringsCard').classList.add('hidden');
             document.getElementById('newsCard').classList.add('hidden');
             document.getElementById('aboutCard').classList.add('hidden');
             
-            // Показываем выбранную
             if (tab === 'schedule') {
                 document.getElementById('scheduleCard').classList.remove('hidden');
-                if (currentDate && scheduleData) showScheduleForDate(currentDate);
-                else if (currentDay && scheduleData) showAnyDay();
-                else if (scheduleData) showToday();
+                if (scheduleData) showScheduleForDate(currentDate);
             } else if (tab === 'teachers') {
                 document.getElementById('teachersCard').classList.remove('hidden');
                 showTeachers();
@@ -1239,12 +1597,9 @@
                 showAbout();
             }
             
-            // Обновляем активную кнопку в меню
             document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.classList.remove('active');
-                if (btn.getAttribute('data-tab') === tab) {
-                    btn.classList.add('active');
-                }
+                if (btn.getAttribute('data-tab') === tab) btn.classList.add('active');
             });
         }
         
@@ -1261,25 +1616,55 @@
         }
         
         function toggleMenu() {
-            if (document.getElementById('sidebar').classList.contains('open')) {
-                closeMenu();
-            } else {
-                openMenu();
-            }
+            if (document.getElementById('sidebar').classList.contains('open')) closeMenu();
+            else openMenu();
         }
+        
+        // Pull-to-refresh
+        let touchStartY = 0;
+        let isRefreshing = false;
+        
+        document.addEventListener('touchstart', (e) => {
+            if (window.scrollY === 0) {
+                touchStartY = e.touches[0].clientY;
+            }
+        });
+        
+        document.addEventListener('touchmove', (e) => {
+            if (touchStartY > 0 && window.scrollY === 0 && !isRefreshing) {
+                const diff = e.touches[0].clientY - touchStartY;
+                if (diff > 60) {
+                    isRefreshing = true;
+                    const ptrElement = document.createElement('div');
+                    ptrElement.className = 'ptr-element';
+                    ptrElement.innerHTML = '⬇️ Обновление...';
+                    document.getElementById('mainContainer').prepend(ptrElement);
+                    loadSchedule().finally(() => {
+                        ptrElement.remove();
+                        isRefreshing = false;
+                    });
+                    touchStartY = 0;
+                }
+            }
+        });
         
         // Обработчики
         document.getElementById('menuBtn').addEventListener('click', toggleMenu);
         document.getElementById('overlay').addEventListener('click', closeMenu);
         document.getElementById('updateBtn').addEventListener('click', loadSchedule);
-        document.getElementById('todayBtn').addEventListener('click', showToday);
-        document.getElementById('anyDayBtn').addEventListener('click', showAnyDay);
-        document.getElementById('dateBtn').addEventListener('click', showByDatePicker);
-        document.getElementById('classSelect').addEventListener('change', () => {
-            if (currentDate && scheduleData) showScheduleForDate(currentDate);
-            else if (currentDay && scheduleData) showAnyDay();
+        document.getElementById('todayBtn')?.addEventListener('click', showToday);
+        document.getElementById('anyDayBtn')?.addEventListener('click', showAnyDay);
+        document.getElementById('dateBtn')?.addEventListener('click', showByDatePicker);
+        document.getElementById('prevDayBtn')?.addEventListener('click', goPrevDay);
+        document.getElementById('nextDayBtn')?.addEventListener('click', goNextDay);
+        document.getElementById('tomorrowBtn')?.addEventListener('click', goTomorrow);
+        document.getElementById('dayAfterBtn')?.addEventListener('click', goDayAfter);
+        document.getElementById('mondayBtn')?.addEventListener('click', goMonday);
+        document.getElementById('classSelect')?.addEventListener('change', () => {
+            if (scheduleData) showScheduleForDate(currentDate);
+            updateWeekSchedule();
         });
-        document.getElementById('notifyBell').addEventListener('click', () => {
+        document.getElementById('notifyBell')?.addEventListener('click', () => {
             document.getElementById('notifyBadge').style.display = 'none';
         });
         
@@ -1287,14 +1672,14 @@
             btn.addEventListener('click', () => switchTab(btn.getAttribute('data-tab')));
         });
         
-        // Установка сегодняшней даты в datePicker
+        // Установка сегодняшней даты
         const todayDate = new Date();
         const yyyy = todayDate.getFullYear();
         const mm = String(todayDate.getMonth() + 1).padStart(2, '0');
         const dd = String(todayDate.getDate()).padStart(2, '0');
-        document.getElementById('datePicker').value = `${yyyy}-${mm}-${dd}`;
+        const datePicker = document.getElementById('datePicker');
+        if (datePicker) datePicker.value = `${yyyy}-${mm}-${dd}`;
         
-        // Инициализация
         initNotifications();
         loadSchedule();
         
@@ -1302,7 +1687,7 @@
             checkForUpdates();
             loadReplacements();
             loadNews();
-            if (currentDate && document.getElementById('scheduleCard').classList.contains('hidden') === false) {
+            if (document.getElementById('scheduleCard') && !document.getElementById('scheduleCard').classList.contains('hidden')) {
                 showScheduleForDate(currentDate);
             }
         }, 300000);
